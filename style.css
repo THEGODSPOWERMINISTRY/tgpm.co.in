@@ -1,6 +1,10 @@
 
 body{font-family:Arial,Helvetica,sans-serif;margin:0;background:#f4f6fb;color:#222}
-header{background:linear-gradient(90deg,#0b3d91,#1e6bd6);color:white;padding:25px;text-align:center}
+header{
+background:linear-gradient(90deg,#0b3d91,#1e6bd6);
+padding:40px;
+font-size:22px;
+}
 nav{background:#111;padding:14px;text-align:center}
 nav a{color:white;margin:12px;text-decoration:none;font-size:18px}
 nav a:hover{color:#ffd24d}
