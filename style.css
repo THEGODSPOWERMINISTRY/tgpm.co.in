@@ -4,7 +4,13 @@ header{background:linear-gradient(90deg,#0b3d91,#1e6bd6);color:white;padding:25p
 nav{background:#111;padding:14px;text-align:center}
 nav a{color:white;margin:12px;text-decoration:none;font-size:18px}
 nav a:hover{color:#ffd24d}
-.hero{padding:80px 20px;text-align:center;background:#eaf1ff}
+.hero{
+background-image:url('https://images.unsplash.com/photo-1504052434569-70ad5836ab65');
+background-size:cover;
+background-position:center;
+color:white;
+padding:120px 20px;
+}
 .section{padding:60px 20px;text-align:center}
 .cards{display:flex;flex-wrap:wrap;justify-content:center;gap:20px}
 .card{background:white;padding:25px;border-radius:8px;max-width:260px;box-shadow:0 3px 10px rgba(0,0,0,.1)}
