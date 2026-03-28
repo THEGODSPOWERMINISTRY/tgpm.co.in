@@ -1,16 +1,136 @@
-<form id="prayerForm">
-<input type="text" name="name" placeholder="Name" required><br>
-<input type="email" name="email" placeholder="Email" required><br>
-<textarea name="message" placeholder="Prayer Request"></textarea><br>
-<button type="submit">Submit</button>
-</form>
+<!DOCTYPE html>
+<html>
+<head>
+<title>Prayer Request</title>
+
+<style>
+body {
+  margin: 0;
+  font-family: 'Poppins', sans-serif;
+}
+
+/* 3D VIDEO BACKGROUND */
+.bg-video {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  z-index: -1;
+}
+
+/* DARK OVERLAY */
+.overlay {
+  position: fixed;
+  width: 100%;
+  height: 100%;
+  background: rgba(0,0,0,0.7);
+  z-index: -1;
+}
+
+/* CENTER FORM */
+.container {
+  height: 100vh;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+/* GLASS FORM */
+.form-box {
+  background: rgba(255,255,255,0.1);
+  backdrop-filter: blur(15px);
+  padding: 40px;
+  border-radius: 15px;
+  text-align: center;
+  color: white;
+  width: 400px;
+}
+
+/* TITLE */
+.form-box h2 {
+  font-size: 32px;
+  margin-bottom: 20px;
+}
+
+/* INPUTS */
+input, textarea {
+  width: 100%;
+  padding: 15px;
+  margin: 10px 0;
+  border: none;
+  border-radius: 8px;
+  font-size: 18px;
+}
+
+/* BUTTON */
+button {
+  width: 100%;
+  padding: 15px;
+  font-size: 18px;
+  background: #F2A365;
+  border: none;
+  color: white;
+  cursor: pointer;
+  border-radius: 8px;
+}
+
+button:hover {
+  background: #e08e3c;
+}
+
+/* SUCCESS MESSAGE */
+#msg {
+  margin-top: 15px;
+  display: none;
+  color: lightgreen;
+}
+</style>
+
+</head>
+<body>
+
+<!-- VIDEO -->
+<video autoplay muted loop class="bg-video">
+  <source src="videos/prayer.mp4" type="video/mp4">
+</video>
+
+<div class="overlay"></div>
+
+<div class="container">
+  <div class="form-box">
+
+    <h2>🙏 Prayer Request</h2>
+
+    <form id="prayerForm">
+      <input type="text" name="name" placeholder="Your Name" required>
+      <input type="email" name="email" placeholder="Your Email" required>
+      <textarea name="message" rows="4" placeholder="Write your prayer request" required></textarea>
+      <button type="submit">Submit</button>
+    </form>
+
+    <p id="msg">✅ Prayer submitted successfully</p>
+
+  </div>
+</div>
 
 <script>
 document.getElementById("prayerForm").addEventListener("submit", function(e){
-e.preventDefault();
-fetch("https://script.google.com/macros/s/AKfycbzL9WiD5ZPtHmzeEhX4FxejlLmaKgOWGklZWmf_CS_4msUWddiorG03YsBTRAuP7nMAWQ/exec", {
-method:"POST",
-body:new FormData(this)
-});
+  e.preventDefault();
+
+  fetch("https://script.google.com/macros/s/AKfycbzL9WiD5ZPtHmzeEhX4FxejlLmaKgOWGklZWmf_CS_4msUWddiorG03YsBTRAuP7nMAWQ/exec", {
+    method: "POST",
+    body: new FormData(this)
+  })
+  .then(() => {
+    document.getElementById("msg").style.display = "block";
+    this.reset();
+  })
+  .catch(() => alert("Error"));
 });
 </script>
+
+</body>
+</html>
+
