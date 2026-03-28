@@ -1,0 +1,94 @@
+body {
+  margin: 0;
+  font-family: 'Poppins', sans-serif;
+  scroll-behavior: smooth;
+}
+
+/* Navbar */
+header {
+  background: rgba(0,0,0,0.7);
+  position: fixed;
+  width: 100%;
+  z-index: 1000;
+}
+nav a {
+  color: white;
+  margin: 15px;
+  text-decoration: none;
+}
+
+/* Hero Video */
+.hero {
+  height: 100vh;
+  position: relative;
+}
+.hero video {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+}
+.overlay {
+  position: absolute;
+  top:0;left:0;
+  width:100%;height:100%;
+  background: rgba(0,0,0,0.6);
+}
+.hero-text {
+  position:absolute;
+  top:50%;left:50%;
+  transform:translate(-50%,-50%);
+  color:white;
+  text-align:center;
+}
+.hero-text h1 {
+  font-size:60px;
+  animation: fadeIn 2s;
+}
+
+/* Glass cards */
+.card {
+  backdrop-filter: blur(10px);
+  background: rgba(255,255,255,0.1);
+  color:white;
+  padding:20px;
+  margin:20px;
+  border-radius:15px;
+  display:inline-block;
+}
+
+/* Gallery */
+.gallery img {
+  width:250px;
+  margin:10px;
+  cursor:pointer;
+  transition:0.3s;
+}
+.gallery img:hover {
+  transform:scale(1.1);
+}
+
+/* Popup */
+#popup {
+  display:none;
+  position:fixed;
+  top:0;left:0;
+  width:100%;height:100%;
+  background:rgba(0,0,0,0.9);
+  justify-content:center;
+  align-items:center;
+}
+#popup img {
+  width:70%;
+}
+
+/* WhatsApp Button */
+.whatsapp {
+  position:fixed;
+  bottom:20px;
+  right:20px;
+  background:green;
+  color:white;
+  padding:15px;
+  border-radius:50%;
+  text-decoration:none;
+}
