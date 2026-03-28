@@ -1,0 +1,16 @@
+<form id="prayerForm">
+<input type="text" name="name" placeholder="Name" required><br>
+<input type="email" name="email" placeholder="Email" required><br>
+<textarea name="message" placeholder="Prayer Request"></textarea><br>
+<button type="submit">Submit</button>
+</form>
+
+<script>
+document.getElementById("prayerForm").addEventListener("submit", function(e){
+e.preventDefault();
+fetch("https://script.google.com/macros/s/AKfycbzL9WiD5ZPtHmzeEhX4FxejlLmaKgOWGklZWmf_CS_4msUWddiorG03YsBTRAuP7nMAWQ/exec", {
+method:"POST",
+body:new FormData(this)
+});
+});
+</script>
