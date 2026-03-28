@@ -1,13 +1,128 @@
-<div class="section">
-<h2>Gallery</h2>
+<!DOCTYPE html>
+<html>
+<head>
+<title>Gallery</title>
+
+<link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;600&display=swap" rel="stylesheet">
+
+<style>
+body {
+  margin:0;
+  font-family:'Poppins', sans-serif;
+  color:white;
+  background:black;
+}
+
+/* BACKGROUND VIDEO */
+.bg-video {
+  position:fixed;
+  width:100%;
+  height:100%;
+  object-fit:cover;
+  z-index:-2;
+}
+
+/* DARK OVERLAY */
+.overlay {
+  position:fixed;
+  width:100%;
+  height:100%;
+  background:rgba(0,0,0,0.7);
+  z-index:-1;
+}
+
+/* TITLE */
+h1 {
+  text-align:center;
+  padding-top:80px;
+  font-size:40px;
+}
+
+/* GRID */
+.gallery {
+  display:grid;
+  grid-template-columns:repeat(auto-fit, minmax(250px,1fr));
+  gap:20px;
+  padding:40px;
+}
+
+/* IMAGE STYLE */
+.gallery img {
+  width:100%;
+  border-radius:15px;
+  cursor:pointer;
+  transition:0.4s;
+}
+
+.gallery img:hover {
+  transform:scale(1.1) rotate(2deg);
+  box-shadow:0 0 20px #fff;
+}
+
+/* POPUP */
+#popup {
+  display:none;
+  position:fixed;
+  top:0;
+  left:0;
+  width:100%;
+  height:100%;
+  background:rgba(0,0,0,0.9);
+  justify-content:center;
+  align-items:center;
+  z-index:1000;
+}
+
+#popup img {
+  width:70%;
+  border-radius:10px;
+}
+
+/* CLOSE */
+#popup span {
+  position:absolute;
+  top:20px;
+  right:40px;
+  font-size:40px;
+  cursor:pointer;
+}
+</style>
+
+</head>
+<body>
+
+<!-- VIDEO -->
+<video autoplay muted loop class="bg-video">
+  <source src="videos/gallery.mp4" type="video/mp4">
+</video>
+
+<div class="overlay"></div>
+
+<h1>Our Ministry Gallery</h1>
 
 <div class="gallery">
-<img src="images/img1.jpg" onclick="openImg(this.src)">
-<img src="images/img2.jpg" onclick="openImg(this.src)">
+  <img src="images/img1.jpg" onclick="openImg(this.src)">
+  <img src="images/img2.jpg" onclick="openImg(this.src)">
+  <img src="images/img3.jpg" onclick="openImg(this.src)">
+  <img src="images/img4.jpg" onclick="openImg(this.src)">
 </div>
 
+<!-- POPUP -->
 <div id="popup" onclick="closeImg()">
-<img id="popupImg">
+  <span>&times;</span>
+  <img id="popupImg">
 </div>
 
-</div>
+<script>
+function openImg(src){
+  document.getElementById("popup").style.display="flex";
+  document.getElementById("popupImg").src=src;
+}
+
+function closeImg(){
+  document.getElementById("popup").style.display="none";
+}
+</script>
+
+</body>
+</html>
