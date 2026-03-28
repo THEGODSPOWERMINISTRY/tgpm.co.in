@@ -1,62 +1,63 @@
-
 <!DOCTYPE html>
 <html>
 <head>
-<meta charset="UTF-8">
-<meta name="viewport" content="width=device-width,initial-scale=1">
-<title>The God's Power Ministry</title>
+<title>THE GOD'S POWER MINISTRY</title>
 <link rel="stylesheet" href="style.css">
 </head>
 <body>
 
 <header>
-<h1>The God's Power Ministry</h1>
-<p>Betul, Madhya Pradesh, India</p>
+<nav>
+<a href="#">Home</a>
+<a href="#about">About</a>
+<a href="#sermons">Sermons</a>
+<a href="#gallery">Gallery</a>
+<a href="#contact">Contact</a>
+</nav>
 </header>
 
-<nav>
-<a href="index.html">Home</a>
-<a href="about.html">About</a>
-<a href="gallery.html">Gallery</a>
-<a href="sermons.html">Sermons</a>
-<a href="events.html">Events</a>
-<a href="prayer.html">Prayer</a>
-<a href="contact.html">Contact</a>
-</nav>
+<div class="hero">
+<video autoplay muted loop>
+<source src="video.mp4">
+</video>
+<div class="overlay"></div>
 
-<section class="hero">
-<h2>Welcome to The God's Power Ministry</h2>
-<p>Transforming Lives Through God's Power</p>
-<a class="btn" href="sermons.html">Watch Sermons</a>
+<div class="hero-text">
+<h1>JESUS IS THE ONLY GOD</h1>
+<p>Nothing is impossible with Him</p>
+</div>
+</div>
+
+<section id="about">
+<h2>About</h2>
+<p>The God's Power Ministry is an outreach ministry...</p>
 </section>
 
-<section class="section">
-<h2>Our Ministry Work</h2>
-
-<div class="cards">
-
-<div class="card">
-<h3>Prayer Ministry</h3>
-<p>We pray for healing, deliverance and blessings.</p>
-</div>
-
-<div class="card">
-<h3>Bible Teaching</h3>
-<p>Teaching the Word of God and strengthening believers.</p>
-</div>
-
-<div class="card">
-<h3>Healing Service</h3>
-<p>Experience the power of God through faith and prayer.</p>
-</div>
-
-</div>
-
+<section id="sermons">
+<h2>Sermons</h2>
+<iframe width="300" src="https://www.youtube.com/embed?listType=user_uploads&list=TheGodsPowerMinistrySD"></iframe>
 </section>
 
-<footer>
-<p>© 2026 The God's Power Ministry | tgpm.co.in</p>
-</footer>
+<section id="gallery">
+<h2>Gallery</h2>
+<div class="gallery">
+<img src="images/img1.jpg" onclick="openImg(this.src)">
+<img src="images/img2.jpg" onclick="openImg(this.src)">
+</div>
+</section>
+
+<div id="popup" onclick="closeImg()">
+<img id="popupImg">
+</div>
+
+<section id="contact">
+<h2>Contact</h2>
+<p>Sunday Worship: 10:30 AM</p>
+</section>
+
+<a href="https://wa.me/91XXXXXXXXXX" class="whatsapp">💬</a>
+
+<script src="script.js"></script>
 
 </body>
 </html>
