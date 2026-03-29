@@ -11,6 +11,17 @@ window.onload = function(){
 </script>
 <style>
 body {
+<div id="transition"></div>
+  #transition {
+  position: fixed;
+  width: 100%;
+  height: 100%;
+  background: black;
+  z-index: 9998;
+  transform: scaleY(0);
+  transform-origin: top;
+  transition: 0.5s;
+}
   <header>
   <nav class="navbar">
     <a href="index.html">Home</a>
