@@ -1,83 +1,54 @@
 <!DOCTYPE html>
-<html>
-  <h1>THE GOD'S POWER MINISTRY</h1>
+<html lang="en">
 <head>
-<title>About Ministry</title>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>About - TGPM</title>
 
 <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;600&display=swap" rel="stylesheet">
-<script>
-window.onload = function(){
-  document.getElementById("loader").style.display = "none";
-}
-  <script>
-window.addEventListener("load", function(){
-  document.getElementById("loader").style.display = "none";
-});
-</script>
-  <script>
-document.querySelectorAll("a").forEach(link => {
-  link.addEventListener("click", function(e){
-    if(this.href.includes(".html")){
-      e.preventDefault();
-      document.getElementById("transition").style.transform = "scaleY(1)";
-      setTimeout(()=>{
-        window.location = this.href;
-      },500);
-    }
-  });
-});
-</script>
-</script>
-  <script src="https://cdn.jsdelivr.net/npm/particles.js"></script>
 
-<script>
-particlesJS("particles-js", {
-  particles: {
-    number: { value: 80 },
-    size: { value: 3 },
-    move: { speed: 2 }
-  }
-});
-</script>
+<!-- PARTICLES -->
+<script src="https://cdn.jsdelivr.net/npm/particles.js"></script>
+
 <style>
 body {
-  <div id="loader">
-  <div class="spinner"></div>
-  <h1>Loading...</h1>
-</div>
- #loader {
+  margin:0;
+  font-family:'Poppins', sans-serif;
+  color:white;
+}
+
+/* NAVBAR */
+header {
+  position:fixed;
+  top:0;
+  width:100%;
+  background:rgba(0,0,0,0.6);
+  padding:15px;
+  text-align:center;
+  z-index:1000;
+}
+
+nav a {
+  color:white;
+  margin:15px;
+  text-decoration:none;
+  font-size:18px;
+}
+
+/* LOADER */
+#loader {
   position: fixed;
   width: 100%;
   height: 100%;
   background: black;
-  display: flex;
-  flex-direction: column;
-  justify-content: center;
-  align-items: center;
-  z-index: 9999;
+  display:flex;
+  justify-content:center;
+  align-items:center;
+  z-index:9999;
 }
 
-/* SPINNER */
-.spinner {
-  width: 60px;
-  height: 60px;
-  border: 5px solid #fff;
-  border-top: 5px solid orange;
-  border-radius: 50%;
-  animation: spin 1s linear infinite;
-  margin-bottom: 20px;
-}
-
-@keyframes spin {
-  100% { transform: rotate(360deg); }
-}
-
-#loader h1 {
-  color: white;
-  font-size: 24px;
-} 
-<div id="transition"></div>
-      #transition {
+/* TRANSITION */
+#transition {
   position: fixed;
   width: 100%;
   height: 100%;
@@ -87,7 +58,138 @@ body {
   transform-origin: top;
   transition: 0.5s;
 }
-      <script>
+
+/* PARTICLES */
+#particles-js {
+  position:fixed;
+  width:100%;
+  height:100%;
+  z-index:-3;
+}
+
+/* VIDEO */
+.bg-video {
+  position:fixed;
+  width:100%;
+  height:100%;
+  object-fit:cover;
+  z-index:-2;
+}
+
+.overlay {
+  position:fixed;
+  width:100%;
+  height:100%;
+  background:rgba(0,0,0,0.7);
+  z-index:-1;
+}
+
+/* CENTER */
+.container {
+  display:flex;
+  justify-content:center;
+  align-items:center;
+  height:100vh;
+  padding-top:80px;
+}
+
+/* GLASS BOX */
+.box {
+  background:rgba(255,255,255,0.1);
+  backdrop-filter:blur(20px);
+  padding:50px;
+  border-radius:20px;
+  text-align:center;
+  max-width:700px;
+  box-shadow:0 0 40px rgba(0,0,0,0.6);
+}
+
+/* TEXT */
+h1 {
+  font-size:40px;
+}
+
+p {
+  font-size:18px;
+  color:#ddd;
+}
+
+/* LEADERS */
+.card {
+  display:inline-block;
+  background:rgba(255,255,255,0.15);
+  padding:15px 25px;
+  margin:10px;
+  border-radius:20px;
+  transition:0.3s;
+}
+
+.card:hover {
+  background:orange;
+  transform:scale(1.1);
+}
+</style>
+
+</head>
+
+<body>
+
+<!-- LOADER -->
+<div id="loader">
+  <h1>Loading...</h1>
+</div>
+
+<!-- TRANSITION -->
+<div id="transition"></div>
+
+<!-- PARTICLES -->
+<div id="particles-js"></div>
+
+<!-- NAVBAR -->
+<header>
+<nav>
+<a href="index.html">Home</a>
+<a href="about.html">About</a>
+<a href="sermons.html">Sermons</a>
+<a href="gallery.html">Gallery</a>
+<a href="prayer.html">Prayer</a>
+<a href="contact.html">Contact</a>
+</nav>
+</header>
+
+<!-- VIDEO -->
+<video autoplay muted loop class="bg-video">
+  <source src="videos/about.mp4" type="video/mp4">
+</video>
+
+<div class="overlay"></div>
+
+<!-- CONTENT -->
+<div class="container">
+  <div class="box">
+
+    <h1>About Our Ministry</h1>
+
+    <p>
+      The God's Power Ministry is an outreach ministry focusing on healing,
+      prayer, prophecy, and teaching the Word of God.
+    </p>
+
+    <div>
+      <div class="card">Bro. Devakar Kasuwar</div>
+      <div class="card">Sis. Sapna</div>
+    </div>
+
+  </div>
+</div>
+
+<!-- JS -->
+<script>
+window.addEventListener("load", function(){
+  document.getElementById("loader").style.display = "none";
+});
+
+/* TRANSITION */
 document.querySelectorAll("a").forEach(link => {
   link.addEventListener("click", function(e){
     if(this.href.includes(".html")){
@@ -99,146 +201,16 @@ document.querySelectorAll("a").forEach(link => {
     }
   });
 });
+
+/* PARTICLES */
+particlesJS("particles-js", {
+  particles: {
+    number: { value: 80 },
+    size: { value: 3 },
+    move: { speed: 2 }
+  }
+});
 </script>
-  <div id="particles-js"></div>
-  #particles-js {
-  position: fixed;
-  width: 100%;
-  height: 100%;
-  z-index: -3;
-}
-  <header>
-  <nav class="navbar">
-    <a href="index.html">Home</a>
-    <a href="about.html">About</a>
-    <a href="sermons.html">Sermons</a>
-    <a href="gallery.html">Gallery</a>
-    <a href="prayer.html">Prayer</a>
-    <a href="contact.html">Contact</a>
-  </nav>
-  <div id="loader">
-  <h1>Loading...</h1>
-</div>
-  #loader {
-  position: fixed;
-  width: 100%;
-  height: 100%;
-  background: black;
-  display: flex;
-  justify-content: center;
-  align-items: center;
-  z-index: 9999;
-  color: white;
-  font-size: 30px;
-}
-</header>
-  margin:0;
-  font-family:'Poppins', sans-serif;
-  color:white;
-}
-
-/* BACKGROUND VIDEO */
-.bg-video {
-  position:fixed;
-  width:100%;
-  height:100%;
-  object-fit:cover;
-  z-index:-1;
-}
-
-/* OVERLAY GRADIENT */
-.overlay {
-  position:fixed;
-  width:100%;
-  height:100%;
-  background:linear-gradient(45deg, rgba(0,0,0,0.8), rgba(0,0,50,0.7));
-  z-index:-1;
-}
-
-/* CENTER CONTENT */
-.container {
-  display:flex;
-  justify-content:center;
-  align-items:center;
-  height:100vh;
-  text-align:center;
-}
-
-/* MAIN GLASS BOX */
-.box {
-  background:rgba(255,255,255,0.1);
-  backdrop-filter:blur(20px);
-  padding:50px;
-  border-radius:20px;
-  width:60%;
-  box-shadow:0 0 40px rgba(0,0,0,0.5);
-  animation:fadeIn 2s ease;
-}
-
-/* TITLE */
-h1 {
-  font-size:40px;
-}
-
-/* TEXT */
-p {
-  font-size:20px;
-  line-height:1.6;
-}
-
-/* LEADERS */
-.leaders {
-  margin-top:30px;
-}
-
-.card {
-  display:inline-block;
-  background:rgba(255,255,255,0.15);
-  padding:20px;
-  margin:10px;
-  border-radius:15px;
-  transition:0.3s;
-}
-
-.card:hover {
-  transform:scale(1.1);
-  background:rgba(255,255,255,0.3);
-}
-
-/* ANIMATION */
-@keyframes fadeIn {
-  from {opacity:0; transform:translateY(40px);}
-  to {opacity:1; transform:translateY(0);}
-}
-</style>
-
-</head>
-<body>
-
-<!-- VIDEO -->
-<video autoplay muted loop class="bg-video">
-  <source src="videos/about.mp4" type="video/mp4">
-</video>
-
-<div class="overlay"></div>
-
-<div class="container">
-  <div class="box">
-
-    <h1>About Our Ministry</h1>
-
-    <p>
-    The God's Power Ministry is an outreach ministry focusing on healing,
-    prayer, prophecy, and teaching the Word of God.
-    </p>
-
-    <div class="leaders">
-      <div class="card">Bro. Devakar Kasuwar</div>
-      <div class="card">Sis. Sapna</div>
-    </div>
-
-  </div>
-</div>
 
 </body>
 </html>
