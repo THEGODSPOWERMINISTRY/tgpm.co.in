@@ -1,83 +1,52 @@
 <!DOCTYPE html>
-<html>
+<html lang="en">
 <head>
-<title>Gallery</title>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Gallery - TGPM</title>
 
 <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;600&display=swap" rel="stylesheet">
-<script>
-<script>
-window.onload = function(){
-  document.getElementById("loader").style.display = "none";
-}
-  <script>
-window.addEventListener("load", function(){
-  document.getElementById("loader").style.display = "none";
-});
-</script>
-  <script>
-document.querySelectorAll("a").forEach(link => {
-  link.addEventListener("click", function(e){
-    if(this.href.includes(".html")){
-      e.preventDefault();
-      document.getElementById("transition").style.transform = "scaleY(1)";
-      setTimeout(()=>{
-        window.location = this.href;
-      },500);
-    }
-  });
-});
-</script>
-</script>
-  <script src="https://cdn.jsdelivr.net/npm/particles.js"></script>
+<script src="https://cdn.jsdelivr.net/npm/particles.js"></script>
 
-<script>
-particlesJS("particles-js", {
-  particles: {
-    number: { value: 80 },
-    size: { value: 3 },
-    move: { speed: 2 }
-  }
-});
-</script>
 <style>
 body {
-  <div id="loader">
-  <div class="spinner"></div>
-  <h1>Loading...</h1>
-</div>
- #loader {
+  margin:0;
+  font-family:'Poppins', sans-serif;
+  color:white;
+}
+
+/* NAVBAR */
+header {
+  position:fixed;
+  top:0;
+  width:100%;
+  background:rgba(0,0,0,0.6);
+  padding:15px;
+  text-align:center;
+  z-index:1000;
+}
+
+nav a {
+  color:white;
+  margin:15px;
+  text-decoration:none;
+  font-size:18px;
+}
+
+/* LOADER */
+#loader {
   position: fixed;
   width: 100%;
   height: 100%;
   background: black;
-  display: flex;
-  flex-direction: column;
-  justify-content: center;
-  align-items: center;
-  z-index: 9999;
+  display:flex;
+  justify-content:center;
+  align-items:center;
+  z-index:9999;
 }
 
-/* SPINNER */
-.spinner {
-  width: 60px;
-  height: 60px;
-  border: 5px solid #fff;
-  border-top: 5px solid orange;
-  border-radius: 50%;
-  animation: spin 1s linear infinite;
-  margin-bottom: 20px;
-}
-
-@keyframes spin {
-  100% { transform: rotate(360deg); }
-}
-
-#loader h1 {
-  color: white;
-  font-size: 24px;
-} 
-<div id="transition"></div>
-      #transition {
+/* TRANSITION */
+#transition {
   position: fixed;
   width: 100%;
   height: 100%;
@@ -87,82 +56,16 @@ body {
   transform-origin: top;
   transition: 0.5s;
 }
-      <script>
-document.querySelectorAll("a").forEach(link => {
-  link.addEventListener("click", function(e){
-    if(this.href.includes(".html")){
-      e.preventDefault();
-      document.getElementById("transition").style.transform = "scaleY(1)";
-      setTimeout(()=>{
-        window.location = this.href;
-      },500);
-    }
-  });
-});
-</script>
-  <div id="particles-js"></div>
-  #particles-js {
-  position: fixed;
-  width: 100%;
-  height: 100%;
-  z-index: -3;
-}
-  <header>
-  <nav class="navbar">
-    <a href="index.html">Home</a>
-    <a href="about.html">About</a>
-    <a href="sermons.html">Sermons</a>
-    <a href="gallery.html">Gallery</a>
-    <a href="prayer.html">Prayer</a>
-    <a href="contact.html">Contact</a>
-  </nav>
-  <div id="loader">
-  <h1>Loading...</h1>
-</div>
-  #loader {
-  position: fixed;
-  width: 100%;
-  height: 100%;
-  background: black;
-  display: flex;
-  justify-content: center;
-  align-items: center;
-  z-index: 9999;
-  color: white;
-  font-size: 30px;
-}
-  <header>
-  <nav class="navbar">
-    <a href="index.html">Home</a>
-    <a href="about.html">About</a>
-    <a href="sermons.html">Sermons</a>
-    <a href="gallery.html">Gallery</a>
-    <a href="prayer.html">Prayer</a>
-    <a href="contact.html">Contact</a>
-  </nav>
-  <div id="loader">
-  <h1>Loading...</h1>
-</div>
-  #loader {
-  position: fixed;
-  width: 100%;
-  height: 100%;
-  background: black;
-  display: flex;
-  justify-content: center;
-  align-items: center;
-  z-index: 9999;
-  color: white;
-  font-size: 30px;
-}
-</header>
-  margin:0;
-  font-family:'Poppins', sans-serif;
-  color:white;
-  background:black;
+
+/* PARTICLES */
+#particles-js {
+  position:fixed;
+  width:100%;
+  height:100%;
+  z-index:-3;
 }
 
-/* BACKGROUND VIDEO */
+/* VIDEO */
 .bg-video {
   position:fixed;
   width:100%;
@@ -171,7 +74,6 @@ document.querySelectorAll("a").forEach(link => {
   z-index:-2;
 }
 
-/* DARK OVERLAY */
 .overlay {
   position:fixed;
   width:100%;
@@ -183,7 +85,7 @@ document.querySelectorAll("a").forEach(link => {
 /* TITLE */
 h1 {
   text-align:center;
-  padding-top:80px;
+  padding-top:90px;
   font-size:40px;
 }
 
@@ -195,7 +97,7 @@ h1 {
   padding:40px;
 }
 
-/* IMAGE STYLE */
+/* IMAGE */
 .gallery img {
   width:100%;
   border-radius:15px;
@@ -204,7 +106,7 @@ h1 {
 }
 
 .gallery img:hover {
-  transform:scale(1.1) rotate(2deg);
+  transform:scale(1.1);
   box-shadow:0 0 20px #fff;
 }
 
@@ -219,7 +121,7 @@ h1 {
   background:rgba(0,0,0,0.9);
   justify-content:center;
   align-items:center;
-  z-index:1000;
+  z-index:2000;
 }
 
 #popup img {
@@ -227,7 +129,6 @@ h1 {
   border-radius:10px;
 }
 
-/* CLOSE */
 #popup span {
   position:absolute;
   top:20px;
@@ -238,7 +139,31 @@ h1 {
 </style>
 
 </head>
+
 <body>
+
+<!-- LOADER -->
+<div id="loader">
+  <h1>Loading...</h1>
+</div>
+
+<!-- TRANSITION -->
+<div id="transition"></div>
+
+<!-- PARTICLES -->
+<div id="particles-js"></div>
+
+<!-- NAVBAR -->
+<header>
+<nav>
+<a href="index.html">Home</a>
+<a href="about.html">About</a>
+<a href="sermons.html">Sermons</a>
+<a href="gallery.html">Gallery</a>
+<a href="prayer.html">Prayer</a>
+<a href="contact.html">Contact</a>
+</nav>
+</header>
 
 <!-- VIDEO -->
 <video autoplay muted loop class="bg-video">
@@ -249,6 +174,7 @@ h1 {
 
 <h1>Our Ministry Gallery</h1>
 
+<!-- IMAGES -->
 <div class="gallery">
   <img src="images/img1.jpg" onclick="openImg(this.src)">
   <img src="images/img2.jpg" onclick="openImg(this.src)">
@@ -262,7 +188,36 @@ h1 {
   <img id="popupImg">
 </div>
 
+<!-- JS -->
 <script>
+/* LOADER */
+window.addEventListener("load", function(){
+  document.getElementById("loader").style.display = "none";
+});
+
+/* TRANSITION */
+document.querySelectorAll("a").forEach(link => {
+  link.addEventListener("click", function(e){
+    if(this.href.includes(".html")){
+      e.preventDefault();
+      document.getElementById("transition").style.transform = "scaleY(1)";
+      setTimeout(()=>{
+        window.location = this.href;
+      },500);
+    }
+  });
+});
+
+/* PARTICLES */
+particlesJS("particles-js", {
+  particles: {
+    number: { value: 80 },
+    size: { value: 3 },
+    move: { speed: 2 }
+  }
+});
+
+/* IMAGE POPUP */
 function openImg(src){
   document.getElementById("popup").style.display="flex";
   document.getElementById("popupImg").src=src;
