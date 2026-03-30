@@ -214,7 +214,19 @@ particlesJS("particles-js", {
     move: { speed: 2 }
   }
 });
+document.getElementById("prayerForm").addEventListener("submit", function(e){
+  e.preventDefault();
 
+  fetch("YOUR_SCRIPT_URL_HERE", {
+    method: "POST",
+    body: new FormData(this)
+  })
+  .then(() => {
+    alert("🙏 Prayer submitted successfully");
+    this.reset();
+  })
+  .catch(() => alert("Error"));
+});
 /* GOOGLE SHEETS FORM */
 document.getElementById("prayerForm").addEventListener("submit", function(e){
   e.preventDefault();
