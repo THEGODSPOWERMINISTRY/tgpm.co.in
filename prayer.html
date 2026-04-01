@@ -217,7 +217,7 @@ particlesJS("particles-js", {
 document.getElementById("prayerForm").addEventListener("submit", function(e){
   e.preventDefault();
 
-  fetch("YOUR_SCRIPT_URL_HERE", {
+  fetch("https://script.google.com/macros/s/AKfycbw-bLhUrH4URX71sbITNwyrMTIF2LF9EXoIHklpn7VUO7Dq5prQzVvlCxSlfYHLW6Hg7Q/exec", {
     method: "POST",
     body: new FormData(this)
   })
