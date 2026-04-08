@@ -225,6 +225,13 @@ window.addEventListener("load", function() {
 });
 
 /* TRANSITION */
+<script>
+/* LOADER */
+window.addEventListener("load", function() {
+  document.getElementById("loader").style.display = "none";
+});
+
+/* TRANSITION */
 document.querySelectorAll("a").forEach(link => {
   link.addEventListener("click", function(e) {
     if (this.href.includes(".html")) {
@@ -242,13 +249,7 @@ particlesJS("particles-js", {
   particles: {
     number: { value: 80 },
     size: { value: 3 },
-    move: { speed: 2 },
-    color: { value: "#ffffff" },
-    line_linked: {
-      enable: true,
-      color: "#ffffff",
-      opacity: 0.2
-    }
+    move: { speed: 2 }
   }
 });
 </script>
