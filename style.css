@@ -83,16 +83,7 @@ nav {
   transform:translate(-50%,-50%);
   text-align:center;
   <img src="images/logo.png" alt="TGPM Logo" class="hero-logo">
-  hero-logo {
-  width: 200px;
-  height: 200px;
-  object-fit: contain;
-  border-radius: 50%;
-  margin-bottom: 20px;
-  background: rgba(255,255,255,0.08);
-  box-shadow: 0 8px 20px rgba(0,0,0,0.4);
-}
-}
+ }
 .hero-text h1 {
   font-size:60px;
 }
