@@ -81,10 +81,11 @@ nav a {
 
 /* CENTER */
 .container {
-  height: 100vh;
+  min-height: 100vh;
   display: flex;
   justify-content: center;
   align-items: center;
+  padding: 120px 20px 40px;
 }
 
 /* FORM */
@@ -94,11 +95,14 @@ nav a {
   padding: 40px;
   border-radius: 15px;
   text-align: center;
-  width: 400px;
+  width: 100%;
+  max-width: 450px;
+  box-sizing: border-box;
 }
 
 .form-box h2 {
   font-size: 32px;
+  margin-bottom: 20px;
 }
 
 input, textarea {
@@ -108,6 +112,11 @@ input, textarea {
   border: none;
   border-radius: 8px;
   font-size: 16px;
+  box-sizing: border-box;
+}
+
+textarea {
+  resize: none;
 }
 
 button {
@@ -119,6 +128,7 @@ button {
   color: white;
   cursor: pointer;
   border-radius: 8px;
+  transition: 0.3s;
 }
 
 button:hover {
@@ -129,6 +139,23 @@ button:hover {
   margin-top: 15px;
   display: none;
   color: lightgreen;
+  font-size: 16px;
+}
+
+/* MOBILE */
+@media(max-width: 768px) {
+  nav a {
+    margin: 8px;
+    font-size: 14px;
+  }
+
+  .form-box {
+    padding: 25px;
+  }
+
+  .form-box h2 {
+    font-size: 26px;
+  }
 }
 </style>
 </head>
@@ -157,7 +184,7 @@ button:hover {
 </header>
 
 <!-- VIDEO -->
-<video autoplay muted loop class="bg-video">
+<video autoplay muted loop playsinline class="bg-video">
   <source src="videos/prayer.mp4" type="video/mp4">
 </video>
 
@@ -169,19 +196,24 @@ button:hover {
 
     <h2>🙏 Prayer Request</h2>
 
-    <form id="prayerForm">
-  <input type="text" name="name" placeholder="Your Name" required>
+    <form action="https://formsubmit.co/www.thegodspowerministry@gmail.com" method="POST">
 
-  <input type="email" name="email" placeholder="Your Email" required>
+      <input type="text" name="name" placeholder="Your Name" required>
 
-  <input type="tel" name="phone" placeholder="Your Phone Number" required>
+      <input type="email" name="email" placeholder="Your Email" required>
 
-  <textarea name="message" rows="4" placeholder="Write your prayer request" required></textarea>
+      <input type="tel" name="phone" placeholder="Your Phone Number" required>
 
-  <button type="submit">Submit</button>
-</form>
+      <textarea name="message" rows="5" placeholder="Write your prayer request" required></textarea>
 
-    <p id="msg">✅ Prayer submitted successfully</p>
+      <!-- Hidden Settings -->
+      <input type="hidden" name="_subject" value="New Prayer Request Received - TGPM">
+      <input type="hidden" name="_captcha" value="false">
+      <input type="hidden" name="_template" value="table">
+      <input type="hidden" name="_next" value="https://tgpm.co.in/thankyou.html">
+
+      <button type="submit">Submit Prayer Request</button>
+    </form>
 
   </div>
 </div>
@@ -189,19 +221,19 @@ button:hover {
 <!-- JS -->
 <script>
 /* LOADER */
-window.addEventListener("load", function(){
+window.addEventListener("load", function() {
   document.getElementById("loader").style.display = "none";
 });
 
 /* TRANSITION */
 document.querySelectorAll("a").forEach(link => {
-  link.addEventListener("click", function(e){
-    if(this.href.includes(".html")){
+  link.addEventListener("click", function(e) {
+    if (this.href.includes(".html")) {
       e.preventDefault();
       document.getElementById("transition").style.transform = "scaleY(1)";
-      setTimeout(()=>{
+      setTimeout(() => {
         window.location = this.href;
-      },500);
+      }, 500);
     }
   });
 });
@@ -211,35 +243,14 @@ particlesJS("particles-js", {
   particles: {
     number: { value: 80 },
     size: { value: 3 },
-    move: { speed: 2 }
+    move: { speed: 2 },
+    color: { value: "#ffffff" },
+    line_linked: {
+      enable: true,
+      color: "#ffffff",
+      opacity: 0.2
+    }
   }
-});
-document.getElementById("prayerForm").addEventListener("submit", function(e){
-  e.preventDefault();
-
-  fetch("https://script.google.com/macros/s/AKfycbyr6SHpr5IQwitOkvfynHCEzU-TTasuH3GwH3xwmtBWF4IeTV3QavHXsc3-kohb_X1lVw/exec", {
-    method: "POST",
-    body: new FormData(this)
-  })
-  .then(() => {
-    alert("🙏 Prayer submitted successfully");
-    this.reset();
-  })
-  .catch(() => alert("Error"));
-});
-/* GOOGLE SHEETS FORM */
-document.getElementById("prayerForm").addEventListener("submit", function(e){
-  e.preventDefault();
-
-  fetch("https://script.google.com/macros/s/AKfycbyr6SHpr5IQwitOkvfynHCEzU-TTasuH3GwH3xwmtBWF4IeTV3QavHXsc3-kohb_X1lVw/exec", {
-    method: "POST",
-    body: new FormData(this)
-  })
-  .then(() => {
-    document.getElementById("msg").style.display = "block";
-    this.reset();
-  })
-  .catch(() => alert("Error submitting form"));
 });
 </script>
 
