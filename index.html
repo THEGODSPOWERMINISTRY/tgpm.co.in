@@ -33,33 +33,47 @@
       z-index: 1000;
       background: rgba(0, 0, 0, 0.45);
       backdrop-filter: blur(8px);
-      padding: 16px 10px;
+      padding: 12px 20px;
     }
-  <nav>
-    <div class="logo-area">
-      <img src="images/logo.png" alt="TGPM Logo" class="logo">
-      <span class="logo-text">TGPM Ministry</span>
-    </div>
 
-    <div class="nav-links">
-      <a href="index.html">Home</a>
-      <a href="about.html">About</a>
-      <a href="sermons.html">Sermons</a>
-      <a href="gallery.html">Gallery</a>
-      <a href="prayer.html">Prayer</a>
-      <a href="contact.html">Contact</a>
-    </div>
-  </nav>
-</header>
     nav {
       display: flex;
-      justify-content: center;
+      justify-content: space-between;
       align-items: center;
       flex-wrap: wrap;
-      gap: 18px;
+      gap: 15px;
+      max-width: 1200px;
+      margin: 0 auto;
     }
 
-    nav a {
+    .logo-area {
+      display: flex;
+      align-items: center;
+      gap: 10px;
+    }
+
+    .logo {
+      width: 55px;
+      height: 55px;
+      object-fit: contain;
+      border-radius: 50%;
+      background: rgba(255,255,255,0.08);
+    }
+
+    .logo-text {
+      font-size: 20px;
+      font-weight: 700;
+      color: white;
+    }
+
+    .nav-links {
+      display: flex;
+      align-items: center;
+      gap: 18px;
+      flex-wrap: wrap;
+    }
+
+    .nav-links a {
       color: white;
       text-decoration: none;
       font-size: 15px;
@@ -67,7 +81,7 @@
       transition: 0.3s;
     }
 
-    nav a:hover {
+    .nav-links a:hover {
       color: #F2A365;
     }
 
@@ -104,6 +118,16 @@
       z-index: 3;
       max-width: 950px;
       animation: fadeUp 1.3s ease;
+    }
+
+    .hero-logo {
+      width: 120px;
+      height: 120px;
+      object-fit: contain;
+      border-radius: 50%;
+      margin-bottom: 20px;
+      background: rgba(255,255,255,0.08);
+      box-shadow: 0 8px 20px rgba(0,0,0,0.4);
     }
 
     .hero-text h1 {
@@ -218,6 +242,19 @@
     }
 
     @media (max-width: 768px) {
+      nav {
+        justify-content: center;
+      }
+
+      .logo-area {
+        justify-content: center;
+        width: 100%;
+      }
+
+      .nav-links {
+        justify-content: center;
+      }
+
       .hero-text h1 {
         font-size: 34px;
       }
@@ -226,12 +263,9 @@
         font-size: 17px;
       }
 
-      nav {
-        gap: 12px;
-      }
-
-      nav a {
-        font-size: 14px;
+      .hero-logo {
+        width: 90px;
+        height: 90px;
       }
 
       .section h2 {
@@ -244,12 +278,19 @@
 
   <header>
     <nav>
-      <a href="index.html">Home</a>
-      <a href="about.html">About</a>
-      <a href="sermons.html">Sermons</a>
-      <a href="gallery.html">Gallery</a>
-      <a href="prayer.html">Prayer</a>
-      <a href="contact.html">Contact</a>
+      <div class="logo-area">
+        <img src="images/logo.png" alt="TGPM Logo" class="logo">
+        <span class="logo-text">TGPM Ministry</span>
+      </div>
+
+      <div class="nav-links">
+        <a href="index.html">Home</a>
+        <a href="about.html">About</a>
+        <a href="sermons.html">Sermons</a>
+        <a href="gallery.html">Gallery</a>
+        <a href="prayer.html">Prayer</a>
+        <a href="contact.html">Contact</a>
+      </div>
     </nav>
   </header>
 
@@ -261,6 +302,7 @@
     <div class="overlay"></div>
 
     <div class="hero-text">
+      <img src="images/logo.png" alt="TGPM Logo" class="hero-logo">
       <h1>THE GOD'S POWER MINISTRY</h1>
       <p>Jesus is the only God</p>
       <a href="sermons.html" class="btn">Watch Sermons</a>
