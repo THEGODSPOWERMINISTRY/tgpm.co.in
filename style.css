@@ -14,10 +14,50 @@ header {
   text-align:center;
   padding:15px;
 }
-nav a {
-  color:white;
-  margin:10px;
-  text-decoration:none;
+nav {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding: 0 30px;
+  flex-wrap: wrap;
+}
+
+.logo-area {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+}
+
+.logo {
+  width: 55px;
+  height: 55px;
+  object-fit: contain;
+  border-radius: 50%;
+}
+
+.logo-text {
+  font-size: 20px;
+  font-weight: 700;
+  color: white;
+}
+
+.nav-links {
+  display: flex;
+  gap: 18px;
+  flex-wrap: wrap;
+}
+
+.nav-links a {
+  color: white;
+  text-decoration: none;
+  font-size: 15px;
+  font-weight: 500;
+  transition: 0.3s;
+}
+
+.nav-links a:hover {
+  color: #F2A365;
+}
 }
 
 /* HERO VIDEO */
@@ -42,6 +82,7 @@ nav a {
   left:50%;
   transform:translate(-50%,-50%);
   text-align:center;
+  <img src="images/logo.png" alt="TGPM Logo" class="hero-logo">
 }
 .hero-text h1 {
   font-size:60px;
