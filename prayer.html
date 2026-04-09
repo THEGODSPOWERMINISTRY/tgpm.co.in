@@ -21,7 +21,6 @@
       background: black;
     }
 
-    /* NAVBAR */
     header {
       position: fixed;
       top: 0;
@@ -44,7 +43,6 @@
       color: #F2A365;
     }
 
-    /* LOADER */
     #loader {
       position: fixed;
       inset: 0;
@@ -57,7 +55,6 @@
       z-index: 9999;
     }
 
-    /* TRANSITION */
     #transition {
       position: fixed;
       inset: 0;
@@ -71,7 +68,6 @@
       pointer-events: none;
     }
 
-    /* PARTICLES */
     #particles-js {
       position: fixed;
       inset: 0;
@@ -80,7 +76,6 @@
       z-index: -3;
     }
 
-    /* VIDEO */
     .bg-video {
       position: fixed;
       inset: 0;
@@ -100,7 +95,6 @@
       z-index: -1;
     }
 
-    /* CENTER */
     .container {
       min-height: 100vh;
       display: flex;
@@ -109,7 +103,6 @@
       padding: 120px 20px 40px;
     }
 
-    /* FORM */
     .form-box {
       background: rgba(255, 255, 255, 0.1);
       backdrop-filter: blur(15px);
@@ -160,7 +153,6 @@
       background: #e08e3c;
     }
 
-    /* MOBILE */
     @media (max-width: 768px) {
       nav a {
         margin: 8px;
@@ -180,16 +172,12 @@
 
 <body>
 
-  <!-- LOADER -->
   <div id="loader"><h1>Loading...</h1></div>
 
-  <!-- TRANSITION -->
   <div id="transition"></div>
 
-  <!-- PARTICLES -->
   <div id="particles-js"></div>
 
-  <!-- NAVBAR -->
   <header>
     <nav>
       <a href="index.html">Home</a>
@@ -201,49 +189,32 @@
     </nav>
   </header>
 
-  <!-- VIDEO -->
   <video autoplay muted loop playsinline class="bg-video">
     <source src="videos/prayer.mp4" type="video/mp4" />
   </video>
 
   <div class="overlay"></div>
 
-  <!-- FORM -->
   <div class="container">
     <div class="form-box">
       <h2>🙏 Prayer Request</h2>
 
-      <form action="https://formsubmit.co/thegodspowerministry@gmail.com" method="POST">
-  
-  <input type="text" name="name" placeholder="Your Name" required />
+      <form action="https://api.web3forms.com/submit" method="POST">
+        <input type="hidden" name="access_key" value="0041ebab-7ef0-4a38-abc4-e1c64e39fdad" />
+        <input type="hidden" name="subject" value="New Prayer Request Received - TGPM" />
+        <input type="hidden" name="redirect" value="https://tgpm.co.in/thankyou.html" />
 
-  <input type="email" name="email" placeholder="Your Email" required />
+        <input type="text" name="name" placeholder="Your Name" required />
+        <input type="email" name="email" placeholder="Your Email" required />
+        <input type="tel" name="phone" placeholder="Your Phone Number" required />
+        <textarea name="message" rows="5" placeholder="Write your prayer request" required></textarea>
 
-  <input type="tel" name="phone" placeholder="Your Phone Number" required />
-
-  <textarea name="message" rows="5" placeholder="Write your prayer request" required></textarea>
-
-  <!-- FormSubmit Settings -->
-  <input type="hidden" name="_subject" value="New Prayer Request Received - TGPM" />
-  
-  <!-- Better to keep captcha enabled -->
-  <input type="hidden" name="_captcha" value="true" />
-  
-  <input type="hidden" name="_template" value="table" />
-  
-  <input type="hidden" name="_next" value="https://tgpm.co.in/thankyou.html" />
-  
-  <!-- Helps FormSubmit identify the page correctly -->
-  <input type="hidden" name="_url" value="https://tgpm.co.in/prayer.html" />
-
-  <button type="submit">Submit Prayer Request</button>
-</form>
+        <button type="submit">Submit Prayer Request</button>
+      </form>
     </div>
   </div>
 
-  <!-- JS -->
   <script>
-    /* LOADER */
     window.addEventListener("load", function () {
       const loader = document.getElementById("loader");
       if (loader) {
@@ -251,7 +222,6 @@
       }
     });
 
-    /* PAGE TRANSITION */
     document.querySelectorAll("a").forEach(function (link) {
       link.addEventListener("click", function (e) {
         const href = this.getAttribute("href");
@@ -268,7 +238,6 @@
       });
     });
 
-    /* PARTICLES */
     if (window.particlesJS) {
       particlesJS("particles-js", {
         particles: {
@@ -328,8 +297,6 @@
         },
         retina_detect: true
       });
-    } else {
-      console.log("particles.js not loaded");
     }
   </script>
 
