@@ -214,18 +214,30 @@
       <h2>🙏 Prayer Request</h2>
 
       <form action="https://formsubmit.co/www.thegodspowerministry@gmail.com" method="POST">
-        <input type="text" name="name" placeholder="Your Name" required />
-        <input type="email" name="email" placeholder="Your Email" required />
-        <input type="tel" name="phone" placeholder="Your Phone Number" required />
-        <textarea name="message" rows="5" placeholder="Write your prayer request" required></textarea>
+  
+  <input type="text" name="name" placeholder="Your Name" required />
 
-        <input type="hidden" name="_subject" value="New Prayer Request Received - TGPM" />
-        <input type="hidden" name="_captcha" value="false" />
-        <input type="hidden" name="_template" value="table" />
-        <input type="hidden" name="_next" value="https://tgpm.co.in/thankyou.html" />
+  <input type="email" name="email" placeholder="Your Email" required />
 
-        <button type="submit">Submit Prayer Request</button>
-      </form>
+  <input type="tel" name="phone" placeholder="Your Phone Number" required />
+
+  <textarea name="message" rows="5" placeholder="Write your prayer request" required></textarea>
+
+  <!-- FormSubmit Settings -->
+  <input type="hidden" name="_subject" value="New Prayer Request Received - TGPM" />
+  
+  <!-- Better to keep captcha enabled -->
+  <input type="hidden" name="_captcha" value="true" />
+  
+  <input type="hidden" name="_template" value="table" />
+  
+  <input type="hidden" name="_next" value="https://tgpm.co.in/thankyou.html" />
+  
+  <!-- Helps FormSubmit identify the page correctly -->
+  <input type="hidden" name="_url" value="https://tgpm.co.in/prayer.html" />
+
+  <button type="submit">Submit Prayer Request</button>
+</form>
     </div>
   </div>
 
