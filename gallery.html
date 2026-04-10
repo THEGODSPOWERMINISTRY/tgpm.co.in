@@ -11,14 +11,15 @@
   <style>
     * {
       box-sizing: border-box;
+      margin: 0;
+      padding: 0;
     }
 
     body {
-      margin: 0;
       font-family: 'Poppins', sans-serif;
       color: white;
       overflow-x: hidden;
-      background: black;
+      background: #000;
     }
 
     /* NAVBAR */
@@ -27,21 +28,23 @@
       top: 0;
       left: 0;
       width: 100%;
-      background: rgba(0, 0, 0, 0.6);
-      padding: 15px;
+      background: rgba(0, 0, 0, 0.65);
+      padding: 15px 10px;
       text-align: center;
       z-index: 1000;
+      backdrop-filter: blur(6px);
     }
 
     nav a {
       color: white;
-      margin: 15px;
+      margin: 0 14px;
       text-decoration: none;
       font-size: 18px;
-      transition: 0.3s;
+      transition: color 0.3s ease;
     }
 
-    nav a:hover {
+    nav a:hover,
+    nav a.active {
       color: #F2A365;
     }
 
@@ -49,21 +52,29 @@
     #loader {
       position: fixed;
       inset: 0;
-      width: 100%;
-      height: 100%;
       background: black;
       display: flex;
       justify-content: center;
       align-items: center;
       z-index: 9999;
+      transition: opacity 0.4s ease, visibility 0.4s ease;
+    }
+
+    #loader.hide {
+      opacity: 0;
+      visibility: hidden;
+    }
+
+    .loader-text {
+      font-size: 28px;
+      font-weight: 600;
+      color: white;
     }
 
     /* TRANSITION */
     #transition {
       position: fixed;
       inset: 0;
-      width: 100%;
-      height: 100%;
       background: black;
       z-index: 9998;
       transform: scaleY(0);
@@ -95,42 +106,53 @@
     .overlay {
       position: fixed;
       inset: 0;
-      width: 100%;
-      height: 100%;
-      background: rgba(0, 0, 0, 0.7);
+      background: rgba(0, 0, 0, 0.72);
       z-index: -1;
     }
 
-    /* TITLE */
+    /* MAIN CONTENT */
+    .main-content {
+      position: relative;
+      z-index: 1;
+      padding-top: 110px;
+      padding-bottom: 40px;
+    }
+
     h1 {
       text-align: center;
-      padding-top: 100px;
-      font-size: 40px;
-      margin-bottom: 10px;
+      font-size: 46px;
+      margin-bottom: 30px;
+      padding: 0 20px;
     }
 
     /* GRID */
     .gallery {
+      width: min(1200px, 92%);
+      margin: 0 auto;
       display: grid;
       grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
-      gap: 20px;
-      padding: 40px;
+      gap: 22px;
     }
 
-    /* IMAGE */
+    /* IMAGE CARD */
+    .gallery-item {
+      overflow: hidden;
+      border-radius: 16px;
+      background: rgba(255, 255, 255, 0.05);
+      box-shadow: 0 4px 18px rgba(0, 0, 0, 0.35);
+    }
+
     .gallery img {
       width: 100%;
-      height: 250px;
+      height: 260px;
       object-fit: cover;
-      border-radius: 15px;
-      cursor: pointer;
-      transition: 0.4s;
       display: block;
+      cursor: pointer;
+      transition: transform 0.4s ease, box-shadow 0.4s ease;
     }
 
     .gallery img:hover {
       transform: scale(1.05);
-      box-shadow: 0 0 20px #fff;
     }
 
     /* POPUP */
@@ -138,9 +160,7 @@
       display: none;
       position: fixed;
       inset: 0;
-      width: 100%;
-      height: 100%;
-      background: rgba(0, 0, 0, 0.9);
+      background: rgba(0, 0, 0, 0.92);
       justify-content: center;
       align-items: center;
       z-index: 2000;
@@ -148,36 +168,47 @@
     }
 
     #popup img {
-      max-width: 90%;
+      max-width: 92%;
       max-height: 85vh;
       width: auto;
       height: auto;
-      border-radius: 10px;
+      border-radius: 12px;
+      box-shadow: 0 0 25px rgba(255, 255, 255, 0.15);
     }
 
     #popup span {
       position: absolute;
       top: 20px;
       right: 30px;
-      font-size: 40px;
+      font-size: 42px;
       cursor: pointer;
       color: white;
+      line-height: 1;
+      z-index: 2001;
+    }
+
+    /* FALLBACK MESSAGE */
+    .gallery-note {
+      width: min(1200px, 92%);
+      margin: 0 auto 25px auto;
+      text-align: center;
+      color: #ddd;
+      font-size: 15px;
     }
 
     @media (max-width: 768px) {
       nav a {
-        margin: 8px;
+        margin: 0 8px;
         font-size: 14px;
       }
 
       h1 {
-        font-size: 30px;
-        padding-top: 90px;
+        font-size: 32px;
+        margin-bottom: 22px;
       }
 
       .gallery {
-        padding: 20px;
-        gap: 15px;
+        gap: 16px;
       }
 
       .gallery img {
@@ -185,8 +216,13 @@
       }
 
       #popup span {
-        right: 20px;
+        right: 18px;
+        top: 16px;
         font-size: 34px;
+      }
+
+      .loader-text {
+        font-size: 22px;
       }
     }
   </style>
@@ -196,10 +232,10 @@
 
   <!-- LOADER -->
   <div id="loader">
-    <h1>Loading...</h1>
+    <div class="loader-text">Loading...</div>
   </div>
 
-  <!-- TRANSITION -->
+  <!-- PAGE TRANSITION -->
   <div id="transition"></div>
 
   <!-- PARTICLES -->
@@ -211,52 +247,71 @@
       <a href="index.html">Home</a>
       <a href="about.html">About</a>
       <a href="sermons.html">Sermons</a>
-      <a href="gallery.html">Gallery</a>
+      <a href="gallery.html" class="active">Gallery</a>
       <a href="prayer.html">Prayer</a>
       <a href="contact.html">Contact</a>
     </nav>
   </header>
 
-  <!-- VIDEO -->
-  <video autoplay muted loop playsinline class="bg-video">
+  <!-- BACKGROUND VIDEO -->
+  <video autoplay muted loop playsinline class="bg-video" preload="metadata">
     <source src="videos/gallery.mp4" type="video/mp4" />
   </video>
 
   <div class="overlay"></div>
 
-  <h1>Our Ministry Gallery</h1>
+  <!-- MAIN CONTENT -->
+  <div class="main-content">
+    <h1>Our Ministry Gallery</h1>
+    <div class="gallery-note">
+      Make sure your image files are uploaded in the correct folder path.
+    </div>
 
-  <!-- IMAGES -->
-  <div class="gallery">
-    <img src="images/img1.jpg" alt="Gallery Image 1" onclick="openImg(this.src)" />
-<img src="images/img2.jpg" alt="Gallery Image 2" onclick="openImg(this.src)" />
-<img src="images/img3.jpg" alt="Gallery Image 3" onclick="openImg(this.src)" />
-<img src="images/img4.jpg" alt="Gallery Image 4" onclick="openImg(this.src)" />
-<img src="images/img5.jpg" alt="Gallery Image 5" onclick="openImg(this.src)" />
+    <div class="gallery">
+      <div class="gallery-item">
+        <img src="images/gallery/img1.jpg" alt="Gallery Image 1" onclick="openImg(this.src)" loading="lazy" />
+      </div>
+      <div class="gallery-item">
+        <img src="images/gallery/img2.jpg" alt="Gallery Image 2" onclick="openImg(this.src)" loading="lazy" />
+      </div>
+      <div class="gallery-item">
+        <img src="images/gallery/img3.jpg" alt="Gallery Image 3" onclick="openImg(this.src)" loading="lazy" />
+      </div>
+      <div class="gallery-item">
+        <img src="images/gallery/img4.jpg" alt="Gallery Image 4" onclick="openImg(this.src)" loading="lazy" />
+      </div>
+      <div class="gallery-item">
+        <img src="images/gallery/img5.jpg" alt="Gallery Image 5" onclick="openImg(this.src)" loading="lazy" />
+      </div>
+    </div>
   </div>
 
   <!-- POPUP -->
-  <div id="popup" onclick="closeImg()">
-    <span>&times;</span>
+  <div id="popup">
+    <span onclick="closeImg()">&times;</span>
     <img id="popupImg" alt="Popup Gallery Image" />
   </div>
 
-  <!-- JS -->
   <script>
     /* LOADER */
     window.addEventListener("load", function () {
       const loader = document.getElementById("loader");
-      if (loader) {
-        loader.style.display = "none";
-      }
+      setTimeout(function () {
+        loader.classList.add("hide");
+      }, 300);
     });
 
-    /* TRANSITION */
+    /* PAGE TRANSITION */
     document.querySelectorAll("a").forEach(function (link) {
       link.addEventListener("click", function (e) {
         const href = this.getAttribute("href");
 
-        if (href && href.endsWith(".html")) {
+        if (
+          href &&
+          href.endsWith(".html") &&
+          !href.startsWith("#") &&
+          !this.hasAttribute("target")
+        ) {
           e.preventDefault();
           document.getElementById("transition").style.transform = "scaleY(1)";
           setTimeout(function () {
@@ -271,7 +326,7 @@
       particlesJS("particles-js", {
         particles: {
           number: {
-            value: 80,
+            value: 50,
             density: {
               enable: true,
               value_area: 800
@@ -284,22 +339,22 @@
             type: "circle"
           },
           opacity: {
-            value: 0.5
+            value: 0.35
           },
           size: {
-            value: 3,
+            value: 2.5,
             random: true
           },
           line_linked: {
             enable: true,
-            distance: 150,
+            distance: 130,
             color: "#ffffff",
-            opacity: 0.3,
+            opacity: 0.2,
             width: 1
           },
           move: {
             enable: true,
-            speed: 2
+            speed: 1.4
           }
         },
         interactivity: {
@@ -317,10 +372,10 @@
           },
           modes: {
             repulse: {
-              distance: 100
+              distance: 80
             },
             push: {
-              particles_nb: 4
+              particles_nb: 3
             }
           }
         },
@@ -332,11 +387,36 @@
     function openImg(src) {
       document.getElementById("popup").style.display = "flex";
       document.getElementById("popupImg").src = src;
+      document.body.style.overflow = "hidden";
     }
 
     function closeImg() {
       document.getElementById("popup").style.display = "none";
+      document.getElementById("popupImg").src = "";
+      document.body.style.overflow = "auto";
     }
+
+    /* CLOSE POPUP WHEN CLICKING OUTSIDE IMAGE */
+    document.getElementById("popup").addEventListener("click", function (e) {
+      if (e.target.id === "popup") {
+        closeImg();
+      }
+    });
+
+    /* ESC KEY CLOSE */
+    document.addEventListener("keydown", function (e) {
+      if (e.key === "Escape") {
+        closeImg();
+      }
+    });
+
+    /* IMAGE ERROR HANDLING */
+    document.querySelectorAll(".gallery img").forEach(function(img) {
+      img.addEventListener("error", function() {
+        this.alt = "Image not found";
+        this.style.opacity = "0.5";
+      });
+    });
   </script>
 
 </body>
