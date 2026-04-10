@@ -4,25 +4,23 @@
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
   <title>Gallery - TGPM</title>
-
   <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;600&display=swap" rel="stylesheet" />
   <script src="https://cdn.jsdelivr.net/npm/particles.js@2.0.0/particles.min.js"></script>
 
   <style>
     * {
-      box-sizing: border-box;
       margin: 0;
       padding: 0;
+      box-sizing: border-box;
     }
 
     body {
       font-family: 'Poppins', sans-serif;
       color: white;
+      background: black;
       overflow-x: hidden;
-      background: #000;
     }
 
-    /* NAVBAR */
     header {
       position: fixed;
       top: 0;
@@ -32,15 +30,14 @@
       padding: 15px 10px;
       text-align: center;
       z-index: 1000;
-      backdrop-filter: blur(6px);
     }
 
     nav a {
       color: white;
-      margin: 0 14px;
+      margin: 0 12px;
       text-decoration: none;
       font-size: 18px;
-      transition: color 0.3s ease;
+      transition: 0.3s;
     }
 
     nav a:hover,
@@ -48,7 +45,6 @@
       color: #F2A365;
     }
 
-    /* LOADER */
     #loader {
       position: fixed;
       inset: 0;
@@ -57,21 +53,8 @@
       justify-content: center;
       align-items: center;
       z-index: 9999;
-      transition: opacity 0.4s ease, visibility 0.4s ease;
     }
 
-    #loader.hide {
-      opacity: 0;
-      visibility: hidden;
-    }
-
-    .loader-text {
-      font-size: 28px;
-      font-weight: 600;
-      color: white;
-    }
-
-    /* TRANSITION */
     #transition {
       position: fixed;
       inset: 0;
@@ -83,16 +66,12 @@
       pointer-events: none;
     }
 
-    /* PARTICLES */
     #particles-js {
       position: fixed;
       inset: 0;
-      width: 100%;
-      height: 100%;
       z-index: -3;
     }
 
-    /* VIDEO */
     .bg-video {
       position: fixed;
       inset: 0;
@@ -100,7 +79,6 @@
       height: 100%;
       object-fit: cover;
       z-index: -2;
-      background: black;
     }
 
     .overlay {
@@ -110,52 +88,55 @@
       z-index: -1;
     }
 
-    /* MAIN CONTENT */
     .main-content {
-      position: relative;
-      z-index: 1;
       padding-top: 110px;
       padding-bottom: 40px;
+      position: relative;
+      z-index: 1;
     }
 
     h1 {
       text-align: center;
-      font-size: 46px;
-      margin-bottom: 30px;
+      font-size: 42px;
+      margin-bottom: 15px;
       padding: 0 20px;
     }
 
-    /* GRID */
-    .gallery {
-      width: min(1200px, 92%);
-      margin: 0 auto;
-      display: grid;
-      grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
-      gap: 22px;
+    .note {
+      text-align: center;
+      color: #ddd;
+      margin-bottom: 30px;
+      font-size: 14px;
+      padding: 0 20px;
     }
 
-    /* IMAGE CARD */
+    .gallery {
+      width: min(1200px, 92%);
+      margin: auto;
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+      gap: 20px;
+    }
+
     .gallery-item {
+      border-radius: 14px;
       overflow: hidden;
-      border-radius: 16px;
-      background: rgba(255, 255, 255, 0.05);
-      box-shadow: 0 4px 18px rgba(0, 0, 0, 0.35);
+      background: rgba(255,255,255,0.05);
     }
 
     .gallery img {
       width: 100%;
-      height: 260px;
+      height: 250px;
       object-fit: cover;
       display: block;
       cursor: pointer;
-      transition: transform 0.4s ease, box-shadow 0.4s ease;
+      transition: transform 0.4s ease;
     }
 
     .gallery img:hover {
       transform: scale(1.05);
     }
 
-    /* POPUP */
     #popup {
       display: none;
       position: fixed;
@@ -170,30 +151,16 @@
     #popup img {
       max-width: 92%;
       max-height: 85vh;
-      width: auto;
-      height: auto;
-      border-radius: 12px;
-      box-shadow: 0 0 25px rgba(255, 255, 255, 0.15);
+      border-radius: 10px;
     }
 
     #popup span {
       position: absolute;
       top: 20px;
       right: 30px;
-      font-size: 42px;
-      cursor: pointer;
+      font-size: 40px;
       color: white;
-      line-height: 1;
-      z-index: 2001;
-    }
-
-    /* FALLBACK MESSAGE */
-    .gallery-note {
-      width: min(1200px, 92%);
-      margin: 0 auto 25px auto;
-      text-align: center;
-      color: #ddd;
-      font-size: 15px;
+      cursor: pointer;
     }
 
     @media (max-width: 768px) {
@@ -203,45 +170,21 @@
       }
 
       h1 {
-        font-size: 32px;
-        margin-bottom: 22px;
-      }
-
-      .gallery {
-        gap: 16px;
+        font-size: 30px;
       }
 
       .gallery img {
         height: 220px;
       }
-
-      #popup span {
-        right: 18px;
-        top: 16px;
-        font-size: 34px;
-      }
-
-      .loader-text {
-        font-size: 22px;
-      }
     }
   </style>
 </head>
-
 <body>
 
-  <!-- LOADER -->
-  <div id="loader">
-    <div class="loader-text">Loading...</div>
-  </div>
-
-  <!-- PAGE TRANSITION -->
+  <div id="loader"><h2>Loading...</h2></div>
   <div id="transition"></div>
-
-  <!-- PARTICLES -->
   <div id="particles-js"></div>
 
-  <!-- NAVBAR -->
   <header>
     <nav>
       <a href="index.html">Home</a>
@@ -253,65 +196,49 @@
     </nav>
   </header>
 
-  <!-- BACKGROUND VIDEO -->
   <video autoplay muted loop playsinline class="bg-video" preload="metadata">
     <source src="videos/gallery.mp4" type="video/mp4" />
   </video>
 
   <div class="overlay"></div>
 
-  <!-- MAIN CONTENT -->
   <div class="main-content">
     <h1>Our Ministry Gallery</h1>
-    <div class="gallery-note">
-      Make sure your image files are uploaded in the correct folder path.
-    </div>
+    <div class="note">Upload your images to the correct GitHub folder and keep the exact same filename.</div>
 
     <div class="gallery">
       <div class="gallery-item">
-        <img src="images/img1.jpg" alt="Gallery Image 1" onclick="openImg(this.src)" loading="lazy" />
+        <img src="images/gallery/img1.jpg" alt="Gallery Image 1" onclick="openImg(this.src)" loading="lazy">
       </div>
       <div class="gallery-item">
-        <img src="images/img2.jpg" alt="Gallery Image 2" onclick="openImg(this.src)" loading="lazy" />
+        <img src="images/gallery/img2.jpg" alt="Gallery Image 2" onclick="openImg(this.src)" loading="lazy">
       </div>
       <div class="gallery-item">
-        <img src="images/img3.jpg" alt="Gallery Image 3" onclick="openImg(this.src)" loading="lazy" />
+        <img src="images/gallery/img3.jpg" alt="Gallery Image 3" onclick="openImg(this.src)" loading="lazy">
       </div>
       <div class="gallery-item">
-        <img src="images/img4.jpg" alt="Gallery Image 4" onclick="openImg(this.src)" loading="lazy" />
+        <img src="images/gallery/img4.jpg" alt="Gallery Image 4" onclick="openImg(this.src)" loading="lazy">
       </div>
       <div class="gallery-item">
-        <img src="images/img5.jpg" alt="Gallery Image 5" onclick="openImg(this.src)" loading="lazy" />
+        <img src="images/gallery/img5.jpg" alt="Gallery Image 5" onclick="openImg(this.src)" loading="lazy">
       </div>
     </div>
   </div>
 
-  <!-- POPUP -->
   <div id="popup">
     <span onclick="closeImg()">&times;</span>
-    <img id="popupImg" alt="Popup Gallery Image" />
+    <img id="popupImg" alt="Popup Gallery Image">
   </div>
 
   <script>
-    /* LOADER */
     window.addEventListener("load", function () {
-      const loader = document.getElementById("loader");
-      setTimeout(function () {
-        loader.classList.add("hide");
-      }, 300);
+      document.getElementById("loader").style.display = "none";
     });
 
-    /* PAGE TRANSITION */
     document.querySelectorAll("a").forEach(function (link) {
       link.addEventListener("click", function (e) {
         const href = this.getAttribute("href");
-
-        if (
-          href &&
-          href.endsWith(".html") &&
-          !href.startsWith("#") &&
-          !this.hasAttribute("target")
-        ) {
+        if (href && href.endsWith(".html")) {
           e.preventDefault();
           document.getElementById("transition").style.transform = "scaleY(1)";
           setTimeout(function () {
@@ -321,30 +248,14 @@
       });
     });
 
-    /* PARTICLES */
     if (window.particlesJS) {
       particlesJS("particles-js", {
         particles: {
-          number: {
-            value: 50,
-            density: {
-              enable: true,
-              value_area: 800
-            }
-          },
-          color: {
-            value: "#ffffff"
-          },
-          shape: {
-            type: "circle"
-          },
-          opacity: {
-            value: 0.35
-          },
-          size: {
-            value: 2.5,
-            random: true
-          },
+          number: { value: 40, density: { enable: true, value_area: 800 } },
+          color: { value: "#ffffff" },
+          shape: { type: "circle" },
+          opacity: { value: 0.35 },
+          size: { value: 2.5, random: true },
           line_linked: {
             enable: true,
             distance: 130,
@@ -352,38 +263,20 @@
             opacity: 0.2,
             width: 1
           },
-          move: {
-            enable: true,
-            speed: 1.4
-          }
+          move: { enable: true, speed: 1.2 }
         },
         interactivity: {
           detect_on: "canvas",
           events: {
-            onhover: {
-              enable: true,
-              mode: "repulse"
-            },
-            onclick: {
-              enable: true,
-              mode: "push"
-            },
+            onhover: { enable: true, mode: "repulse" },
+            onclick: { enable: true, mode: "push" },
             resize: true
-          },
-          modes: {
-            repulse: {
-              distance: 80
-            },
-            push: {
-              particles_nb: 3
-            }
           }
         },
         retina_detect: true
       });
     }
 
-    /* IMAGE POPUP */
     function openImg(src) {
       document.getElementById("popup").style.display = "flex";
       document.getElementById("popupImg").src = src;
@@ -396,25 +289,16 @@
       document.body.style.overflow = "auto";
     }
 
-    /* CLOSE POPUP WHEN CLICKING OUTSIDE IMAGE */
     document.getElementById("popup").addEventListener("click", function (e) {
       if (e.target.id === "popup") {
         closeImg();
       }
     });
 
-    /* ESC KEY CLOSE */
-    document.addEventListener("keydown", function (e) {
-      if (e.key === "Escape") {
-        closeImg();
-      }
-    });
-
-    /* IMAGE ERROR HANDLING */
     document.querySelectorAll(".gallery img").forEach(function(img) {
       img.addEventListener("error", function() {
+        this.style.opacity = "0.4";
         this.alt = "Image not found";
-        this.style.opacity = "0.5";
       });
     });
   </script>
