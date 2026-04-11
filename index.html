@@ -5,7 +5,7 @@
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
   <title>TGPM Ministry</title>
 
-  <link href="https://fonts.googleapis.com/css2?family=Anton&family=Poppins:wght@300;600;700&display=swap" rel="stylesheet">
+  <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;600;700&display=swap" rel="stylesheet">
 
   <style>
     * {
@@ -109,7 +109,7 @@
     .overlay {
       position: absolute;
       inset: 0;
-      background: linear-gradient(to bottom, rgba(0,0,0,0.35), rgba(0,0,0,0.80));
+      background: linear-gradient(to bottom, rgba(0,0,0,0.35), rgba(0,0,0,0.82));
       z-index: 2;
     }
 
@@ -133,15 +133,17 @@
     .hero-title-wrapper {
       display: inline-block;
       position: relative;
-      padding: 12px 20px;
+      padding: 12px 22px;
     }
 
     .hero-title-wrapper::before {
       content: "";
       position: absolute;
-      inset: auto 8% 8% 8%;
-      height: 18px;
-      background: radial-gradient(circle, rgba(255,190,40,0.55) 0%, rgba(255,140,0,0.18) 55%, transparent 100%);
+      left: 8%;
+      right: 8%;
+      bottom: 8px;
+      height: 22px;
+      background: radial-gradient(circle, rgba(255, 180, 40, 0.45) 0%, rgba(255, 120, 0, 0.14) 60%, transparent 100%);
       filter: blur(10px);
       z-index: 1;
       pointer-events: none;
@@ -150,45 +152,46 @@
     .hero-title-wrapper::after {
       content: "";
       position: absolute;
-      top: 6%;
-      left: 10%;
-      width: 80%;
-      height: 28%;
+      top: 7%;
+      left: 12%;
+      width: 76%;
+      height: 24%;
       background: linear-gradient(
         to bottom,
-        rgba(255,255,255,0.55),
-        rgba(255,255,255,0.10),
+        rgba(255,255,255,0.70),
+        rgba(255,255,255,0.20),
+        rgba(255,255,255,0.03),
         transparent
       );
-      filter: blur(8px);
       border-radius: 50%;
-      z-index: 3;
+      filter: blur(7px);
+      z-index: 4;
       pointer-events: none;
     }
 
     .hero-title {
       margin: 0;
       position: relative;
-      z-index: 2;
-      font-family: 'Anton', sans-serif;
-      font-size: 95px;
-      line-height: 1;
-      letter-spacing: 4px;
-      text-transform: uppercase;
+      z-index: 3;
+      font-family: Georgia, "Times New Roman", serif;
+      font-size: 96px;
+      font-weight: 700;
+      line-height: 0.95;
+      letter-spacing: 1px;
       text-align: center;
-      transform: perspective(700px) rotateX(8deg);
 
       background: linear-gradient(
         to bottom,
-        #fff8c6 0%,
-        #fff2a6 8%,
-        #ffe27a 16%,
-        #ffcc33 28%,
-        #f4a300 42%,
-        #ffd95e 56%,
-        #fff1a8 68%,
-        #d88900 84%,
-        #8a4f00 100%
+        #fff9d8 0%,
+        #fbeaa0 10%,
+        #d9a72f 22%,
+        #fff1a8 32%,
+        #b87912 44%,
+        #8d5a0a 56%,
+        #f9dc79 68%,
+        #fff2b4 78%,
+        #b97710 88%,
+        #6e4306 100%
       );
 
       -webkit-background-clip: text;
@@ -197,14 +200,14 @@
       color: transparent;
 
       text-shadow:
-        0 1px 0 rgba(255, 243, 176, 0.95),
-        0 2px 0 rgba(247, 201, 72, 0.95),
-        0 3px 0 rgba(217, 139, 0, 0.95),
-        0 4px 0 rgba(168, 93, 0, 0.95),
-        2px 6px 10px rgba(0, 0, 0, 0.45),
-        0 10px 20px rgba(255, 170, 0, 0.35),
-        0 0 12px rgba(255, 215, 80, 0.45),
-        0 0 30px rgba(255, 170, 0, 0.25);
+        0 1px 0 rgba(255, 243, 181, 0.95),
+        0 2px 0 rgba(234, 191, 72, 0.95),
+        0 3px 0 rgba(181, 117, 14, 0.95),
+        0 4px 0 rgba(110, 67, 6, 0.95),
+        1px 5px 0 rgba(78, 45, 3, 0.95),
+        0 8px 16px rgba(0,0,0,0.35),
+        0 0 10px rgba(255, 218, 97, 0.30),
+        0 0 24px rgba(255, 183, 0, 0.18);
     }
 
     .hero-text p {
@@ -312,8 +315,7 @@
 
     @media (max-width: 992px) {
       .hero-title {
-        font-size: 68px;
-        letter-spacing: 3px;
+        font-size: 70px;
       }
 
       .hero-logo {
@@ -337,9 +339,8 @@
       }
 
       .hero-title {
-        font-size: 42px;
-        letter-spacing: 2px;
-        line-height: 1.08;
+        font-size: 44px;
+        line-height: 1;
       }
 
       .hero-text p {
@@ -359,7 +360,6 @@
     @media (max-width: 480px) {
       .hero-title {
         font-size: 34px;
-        letter-spacing: 1px;
       }
 
       .nav-links a {
