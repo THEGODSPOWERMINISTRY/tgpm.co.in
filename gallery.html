@@ -180,86 +180,87 @@
   </div>
 
   <script>
-    async function loadGallery() {
-      const gallery = document.getElementById("gallery");
-      const status = document.getElementById("status");
+  async function loadGallery() {
+    const gallery = document.getElementById("gallery");
+    const status = document.getElementById("status");
 
-      try {
-        const response = await fetch("images.json");
+    try {
+      const response = await fetch("./images.json");
 
-        if (!response.ok) {
-          throw new Error("images.json not found");
-        }
+      if (!response.ok) {
+        throw new Error("images.json not found");
+      }
 
-        const images = await response.json();
+      const images = await response.json();
 
-        if (!Array.isArray(images) || images.length === 0) {
-          status.textContent = "No images found in gallery.";
-          return;
-        }
+      if (!Array.isArray(images) || images.length === 0) {
+        status.textContent = "No images found in images.json.";
+        return;
+      }
 
-        gallery.innerHTML = "";
-        let visibleImages = 0;
+      gallery.innerHTML = "";
+      let validCount = 0;
 
-        images.forEach((fileName) => {
-          const item = document.createElement("div");
-          item.className = "gallery-item";
+      images.forEach((fileName) => {
+        const item = document.createElement("div");
+        item.className = "gallery-item";
 
-          const img = document.createElement("img");
-          img.src = "images/gallery/" + fileName;
-          img.alt = fileName;
-          img.loading = "lazy";
+        const img = document.createElement("img");
+        img.src = "./images/gallery/" + fileName;
+        img.alt = fileName;
+        img.loading = "lazy";
 
-          img.addEventListener("click", function () {
-            openImg(img.src);
-          });
-
-          img.addEventListener("load", function () {
-            visibleImages++;
-            status.style.display = "none";
-          });
-
-          img.addEventListener("error", function () {
-            item.remove();
-            if (visibleImages === 0 && gallery.children.length === 0) {
-              status.textContent = "Images could not be loaded. Please check image names and folder path.";
-            }
-          });
-
-          item.appendChild(img);
-          gallery.appendChild(item);
+        img.addEventListener("click", function () {
+          openImg(img.src);
         });
-      } catch (error) {
-        status.textContent = "Unable to load gallery. Please check images.json.";
-      }
+
+        img.addEventListener("load", function () {
+          validCount++;
+          status.style.display = "none";
+        });
+
+        img.addEventListener("error", function () {
+          item.remove();
+          if (validCount === 0 && gallery.children.length === 0) {
+            status.textContent = "Images could not be loaded. Check image names and folder path.";
+          }
+        });
+
+        item.appendChild(img);
+        gallery.appendChild(item);
+      });
+    } catch (error) {
+      status.textContent = "Unable to load gallery. Please check images.json location and format.";
+      console.error(error);
     }
+  }
 
-    function openImg(src) {
-      document.getElementById("popup").style.display = "flex";
-      document.getElementById("popupImg").src = src;
-      document.body.style.overflow = "hidden";
+  function openImg(src) {
+    document.getElementById("popup").style.display = "flex";
+    document.getElementById("popupImg").src = src;
+    document.body.style.overflow = "hidden";
+  }
+
+  function closeImg() {
+    document.getElementById("popup").style.display = "none";
+    document.getElementById("popupImg").src = "";
+    document.body.style.overflow = "auto";
+  }
+
+  document.getElementById("popup").addEventListener("click", function (e) {
+    if (e.target.id === "popup") {
+      closeImg();
     }
+  });
 
-    function closeImg() {
-      document.getElementById("popup").style.display = "none";
-      document.getElementById("popupImg").src = "";
-      document.body.style.overflow = "auto";
+  document.addEventListener("keydown", function (e) {
+    if (e.key === "Escape") {
+      closeImg();
     }
+  });
 
-    document.getElementById("popup").addEventListener("click", function (e) {
-      if (e.target.id === "popup") {
-        closeImg();
-      }
-    });
-
-    document.addEventListener("keydown", function (e) {
-      if (e.key === "Escape") {
-        closeImg();
-      }
-    });
-
-    loadGallery();
-  </script>
+  loadGallery();
+</script>
 
 </body>
 </html>
