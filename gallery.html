@@ -5,8 +5,7 @@
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
   <title>Gallery - TGPM</title>
 
-  <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;600&display=swap" rel="stylesheet" />
-  <script src="https://cdn.jsdelivr.net/npm/particles.js@2.0.0/particles.min.js"></script>
+  <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;600;700&display=swap" rel="stylesheet" />
 
   <style>
     * {
@@ -17,8 +16,8 @@
 
     body {
       font-family: 'Poppins', sans-serif;
-      color: white;
       background: #000;
+      color: #fff;
       overflow-x: hidden;
     }
 
@@ -27,11 +26,11 @@
       top: 0;
       left: 0;
       width: 100%;
-      background: rgba(0, 0, 0, 0.65);
+      background: rgba(0, 0, 0, 0.75);
       padding: 15px 10px;
       text-align: center;
       z-index: 1000;
-      backdrop-filter: blur(5px);
+      backdrop-filter: blur(6px);
     }
 
     nav a {
@@ -47,92 +46,38 @@
       color: #F2A365;
     }
 
-    #loader {
-      position: fixed;
-      inset: 0;
-      background: black;
-      display: flex;
-      justify-content: center;
-      align-items: center;
-      z-index: 9999;
-      transition: opacity 0.4s ease, visibility 0.4s ease;
-    }
-
-    #loader.hide {
-      opacity: 0;
-      visibility: hidden;
-    }
-
-    #transition {
-      position: fixed;
-      inset: 0;
-      background: black;
-      z-index: 9998;
-      transform: scaleY(0);
-      transform-origin: top;
-      transition: transform 0.5s ease;
-      pointer-events: none;
-    }
-
-    #particles-js {
-      position: fixed;
-      inset: 0;
-      z-index: -3;
-    }
-
-    .bg-video {
-      position: fixed;
-      inset: 0;
-      width: 100%;
-      height: 100%;
-      object-fit: cover;
-      z-index: -2;
-      background: black;
-    }
-
-    .overlay {
-      position: fixed;
-      inset: 0;
-      background: rgba(0, 0, 0, 0.72);
-      z-index: -1;
-    }
-
     .main-content {
-      position: relative;
-      z-index: 1;
+      width: min(1200px, 92%);
+      margin: 0 auto;
       padding-top: 110px;
-      padding-bottom: 40px;
+      padding-bottom: 50px;
     }
 
     h1 {
       text-align: center;
       font-size: 46px;
-      margin-bottom: 18px;
-      padding: 0 20px;
+      margin-bottom: 12px;
+      font-weight: 700;
     }
 
-    .gallery-note {
-      width: min(1200px, 92%);
-      margin: 0 auto 28px auto;
+    .subtext {
       text-align: center;
-      color: #d8d8d8;
+      color: #cfcfcf;
+      margin-bottom: 30px;
       font-size: 15px;
     }
 
     .gallery {
-      width: min(1200px, 92%);
-      margin: 0 auto;
       display: grid;
-      grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+      grid-template-columns: repeat(auto-fit, minmax(240px, 1fr));
       gap: 22px;
     }
 
     .gallery-item {
-      position: relative;
       overflow: hidden;
       border-radius: 16px;
-      min-height: 260px;
       background: rgba(255, 255, 255, 0.05);
+      min-height: 260px;
       box-shadow: 0 4px 18px rgba(0, 0, 0, 0.35);
     }
 
@@ -142,31 +87,25 @@
       object-fit: cover;
       display: block;
       cursor: pointer;
-      transition: transform 0.4s ease;
+      transition: transform 0.35s ease;
     }
 
     .gallery-item img:hover {
       transform: scale(1.05);
     }
 
-    .fallback {
-      display: none;
-      width: 100%;
-      height: 260px;
-      align-items: center;
-      justify-content: center;
+    .status {
       text-align: center;
-      color: #bbb;
+      padding: 30px 15px;
+      color: #ccc;
       font-size: 16px;
-      padding: 20px;
-      background: rgba(255, 255, 255, 0.04);
     }
 
     #popup {
       display: none;
       position: fixed;
       inset: 0;
-      background: rgba(0, 0, 0, 0.92);
+      background: rgba(0, 0, 0, 0.94);
       justify-content: center;
       align-items: center;
       z-index: 2000;
@@ -176,21 +115,18 @@
     #popup img {
       max-width: 92%;
       max-height: 85vh;
-      width: auto;
-      height: auto;
       border-radius: 12px;
-      box-shadow: 0 0 25px rgba(255, 255, 255, 0.15);
+      box-shadow: 0 0 20px rgba(255, 255, 255, 0.15);
     }
 
-    #popup span {
+    #popup .close-btn {
       position: absolute;
       top: 20px;
       right: 30px;
       font-size: 42px;
-      cursor: pointer;
       color: white;
+      cursor: pointer;
       line-height: 1;
-      z-index: 2001;
     }
 
     @media (max-width: 768px) {
@@ -203,14 +139,13 @@
         font-size: 32px;
       }
 
-      .gallery-item img,
-      .fallback,
-      .gallery-item {
+      .gallery-item,
+      .gallery-item img {
         min-height: 220px;
         height: 220px;
       }
 
-      #popup span {
+      #popup .close-btn {
         right: 18px;
         top: 16px;
         font-size: 34px;
@@ -218,11 +153,7 @@
     }
   </style>
 </head>
-
 <body>
-  <div id="loader"><h2>Loading...</h2></div>
-  <div id="transition"></div>
-  <div id="particles-js"></div>
 
   <header>
     <nav>
@@ -235,118 +166,72 @@
     </nav>
   </header>
 
-  <video autoplay muted loop playsinline class="bg-video" preload="metadata">
-    <source src="videos/gallery.mp4" type="video/mp4" />
-  </video>
-
-  <div class="overlay"></div>
-
   <div class="main-content">
     <h1>Our Ministry Gallery</h1>
-    <div class="gallery-note">Upload the exact image files to GitHub and keep the same folder name and filename.</div>
+    <p class="subtext">Upload photos in <strong>images/gallery/</strong> and update <strong>images.json</strong></p>
 
-    <div class="gallery">
-      <div class="gallery-item">
-        <img src="images/gallery/img1.jpg" alt="Gallery Image 1" onclick="openImg(this.src)" loading="lazy">
-        <div class="fallback">Image 1 not found</div>
-      </div>
-
-      <div class="gallery-item">
-        <img src="images/gallery/img2.jpg" alt="Gallery Image 2" onclick="openImg(this.src)" loading="lazy">
-        <div class="fallback">Image 2 not found</div>
-      </div>
-
-      <div class="gallery-item">
-        <img src="images/gallery/img3.jpg" alt="Gallery Image 3" onclick="openImg(this.src)" loading="lazy">
-        <div class="fallback">Image 3 not found</div>
-      </div>
-
-      <div class="gallery-item">
-        <img src="images/gallery/img4.jpg" alt="Gallery Image 4" onclick="openImg(this.src)" loading="lazy">
-        <div class="fallback">Image 4 not found</div>
-      </div>
-
-      <div class="gallery-item">
-        <img src="images/gallery/img5.jpg" alt="Gallery Image 5" onclick="openImg(this.src)" loading="lazy">
-        <div class="fallback">Image 5 not found</div>
-      </div>
-    </div>
+    <div id="gallery" class="gallery"></div>
+    <div id="status" class="status">Loading gallery...</div>
   </div>
 
   <div id="popup">
-    <span onclick="closeImg()">&times;</span>
-    <img id="popupImg" alt="Popup Gallery Image">
+    <span class="close-btn" onclick="closeImg()">&times;</span>
+    <img id="popupImg" alt="Popup Gallery Image" />
   </div>
 
   <script>
-    window.addEventListener("load", function () {
-      document.getElementById("loader").classList.add("hide");
-    });
+    async function loadGallery() {
+      const gallery = document.getElementById("gallery");
+      const status = document.getElementById("status");
 
-    document.querySelectorAll("a").forEach(function (link) {
-      link.addEventListener("click", function (e) {
-        const href = this.getAttribute("href");
-        if (href && href.endsWith(".html")) {
-          e.preventDefault();
-          document.getElementById("transition").style.transform = "scaleY(1)";
-          setTimeout(function () {
-            window.location.href = href;
-          }, 500);
+      try {
+        const response = await fetch("images.json");
+
+        if (!response.ok) {
+          throw new Error("images.json not found");
         }
-      });
-    });
 
-    if (window.particlesJS) {
-      particlesJS("particles-js", {
-        particles: {
-          number: {
-            value: 40,
-            density: {
-              enable: true,
-              value_area: 800
+        const images = await response.json();
+
+        if (!Array.isArray(images) || images.length === 0) {
+          status.textContent = "No images found in gallery.";
+          return;
+        }
+
+        gallery.innerHTML = "";
+        let visibleImages = 0;
+
+        images.forEach((fileName) => {
+          const item = document.createElement("div");
+          item.className = "gallery-item";
+
+          const img = document.createElement("img");
+          img.src = "images/gallery/" + fileName;
+          img.alt = fileName;
+          img.loading = "lazy";
+
+          img.addEventListener("click", function () {
+            openImg(img.src);
+          });
+
+          img.addEventListener("load", function () {
+            visibleImages++;
+            status.style.display = "none";
+          });
+
+          img.addEventListener("error", function () {
+            item.remove();
+            if (visibleImages === 0 && gallery.children.length === 0) {
+              status.textContent = "Images could not be loaded. Please check image names and folder path.";
             }
-          },
-          color: {
-            value: "#ffffff"
-          },
-          shape: {
-            type: "circle"
-          },
-          opacity: {
-            value: 0.35
-          },
-          size: {
-            value: 2.5,
-            random: true
-          },
-          line_linked: {
-            enable: true,
-            distance: 130,
-            color: "#ffffff",
-            opacity: 0.2,
-            width: 1
-          },
-          move: {
-            enable: true,
-            speed: 1.2
-          }
-        },
-        interactivity: {
-          detect_on: "canvas",
-          events: {
-            onhover: {
-              enable: true,
-              mode: "repulse"
-            },
-            onclick: {
-              enable: true,
-              mode: "push"
-            },
-            resize: true
-          }
-        },
-        retina_detect: true
-      });
+          });
+
+          item.appendChild(img);
+          gallery.appendChild(item);
+        });
+      } catch (error) {
+        status.textContent = "Unable to load gallery. Please check images.json.";
+      }
     }
 
     function openImg(src) {
@@ -373,15 +258,8 @@
       }
     });
 
-    document.querySelectorAll(".gallery-item img").forEach(function (img) {
-      img.addEventListener("error", function () {
-        img.style.display = "none";
-        const fallback = img.nextElementSibling;
-        if (fallback) {
-          fallback.style.display = "flex";
-        }
-      });
-    });
+    loadGallery();
   </script>
+
 </body>
 </html>
