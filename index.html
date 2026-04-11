@@ -5,7 +5,7 @@
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
   <title>TGPM Ministry</title>
 
-  <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;600;700&display=swap" rel="stylesheet">
+  <link href="https://fonts.googleapis.com/css2?family=Anton&family=Poppins:wght@300;600;700&display=swap" rel="stylesheet">
 
   <style>
     * {
@@ -130,12 +130,21 @@
       box-shadow: 0 8px 20px rgba(0,0,0,0.4);
     }
 
-    .hero-text h1 {
+    .hero-title {
       margin: 0;
-      font-size: 64px;
-      line-height: 1.15;
-      font-weight: 700;
-      text-shadow: 0 4px 18px rgba(0,0,0,0.5);
+      font-family: 'Anton', sans-serif;
+      font-size: 90px;
+      line-height: 1.05;
+      font-weight: 400;
+      letter-spacing: 5px;
+      text-transform: uppercase;
+      color: #ffffff;
+      text-align: center;
+      text-shadow:
+        0 2px 0 rgba(255,255,255,0.18),
+        0 4px 0 rgba(255,255,255,0.08),
+        0 10px 25px rgba(0,0,0,0.75),
+        0 0 20px rgba(255,255,255,0.08);
     }
 
     .hero-text p {
@@ -241,6 +250,18 @@
       }
     }
 
+    @media (max-width: 992px) {
+      .hero-title {
+        font-size: 68px;
+        letter-spacing: 4px;
+      }
+
+      .hero-logo {
+        width: 170px;
+        height: 170px;
+      }
+    }
+
     @media (max-width: 768px) {
       nav {
         justify-content: center;
@@ -255,8 +276,10 @@
         justify-content: center;
       }
 
-      .hero-text h1 {
-        font-size: 34px;
+      .hero-title {
+        font-size: 42px;
+        letter-spacing: 2px;
+        line-height: 1.1;
       }
 
       .hero-text p {
@@ -264,12 +287,27 @@
       }
 
       .hero-logo {
-        width: 90px;
-        height: 90px;
+        width: 100px;
+        height: 100px;
       }
 
       .section h2 {
         font-size: 30px;
+      }
+    }
+
+    @media (max-width: 480px) {
+      .hero-title {
+        font-size: 34px;
+        letter-spacing: 1.5px;
+      }
+
+      .nav-links a {
+        font-size: 14px;
+      }
+
+      .logo-text {
+        font-size: 18px;
       }
     }
   </style>
@@ -303,7 +341,7 @@
 
     <div class="hero-text">
       <img src="images/logo.png" alt="TGPM Logo" class="hero-logo">
-      <h1>THE GOD'S POWER MINISTRY</h1>
+      <h1 class="hero-title">THE GOD'S POWER MINISTRY</h1>
       <p>Jesus is the only God</p>
       <a href="sermons.html" class="btn">Watch Sermons</a>
     </div>
