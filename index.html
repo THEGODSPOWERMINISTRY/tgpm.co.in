@@ -179,7 +179,6 @@
       line-height: 0.95;
       letter-spacing: 1px;
       text-align: center;
-
       background: linear-gradient(
         to bottom,
         #fff9d8 0%,
@@ -193,12 +192,10 @@
         #b97710 88%,
         #6e4306 100%
       );
-
       -webkit-background-clip: text;
       -webkit-text-fill-color: transparent;
       background-clip: text;
       color: transparent;
-
       text-shadow:
         0 1px 0 rgba(255, 243, 181, 0.95),
         0 2px 0 rgba(234, 191, 72, 0.95),
@@ -292,6 +289,43 @@
       line-height: 1.6;
     }
 
+    .calendar-section {
+      position: relative;
+      z-index: 5;
+      padding: 90px 20px;
+      background: #050505;
+      text-align: center;
+    }
+
+    .calendar-section h2 {
+      font-size: 38px;
+      margin-bottom: 10px;
+    }
+
+    .calendar-section p {
+      color: #d8d8d8;
+      max-width: 800px;
+      margin: 0 auto 35px;
+      line-height: 1.7;
+    }
+
+    .calendar-box {
+      max-width: 1100px;
+      margin: 0 auto;
+      border-radius: 18px;
+      overflow: hidden;
+      box-shadow: 0 10px 28px rgba(0,0,0,0.35);
+      background: #fff;
+      border: 2px solid rgba(255,255,255,0.08);
+    }
+
+    .calendar-box iframe {
+      display: block;
+      width: 100%;
+      height: 650px;
+      border: 0;
+    }
+
     footer {
       position: relative;
       z-index: 5;
@@ -321,6 +355,10 @@
       .hero-logo {
         width: 170px;
         height: 170px;
+      }
+
+      .calendar-box iframe {
+        height: 600px;
       }
     }
 
@@ -352,8 +390,13 @@
         height: 100px;
       }
 
-      .section h2 {
+      .section h2,
+      .calendar-section h2 {
         font-size: 30px;
+      }
+
+      .calendar-box iframe {
+        height: 500px;
       }
     }
 
@@ -368,6 +411,10 @@
 
       .logo-text {
         font-size: 18px;
+      }
+
+      .calendar-box iframe {
+        height: 420px;
       }
     }
   </style>
@@ -433,6 +480,22 @@
         <h3>Bible Teaching</h3>
         <p>Sharing the truth of the Word of God with clarity, wisdom, and spiritual power.</p>
       </div>
+    </div>
+  </section>
+
+  <section class="calendar-section">
+    <h2>Meeting Schedule</h2>
+    <p>
+      View our upcoming Google Meet prayer meetings, worship sessions, and ministry events below.
+    </p>
+
+    <div class="calendar-box">
+      <iframe
+        src="https://calendar.google.com/calendar/embed?src=thegodspowerministry%40gmail.com&ctz=Asia%2FKolkata"
+        title="TGPM Ministry Meeting Schedule"
+        loading="lazy"
+        scrolling="no">
+      </iframe>
     </div>
   </section>
 
