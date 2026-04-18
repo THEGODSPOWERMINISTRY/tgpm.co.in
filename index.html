@@ -289,7 +289,7 @@
       line-height: 1.6;
     }
 
-    .calendar-section {
+    .meeting-section {
       position: relative;
       z-index: 5;
       padding: 90px 20px;
@@ -297,33 +297,73 @@
       text-align: center;
     }
 
-    .calendar-section h2 {
+    .meeting-section h2 {
       font-size: 38px;
       margin-bottom: 10px;
     }
 
-    .calendar-section p {
+    .meeting-section p {
       color: #d8d8d8;
       max-width: 800px;
-      margin: 0 auto 35px;
+      margin: 0 auto 20px;
       line-height: 1.7;
     }
 
-    .calendar-box {
-      max-width: 1100px;
-      margin: 0 auto;
-      border-radius: 18px;
-      overflow: hidden;
-      box-shadow: 0 10px 28px rgba(0,0,0,0.35);
-      background: #fff;
-      border: 2px solid rgba(255,255,255,0.08);
+    .today-date {
+      color: #F2A365;
+      font-size: 20px;
+      font-weight: 700;
+      margin-bottom: 35px;
     }
 
-    .calendar-box iframe {
-      display: block;
-      width: 100%;
-      height: 650px;
-      border: 0;
+    .meeting-list {
+      max-width: 1100px;
+      margin: 0 auto;
+      display: flex;
+      flex-wrap: wrap;
+      justify-content: center;
+      gap: 24px;
+    }
+
+    .meeting-card {
+      width: 300px;
+      background: rgba(255,255,255,0.08);
+      border: 1px solid rgba(255,255,255,0.08);
+      border-radius: 18px;
+      padding: 28px 22px;
+      box-shadow: 0 10px 28px rgba(0,0,0,0.35);
+      transition: 0.35s;
+    }
+
+    .meeting-card:hover {
+      transform: translateY(-8px);
+      background: rgba(255,255,255,0.12);
+    }
+
+    .meeting-card h3 {
+      margin-top: 0;
+      margin-bottom: 12px;
+      color: #F2A365;
+      font-size: 24px;
+    }
+
+    .meeting-card p {
+      margin: 8px 0;
+      color: #e5e5e5;
+      line-height: 1.6;
+    }
+
+    .meeting-time {
+      font-size: 20px;
+      font-weight: 700;
+      color: #fff;
+      margin-bottom: 10px;
+    }
+
+    .meeting-status {
+      margin-top: 25px;
+      color: #ccc;
+      font-size: 18px;
     }
 
     footer {
@@ -356,10 +396,6 @@
         width: 170px;
         height: 170px;
       }
-
-      .calendar-box iframe {
-        height: 600px;
-      }
     }
 
     @media (max-width: 768px) {
@@ -391,12 +427,13 @@
       }
 
       .section h2,
-      .calendar-section h2 {
+      .meeting-section h2 {
         font-size: 30px;
       }
 
-      .calendar-box iframe {
-        height: 500px;
+      .meeting-card {
+        width: 100%;
+        max-width: 340px;
       }
     }
 
@@ -411,10 +448,6 @@
 
       .logo-text {
         font-size: 18px;
-      }
-
-      .calendar-box iframe {
-        height: 420px;
       }
     }
   </style>
@@ -483,25 +516,98 @@
     </div>
   </section>
 
-  <section class="calendar-section">
-    <h2>Meeting Schedule</h2>
+  <section class="meeting-section">
+    <h2>Today's Google Meet Links</h2>
     <p>
-      View our upcoming Google Meet prayer meetings, worship sessions, and ministry events below.
+      Daily prayer meetings with direct Google Meet joining links.
     </p>
+    <div id="todayDate" class="today-date"></div>
 
-    <div class="calendar-box">
-      <iframe
-        src="https://calendar.google.com/calendar/embed?src=thegodspowerministry%40gmail.com&ctz=Asia%2FKolkata"
-        title="TGPM Ministry Meeting Schedule"
-        loading="lazy"
-        scrolling="no">
-      </iframe>
-    </div>
+    <div id="meetingList" class="meeting-list"></div>
+    <div id="meetingStatus" class="meeting-status">Loading today's meetings...</div>
   </section>
 
   <footer>
     © 2026 TGPM Ministry | All Rights Reserved
   </footer>
+
+  <script>
+    async function loadTodayMeetings() {
+      const meetingList = document.getElementById("meetingList");
+      const meetingStatus = document.getElementById("meetingStatus");
+      const todayDate = document.getElementById("todayDate");
+
+      const now = new Date();
+
+      const formattedDate = now.toLocaleDateString("en-IN", {
+        weekday: "long",
+        year: "numeric",
+        month: "long",
+        day: "numeric"
+      });
+
+      todayDate.textContent = "Today: " + formattedDate;
+
+      const dayName = now.toLocaleDateString("en-US", {
+        weekday: "long"
+      });
+
+      try {
+        const response = await fetch("meetings.json");
+        if (!response.ok) {
+          throw new Error("meetings.json not found");
+        }
+
+        const data = await response.json();
+
+        const meetingOrder = [
+          { key: "morning", title: "Morning Meeting" },
+          { key: "afternoon", title: "Afternoon Meeting" },
+          { key: "evening", title: "Evening Meeting" }
+        ];
+
+        let html = "";
+
+        meetingOrder.forEach(item => {
+          if (data[item.key] && data[item.key].link) {
+            html += `
+              <div class="meeting-card">
+                <h3>${item.title}</h3>
+                <div class="meeting-time">${data[item.key].time}</div>
+                <p>Click below to join today's ${item.title.toLowerCase()}.</p>
+                <a href="${data[item.key].link}" target="_blank" rel="noopener noreferrer" class="btn">Join Meeting</a>
+              </div>
+            `;
+          }
+        });
+
+        if (dayName === "Sunday" && data.sundayMorning && data.sundayMorning.link) {
+          html += `
+            <div class="meeting-card">
+              <h3>Sunday Special Service</h3>
+              <div class="meeting-time">${data.sundayMorning.time}</div>
+              <p>Join today's Sunday special prayer and worship service.</p>
+              <a href="${data.sundayMorning.link}" target="_blank" rel="noopener noreferrer" class="btn">Join Sunday Service</a>
+            </div>
+          `;
+        }
+
+        if (html.trim() === "") {
+          meetingStatus.textContent = "No meetings available.";
+          return;
+        }
+
+        meetingList.innerHTML = html;
+        meetingStatus.style.display = "none";
+
+      } catch (error) {
+        meetingStatus.textContent = "Unable to load meetings. Please check meetings.json.";
+        console.error(error);
+      }
+    }
+
+    loadTodayMeetings();
+  </script>
 
 </body>
 </html>
