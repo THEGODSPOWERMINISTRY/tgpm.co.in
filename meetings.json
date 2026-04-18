@@ -16,4 +16,3 @@
     "link": "https://meet.google.com/your-evening-link"
   }
 }
-fetch("meetings.json")
