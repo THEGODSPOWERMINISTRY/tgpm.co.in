@@ -1,7 +1,7 @@
 {
   "morning": {
     "time": "05:00 AM",
-    "link": "https://meet.google.com/your-morning-link"
+    "link": "https://meet.google.com/pke-fafk-sof"
   },
   "sundayMorning": {
     "time": "10:30 AM",
@@ -9,10 +9,10 @@
   },
   "afternoon": {
     "time": "02:00 PM",
-    "link": "https://meet.google.com/your-afternoon-link"
+    "link": "https://meet.google.com/bim-smby-ahi"
   },
   "evening": {
     "time": "09:00 PM",
-    "link": "https://meet.google.com/your-evening-link"
+    "link": "https://meet.google.com/czg-fogd-ytm"
   }
 }
