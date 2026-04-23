@@ -56,9 +56,12 @@
     .logo {
       width: 55px;
       height: 55px;
-      object-fit: contain;
+      object-fit: cover;
       border-radius: 50%;
-      background: rgba(255,255,255,0.08);
+      overflow: hidden;
+      background: transparent;
+      display: block;
+      flex-shrink: 0;
     }
 
     .logo-text {
@@ -145,11 +148,16 @@
     .hero-logo {
       width: 300px;
       height: 300px;
-      object-fit: contain;
+      object-fit: cover;
       border-radius: 50%;
+      overflow: hidden;
       margin-bottom: 20px;
-      background: rgba(255,255,255,0.08);
+      background: transparent;
       box-shadow: 0 8px 20px rgba(0,0,0,0.4);
+      display: block;
+      margin-left: auto;
+      margin-right: auto;
+      flex-shrink: 0;
     }
 
     .hero-title-wrapper {
@@ -434,7 +442,7 @@
 <body>
 
   <div class="background-layer">
-    <video id="bg-video" autoplay muted loop playsinline preload="auto" poster="images/logo.png">
+    <video id="bg-video" autoplay muted loop playsinline preload="auto" poster="images/logo-circle.png">
       <source src="videos/home.mp4" type="video/mp4">
     </video>
     <div class="background-overlay"></div>
@@ -444,7 +452,7 @@
     <header>
       <nav>
         <div class="logo-area">
-          <img src="images/logo.png" alt="TGPM Logo" class="logo">
+          <img src="images/logo-circle.png" alt="TGPM Logo" class="logo">
           <span class="logo-text">TGPM Ministry</span>
         </div>
 
@@ -461,7 +469,7 @@
 
     <section class="hero">
       <div class="hero-text">
-        <img src="images/logo.png" alt="TGPM Logo" class="hero-logo">
+        <img src="images/logo-circle.png" alt="TGPM Logo" class="hero-logo">
 
         <div class="hero-title-wrapper">
           <h1 class="hero-title">THE GOD'S POWER MINISTRY</h1>
