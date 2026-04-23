@@ -86,11 +86,11 @@
       color: #F2A365;
     }
 
-    /* FULLSCREEN FIXED VIDEO BACKGROUND */
+    /* FIXED FULLSCREEN VIDEO BACKGROUND */
     .background-layer {
       position: fixed;
       inset: 0;
-      z-index: -10;
+      z-index: 0;
       overflow: hidden;
       background: #000;
     }
@@ -108,21 +108,22 @@
       object-position: center center;
       display: block;
       background: #000;
+      z-index: 1;
     }
 
     .background-overlay {
       position: absolute;
       inset: 0;
       background:
-        linear-gradient(to bottom, rgba(0,0,0,0.22), rgba(0,0,0,0.45)),
-        radial-gradient(circle at center, rgba(0,0,0,0.08), rgba(0,0,0,0.22));
-      z-index: 1;
+        linear-gradient(to bottom, rgba(0,0,0,0.18), rgba(0,0,0,0.42)),
+        radial-gradient(circle at center, rgba(0,0,0,0.08), rgba(0,0,0,0.18));
+      z-index: 2;
       pointer-events: none;
     }
 
     .page-content {
       position: relative;
-      z-index: 5;
+      z-index: 10;
     }
 
     .hero {
@@ -136,7 +137,7 @@
 
     .hero-text {
       position: relative;
-      z-index: 6;
+      z-index: 20;
       max-width: 1100px;
       animation: fadeUp 1.3s ease;
     }
@@ -255,15 +256,15 @@
 
     .content-wrapper {
       position: relative;
-      z-index: 6;
+      z-index: 10;
     }
 
     .section,
     .meeting-section {
       padding: 90px 20px;
       text-align: center;
-      background: rgba(0, 0, 0, 0.38);
-      backdrop-filter: blur(5px);
+      background: rgba(0, 0, 0, 0.30);
+      backdrop-filter: blur(4px);
     }
 
     .section h2,
@@ -345,8 +346,8 @@
     }
 
     footer {
-      background: rgba(0, 0, 0, 0.55);
-      backdrop-filter: blur(5px);
+      background: rgba(0, 0, 0, 0.35);
+      backdrop-filter: blur(4px);
       color: #bbb;
       text-align: center;
       padding: 22px 15px;
@@ -589,31 +590,23 @@
 
     function setupBackgroundVideo() {
       const video = document.getElementById("bg-video");
+      if (!video) return;
 
       const tryPlay = () => {
-        if (!video) return;
         video.muted = true;
-        video.play().catch((err) => {
-          console.log("Video autoplay failed:", err);
-        });
+        video.defaultMuted = true;
+        const promise = video.play();
+        if (promise !== undefined) {
+          promise.catch((err) => {
+            console.log("Autoplay blocked:", err);
+          });
+        }
       };
 
-      video.addEventListener("loadeddata", () => {
-        video.style.opacity = "1";
-      });
-
-      video.addEventListener("canplay", () => {
-        tryPlay();
-      });
-
-      window.addEventListener("load", () => {
-        tryPlay();
-      });
-
+      video.addEventListener("canplay", tryPlay);
+      window.addEventListener("load", tryPlay);
       document.addEventListener("visibilitychange", () => {
-        if (!document.hidden) {
-          tryPlay();
-        }
+        if (!document.hidden) tryPlay();
       });
     }
 
