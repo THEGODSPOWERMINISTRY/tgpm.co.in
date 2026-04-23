@@ -85,32 +85,45 @@
       color: #F2A365;
     }
 
-    .hero {
-      position: relative;
-      min-height: 100vh;
-      display: flex;
-      justify-content: center;
-      align-items: center;
-      text-align: center;
+    /* FIXED BACKGROUND VIDEO */
+    .video-background {
+      position: fixed;
+      inset: 0;
+      width: 100%;
+      height: 100vh;
+      z-index: 0;
       overflow: hidden;
-      padding: 100px 20px 40px;
+      background: black;
     }
 
     #bg-video {
       position: absolute;
-      top: 0;
-      left: 0;
+      inset: 0;
       width: 100%;
       height: 100%;
       object-fit: cover;
-      z-index: 1;
     }
 
     .overlay {
       position: absolute;
       inset: 0;
       background: linear-gradient(to bottom, rgba(0,0,0,0.35), rgba(0,0,0,0.82));
+      z-index: 1;
+    }
+
+    /* CONTENT ABOVE VIDEO */
+    .page-content {
+      position: relative;
       z-index: 2;
+    }
+
+    .hero {
+      min-height: 100vh;
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      text-align: center;
+      padding: 100px 20px 40px;
     }
 
     .hero-text {
@@ -232,12 +245,17 @@
       background: #e79047;
     }
 
-    .section {
+    /* SOLID BACKGROUND FOR SCROLL CONTENT */
+    .content-wrapper {
       position: relative;
-      z-index: 5;
-      padding: 90px 20px;
+      z-index: 3;
       background: #0a0a0a;
+    }
+
+    .section {
+      padding: 90px 20px;
       text-align: center;
+      background: #0a0a0a;
     }
 
     .section h2 {
@@ -290,8 +308,6 @@
     }
 
     .meeting-section {
-      position: relative;
-      z-index: 5;
       padding: 90px 20px;
       background: #050505;
       text-align: center;
@@ -367,8 +383,6 @@
     }
 
     footer {
-      position: relative;
-      z-index: 5;
       background: #050505;
       color: #bbb;
       text-align: center;
@@ -454,82 +468,87 @@
 </head>
 <body>
 
-  <header>
-    <nav>
-      <div class="logo-area">
-        <img src="images/logo.png" alt="TGPM Logo" class="logo">
-        <span class="logo-text">TGPM Ministry</span>
-      </div>
-
-      <div class="nav-links">
-        <a href="index.html">Home</a>
-        <a href="about.html">About</a>
-        <a href="sermons.html">Sermons</a>
-        <a href="gallery.html">Gallery</a>
-        <a href="prayer.html">Prayer</a>
-        <a href="contact.html">Contact</a>
-      </div>
-    </nav>
-  </header>
-
-  <section class="hero">
+  <div class="video-background">
     <video id="bg-video" autoplay muted loop playsinline preload="auto">
       <source src="videos/home.mp4" type="video/mp4">
     </video>
-
     <div class="overlay"></div>
+  </div>
 
-    <div class="hero-text">
-      <img src="images/logo.png" alt="TGPM Logo" class="hero-logo">
+  <div class="page-content">
+    <header>
+      <nav>
+        <div class="logo-area">
+          <img src="images/logo.png" alt="TGPM Logo" class="logo">
+          <span class="logo-text">TGPM Ministry</span>
+        </div>
 
-      <div class="hero-title-wrapper">
-        <h1 class="hero-title">THE GOD'S POWER MINISTRY</h1>
+        <div class="nav-links">
+          <a href="index.html">Home</a>
+          <a href="about.html">About</a>
+          <a href="sermons.html">Sermons</a>
+          <a href="gallery.html">Gallery</a>
+          <a href="prayer.html">Prayer</a>
+          <a href="contact.html">Contact</a>
+        </div>
+      </nav>
+    </header>
+
+    <section class="hero">
+      <div class="hero-text">
+        <img src="images/logo.png" alt="TGPM Logo" class="hero-logo">
+
+        <div class="hero-title-wrapper">
+          <h1 class="hero-title">THE GOD'S POWER MINISTRY</h1>
+        </div>
+
+        <p>Jesus is the only God</p>
+        <a href="sermons.html" class="btn">Watch Sermons</a>
       </div>
+    </section>
 
-      <p>Jesus is the only God</p>
-      <a href="sermons.html" class="btn">Watch Sermons</a>
+    <div class="content-wrapper">
+      <section class="section">
+        <h2>Our Ministry</h2>
+        <p>
+          We are committed to spreading the Word of God through prayer, healing,
+          biblical teaching, and faith in Jesus Christ.
+        </p>
+
+        <div class="cards">
+          <div class="card">
+            <h3>Healing Ministry</h3>
+            <p>Praying for the sick and believing God for miracles, healing, and restoration.</p>
+          </div>
+
+          <div class="card">
+            <h3>Prayer Meetings</h3>
+            <p>Standing together in faith through powerful prayer gatherings and worship.</p>
+          </div>
+
+          <div class="card">
+            <h3>Bible Teaching</h3>
+            <p>Sharing the truth of the Word of God with clarity, wisdom, and spiritual power.</p>
+          </div>
+        </div>
+      </section>
+
+      <section class="meeting-section">
+        <h2>Today's Google Meet Links</h2>
+        <p>
+          Daily prayer meetings with direct Google Meet joining links.
+        </p>
+        <div id="todayDate" class="today-date"></div>
+
+        <div id="meetingList" class="meeting-list"></div>
+        <div id="meetingStatus" class="meeting-status">Loading today's meetings...</div>
+      </section>
+
+      <footer>
+        © 2026 TGPM Ministry | All Rights Reserved
+      </footer>
     </div>
-  </section>
-
-  <section class="section">
-    <h2>Our Ministry</h2>
-    <p>
-      We are committed to spreading the Word of God through prayer, healing,
-      biblical teaching, and faith in Jesus Christ.
-    </p>
-
-    <div class="cards">
-      <div class="card">
-        <h3>Healing Ministry</h3>
-        <p>Praying for the sick and believing God for miracles, healing, and restoration.</p>
-      </div>
-
-      <div class="card">
-        <h3>Prayer Meetings</h3>
-        <p>Standing together in faith through powerful prayer gatherings and worship.</p>
-      </div>
-
-      <div class="card">
-        <h3>Bible Teaching</h3>
-        <p>Sharing the truth of the Word of God with clarity, wisdom, and spiritual power.</p>
-      </div>
-    </div>
-  </section>
-
-  <section class="meeting-section">
-    <h2>Today's Google Meet Links</h2>
-    <p>
-      Daily prayer meetings with direct Google Meet joining links.
-    </p>
-    <div id="todayDate" class="today-date"></div>
-
-    <div id="meetingList" class="meeting-list"></div>
-    <div id="meetingStatus" class="meeting-status">Loading today's meetings...</div>
-  </section>
-
-  <footer>
-    © 2026 TGPM Ministry | All Rights Reserved
-  </footer>
+  </div>
 
   <script>
     async function loadTodayMeetings() {
@@ -605,7 +624,7 @@
         console.error(error);
       }
     }
-fetch("meetings.json")
+
     loadTodayMeetings();
   </script>
 
