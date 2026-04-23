@@ -32,7 +32,7 @@
       left: 0;
       width: 100%;
       z-index: 1000;
-      background: rgba(0, 0, 0, 0.40);
+      background: rgba(0, 0, 0, 0.35);
       backdrop-filter: blur(8px);
       padding: 12px 20px;
     }
@@ -86,43 +86,38 @@
       color: #F2A365;
     }
 
-    /* FIXED FULLSCREEN BACKGROUND */
+    /* FULLSCREEN FIXED VIDEO BACKGROUND */
     .background-layer {
       position: fixed;
       inset: 0;
       z-index: -10;
       overflow: hidden;
-      background: #000 url("images/home-bg.jpg") center center / cover no-repeat;
+      background: #000;
     }
 
     #bg-video {
       position: absolute;
       top: 50%;
       left: 50%;
+      width: 100vw;
+      height: 100vh;
       min-width: 100%;
       min-height: 100%;
-      width: auto;
-      height: auto;
       transform: translate(-50%, -50%);
       object-fit: cover;
       object-position: center center;
-      opacity: 1;
-      transition: opacity 0.4s ease;
+      display: block;
       background: #000;
-    }
-
-    #bg-video.video-hidden {
-      opacity: 0;
-      pointer-events: none;
     }
 
     .background-overlay {
       position: absolute;
       inset: 0;
       background:
-        linear-gradient(to bottom, rgba(0,0,0,0.18), rgba(0,0,0,0.48)),
-        radial-gradient(circle at center, rgba(0,0,0,0.10), rgba(0,0,0,0.35));
+        linear-gradient(to bottom, rgba(0,0,0,0.22), rgba(0,0,0,0.45)),
+        radial-gradient(circle at center, rgba(0,0,0,0.08), rgba(0,0,0,0.22));
       z-index: 1;
+      pointer-events: none;
     }
 
     .page-content {
@@ -267,8 +262,8 @@
     .meeting-section {
       padding: 90px 20px;
       text-align: center;
-      background: rgba(0, 0, 0, 0.52);
-      backdrop-filter: blur(8px);
+      background: rgba(0, 0, 0, 0.38);
+      backdrop-filter: blur(5px);
     }
 
     .section h2,
@@ -350,8 +345,8 @@
     }
 
     footer {
-      background: rgba(0, 0, 0, 0.65);
-      backdrop-filter: blur(8px);
+      background: rgba(0, 0, 0, 0.55);
+      backdrop-filter: blur(5px);
       color: #bbb;
       text-align: center;
       padding: 22px 15px;
@@ -438,7 +433,7 @@
 <body>
 
   <div class="background-layer">
-    <video id="bg-video" autoplay muted loop playsinline preload="auto">
+    <video id="bg-video" autoplay muted loop playsinline preload="auto" poster="images/logo.png">
       <source src="videos/home.mp4" type="video/mp4">
     </video>
     <div class="background-overlay"></div>
@@ -596,25 +591,29 @@
       const video = document.getElementById("bg-video");
 
       const tryPlay = () => {
-        const playPromise = video.play();
-        if (playPromise !== undefined) {
-          playPromise.catch(() => {
-            video.classList.add("video-hidden");
-          });
-        }
+        if (!video) return;
+        video.muted = true;
+        video.play().catch((err) => {
+          console.log("Video autoplay failed:", err);
+        });
       };
 
-      video.addEventListener("error", () => {
-        video.classList.add("video-hidden");
-      });
-
       video.addEventListener("loadeddata", () => {
-        video.classList.remove("video-hidden");
+        video.style.opacity = "1";
       });
 
-      window.addEventListener("load", tryPlay);
+      video.addEventListener("canplay", () => {
+        tryPlay();
+      });
+
+      window.addEventListener("load", () => {
+        tryPlay();
+      });
+
       document.addEventListener("visibilitychange", () => {
-        if (!document.hidden) tryPlay();
+        if (!document.hidden) {
+          tryPlay();
+        }
       });
     }
 
