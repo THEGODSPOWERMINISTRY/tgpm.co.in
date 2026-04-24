@@ -89,7 +89,6 @@
       color: #F2A365;
     }
 
-    /* FIXED FULLSCREEN VIDEO BACKGROUND */
     .background-layer {
       position: fixed;
       inset: 0;
@@ -141,7 +140,7 @@
     .hero-text {
       position: relative;
       z-index: 20;
-      max-width: 1100px;
+      max-width: 1300px;
       animation: fadeUp 1.3s ease;
     }
 
@@ -160,81 +159,14 @@
       flex-shrink: 0;
     }
 
-    .hero-title-wrapper {
-      display: inline-block;
-      position: relative;
-      padding: 12px 22px;
-    }
-
-    .hero-title-wrapper::before {
-      content: "";
-      position: absolute;
-      left: 8%;
-      right: 8%;
-      bottom: 8px;
-      height: 22px;
-      background: radial-gradient(circle, rgba(255, 180, 40, 0.45) 0%, rgba(255, 120, 0, 0.14) 60%, transparent 100%);
-      filter: blur(10px);
-      z-index: 1;
-      pointer-events: none;
-    }
-
-    .hero-title-wrapper::after {
-      content: "";
-      position: absolute;
-      top: 7%;
-      left: 12%;
-      width: 76%;
-      height: 24%;
-      background: linear-gradient(
-        to bottom,
-        rgba(255,255,255,0.70),
-        rgba(255,255,255,0.20),
-        rgba(255,255,255,0.03),
-        transparent
-      );
-      border-radius: 50%;
-      filter: blur(7px);
-      z-index: 4;
-      pointer-events: none;
-    }
-
-    .hero-title {
-      margin: 0;
-      position: relative;
-      z-index: 3;
-      font-family: Georgia, "Times New Roman", serif;
-      font-size: 96px;
-      font-weight: 700;
-      line-height: 0.95;
-      letter-spacing: 1px;
-      text-align: center;
-      background: linear-gradient(
-        to bottom,
-        #fff9d8 0%,
-        #fbeaa0 10%,
-        #d9a72f 22%,
-        #fff1a8 32%,
-        #b87912 44%,
-        #8d5a0a 56%,
-        #f9dc79 68%,
-        #fff2b4 78%,
-        #b97710 88%,
-        #6e4306 100%
-      );
-      -webkit-background-clip: text;
-      -webkit-text-fill-color: transparent;
-      background-clip: text;
-      color: transparent;
-      text-shadow:
-        0 1px 0 rgba(255, 243, 181, 0.95),
-        0 2px 0 rgba(234, 191, 72, 0.95),
-        0 3px 0 rgba(181, 117, 14, 0.95),
-        0 4px 0 rgba(110, 67, 6, 0.95),
-        1px 5px 0 rgba(78, 45, 3, 0.95),
-        0 8px 16px rgba(0,0,0,0.35),
-        0 0 10px rgba(255, 218, 97, 0.30),
-        0 0 24px rgba(255, 183, 0, 0.18);
+    .hero-title-image {
+      display: block;
+      width: min(1200px, 95vw);
+      height: auto;
+      margin: 10px auto 0;
+      filter:
+        drop-shadow(0 4px 10px rgba(0,0,0,0.45))
+        drop-shadow(0 0 18px rgba(255, 208, 70, 0.25));
     }
 
     .hero-text p {
@@ -374,13 +306,13 @@
     }
 
     @media (max-width: 992px) {
-      .hero-title {
-        font-size: 70px;
-      }
-
       .hero-logo {
         width: 170px;
         height: 170px;
+      }
+
+      .hero-title-image {
+        width: min(950px, 94vw);
       }
     }
 
@@ -398,11 +330,6 @@
         justify-content: center;
       }
 
-      .hero-title {
-        font-size: 44px;
-        line-height: 1;
-      }
-
       .hero-text p {
         font-size: 17px;
       }
@@ -410,6 +337,10 @@
       .hero-logo {
         width: 100px;
         height: 100px;
+      }
+
+      .hero-title-image {
+        width: 95vw;
       }
 
       .section h2,
@@ -425,10 +356,6 @@
     }
 
     @media (max-width: 480px) {
-      .hero-title {
-        font-size: 34px;
-      }
-
       .nav-links a {
         font-size: 14px;
       }
@@ -471,9 +398,7 @@
       <div class="hero-text">
         <img src="images/logo-circle.png" alt="TGPM Logo" class="hero-logo">
 
-        <div class="hero-title-wrapper">
-          <h1 class="hero-title">THE GOD'S POWER MINISTRY</h1>
-        </div>
+        <img src="images/gold-title.png" alt="THE GOD'S POWER MINISTRY" class="hero-title-image">
 
         <p>Jesus is the only God</p>
         <a href="sermons.html" class="btn">Watch Sermons</a>
