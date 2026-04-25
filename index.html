@@ -1,650 +1,643 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-  <meta charset="UTF-8" />
-  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <title>TGPM Ministry</title>
-
-  <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;500;600;700;800&display=swap" rel="stylesheet">
-
-  <style>
-    * { box-sizing: border-box; }
-
-    html, body {
-      margin: 0;
-      padding: 0;
-      font-family: 'Poppins', sans-serif;
-      background: #000;
-      color: #fff;
-      overflow-x: hidden;
-    }
-
-    body {
-      min-height: 100vh;
-    }
-
-    header {
-      position: fixed;
-      top: 0;
-      left: 0;
-      width: 100%;
-      z-index: 1000;
-      background: rgba(0, 0, 0, 0.82);
-      backdrop-filter: blur(10px);
-      padding: 8px 18px;
-    }
-
-    nav {
-      max-width: 1500px;
-      margin: 0 auto;
-      display: flex;
-      align-items: center;
-      justify-content: space-between;
-      gap: 15px;
-    }
-
-    .logo-area {
-      display: flex;
-      align-items: center;
-      gap: 2px;
-    }
-
-    .logo {
-      width: 82px;
-      height: 82px;
-      border-radius: 50%;
-      object-fit: cover;
-      display: block;
-      flex-shrink: 0;
-    }
-
-    .logo-text {
-      font-size: 34px;
-      font-weight: 800;
-      color: #fff;
-      line-height: 1;
-      white-space: nowrap;
-      margin-left: -4px;
-      text-shadow: 0 3px 12px rgba(0,0,0,0.7);
-    }
-
-    .nav-links {
-      display: flex;
-      align-items: center;
-      gap: 30px;
-      flex-wrap: wrap;
-    }
-
-    .nav-links a {
-      color: #fff;
-      text-decoration: none;
-      font-size: 17px;
-      font-weight: 600;
-      transition: 0.3s;
-    }
-
-    .nav-links a:hover {
-      color: #F2A365;
-    }
-
-    .background-layer {
-      position: fixed;
-      inset: 0;
-      z-index: 0;
-      background: #000;
-      overflow: hidden;
-    }
-
-    #bg-video {
-      position: absolute;
-      top: 50%;
-      left: 50%;
-      width: 100vw;
-      height: 100vh;
-      min-width: 100%;
-      min-height: 100%;
-      transform: translate(-50%, -50%);
-      object-fit: cover;
-      object-position: center center;
-      z-index: 1;
-    }
-
-    .background-overlay {
-      position: absolute;
-      inset: 0;
-      z-index: 2;
-      background:
-        radial-gradient(circle at center, rgba(255, 170, 0, 0.22), rgba(0,0,0,0.08) 35%, rgba(0,0,0,0.34) 100%),
-        linear-gradient(to bottom, rgba(0,0,0,0.05), rgba(0,0,0,0.18));
-      pointer-events: none;
-    }
-
-    .page-content {
-      position: relative;
-      z-index: 10;
-    }
-
-    .hero {
-      min-height: 100vh;
-      padding: 95px 0 20px;
-      display: flex;
-      align-items: center;
-      justify-content: center;
-      text-align: center;
-      overflow: hidden;
-    }
-
-    .hero-text {
-      width: 100%;
-      animation: fadeUp 1.2s ease;
-    }
-
-    .hero-logo-wrap {
-      position: relative;
-      z-index: 5;
-      display: inline-block;
-      margin-bottom: -48px;
-    }
-
-    .hero-logo-wrap::after {
-      content: "";
-      position: absolute;
-      inset: -30px;
-      border-radius: 50%;
-      background: radial-gradient(circle, rgba(255,210,70,0.68), rgba(255,150,0,0.24), transparent 72%);
-      filter: blur(14px);
-      z-index: -1;
-      animation: logoGlow 3s infinite alternate;
-    }
-
-    .hero-logo {
-      width: 320px;
-      height: 320px;
-      border-radius: 50%;
-      object-fit: cover;
-      display: block;
-      margin: 0 auto;
-      box-shadow:
-        0 0 36px rgba(255, 195, 30, 0.65),
-        0 18px 45px rgba(0,0,0,0.75);
-    }
-
-    .hero-title-box {
-      position: relative;
-      z-index: 3;
-      width: 100vw;
-      max-width: 100vw;
-      margin: 0 auto;
-      overflow: visible;
-    }
-
-    .hero-title-box::after {
-      content: "";
-      position: absolute;
-      top: 0;
-      left: -120%;
-      width: 60%;
-      height: 100%;
-      background: linear-gradient(
-        110deg,
-        transparent 0%,
-        rgba(255,255,255,0.05) 35%,
-        rgba(255,255,255,0.45) 50%,
-        rgba(255,255,255,0.08) 65%,
-        transparent 100%
-      );
-      transform: skewX(-18deg);
-      animation: shineMove 4s infinite;
-      pointer-events: none;
-    }
-
-    .hero-title-image {
-      width: 115vw;
-      max-width: none;
-      height: auto;
-      display: block;
-      margin: 0 auto;
-      transform: translateX(-7.5vw);
-      filter:
-        drop-shadow(0 14px 26px rgba(0,0,0,0.90))
-        drop-shadow(0 0 36px rgba(255,180,0,0.90));
-      animation: titleGlow 3s infinite alternate;
-    }
-
-    .content-wrapper {
-      position: relative;
-      z-index: 10;
-    }
-
-    .section,
-    .meeting-section {
-      padding: 90px 20px;
-      text-align: center;
-      background: rgba(0, 0, 0, 0.55);
-      backdrop-filter: blur(5px);
-    }
-
-    .section h2,
-    .meeting-section h2 {
-      font-size: 38px;
-      margin-bottom: 10px;
-    }
-
-    .section p,
-    .meeting-section p {
-      color: #d8d8d8;
-      max-width: 800px;
-      margin: 0 auto 25px;
-      line-height: 1.7;
-    }
-
-    .cards,
-    .meeting-list {
-      display: flex;
-      flex-wrap: wrap;
-      justify-content: center;
-      gap: 24px;
-      margin-top: 25px;
-      max-width: 1100px;
-      margin-left: auto;
-      margin-right: auto;
-    }
-
-    .card,
-    .meeting-card {
-      width: 300px;
-      background: rgba(255,255,255,0.08);
-      border: 1px solid rgba(255,255,255,0.10);
-      border-radius: 18px;
-      padding: 28px 22px;
-      box-shadow: 0 10px 28px rgba(0,0,0,0.35);
-      transition: 0.35s;
-    }
-
-    .card:hover,
-    .meeting-card:hover {
-      transform: translateY(-8px);
-      background: rgba(255,255,255,0.13);
-    }
-
-    .card h3,
-    .meeting-card h3 {
-      margin-top: 0;
-      margin-bottom: 12px;
-      color: #F2A365;
-      font-size: 24px;
-    }
-
-    .card p,
-    .meeting-card p {
-      margin: 8px 0;
-      color: #e5e5e5;
-      line-height: 1.6;
-    }
-
-    .today-date {
-      color: #F2A365;
-      font-size: 20px;
-      font-weight: 700;
-      margin-bottom: 35px;
-    }
-
-    .meeting-time {
-      font-size: 20px;
-      font-weight: 700;
-      color: #fff;
-      margin-bottom: 10px;
-    }
-
-    .meeting-status {
-      margin-top: 25px;
-      color: #ccc;
-      font-size: 18px;
-    }
-
-    footer {
-      background: rgba(0, 0, 0, 0.75);
-      color: #bbb;
-      text-align: center;
-      padding: 22px 15px;
-      font-size: 14px;
-    }
-
-    @keyframes fadeUp {
-      from { opacity: 0; transform: translateY(35px); }
-      to { opacity: 1; transform: translateY(0); }
-    }
-
-    @keyframes logoGlow {
-      from { opacity: 0.65; transform: scale(0.96); }
-      to { opacity: 1; transform: scale(1.08); }
-    }
-
-    @keyframes titleGlow {
-      from {
-        filter:
-          drop-shadow(0 14px 26px rgba(0,0,0,0.90))
-          drop-shadow(0 0 28px rgba(255,180,0,0.65));
-      }
-      to {
-        filter:
-          drop-shadow(0 14px 32px rgba(0,0,0,1))
-          drop-shadow(0 0 50px rgba(255,210,60,1));
-      }
-    }
-
-    @keyframes shineMove {
-      0% { left: -120%; }
-      45% { left: 130%; }
-      100% { left: 130%; }
-    }
-
-    @media (max-width: 1200px) {
-      .hero-logo {
-        width: 260px;
-        height: 260px;
-      }
-
-      .hero-logo-wrap {
-        margin-bottom: -38px;
-      }
-
-      .hero-title-image {
-        width: 118vw;
-        transform: translateX(-9vw);
-      }
-
-      .logo {
-        width: 70px;
-        height: 70px;
-      }
-
-      .logo-text {
-        font-size: 29px;
-      }
-    }
-
-    @media (max-width: 768px) {
-      header {
-        padding: 10px 14px;
-      }
-
-      nav {
-        justify-content: center;
-      }
-
-      .logo-area {
-        width: 100%;
-        justify-content: center;
-        gap: 1px;
-      }
-
-      .logo {
-        width: 58px;
-        height: 58px;
-      }
-
-      .logo-text {
-        font-size: 24px;
-        margin-left: -4px;
-      }
-
-      .nav-links {
-        justify-content: center;
-        gap: 16px;
-      }
-
-      .nav-links a {
-        font-size: 14px;
-      }
-
-      .hero {
-        padding-top: 150px;
-      }
-
-      .hero-logo-wrap {
-        margin-bottom: -18px;
-      }
-
-      .hero-logo {
-        width: 160px;
-        height: 160px;
-      }
-
-      .hero-title-image {
-        width: 125vw;
-        transform: translateX(-12.5vw);
-      }
-
-      .section h2,
-      .meeting-section h2 {
-        font-size: 30px;
-      }
-
-      .card,
-      .meeting-card {
-        width: 100%;
-        max-width: 340px;
-      }
-    }
-
-    @media (max-width: 480px) {
-      .logo {
-        width: 52px;
-        height: 52px;
-      }
-
-      .logo-text {
-        font-size: 21px;
-      }
-
-      .nav-links {
-        gap: 12px;
-      }
-
-      .nav-links a {
-        font-size: 13px;
-      }
-
-      .hero-logo {
-        width: 135px;
-        height: 135px;
-      }
-
-      .hero-logo-wrap {
-        margin-bottom: -12px;
-      }
-
-      .hero-title-image {
-        width: 135vw;
-        transform: translateX(-17.5vw);
-      }
-    }
-  </style>
+<meta charset="UTF-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1.0" />
+<title>TGPM Ministry</title>
+
+<link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;500;600;700;800&display=swap" rel="stylesheet">
+
+<style>
+* { box-sizing: border-box; }
+
+html, body {
+  margin: 0;
+  padding: 0;
+  font-family: 'Poppins', sans-serif;
+  background: #000;
+  color: #fff;
+  overflow-x: hidden;
+}
+
+body {
+  min-height: 100vh;
+}
+
+/* HEADER */
+header {
+  position: fixed;
+  top: 0;
+  width: 100%;
+  z-index: 1000;
+  background: rgba(0,0,0,0.72);
+  backdrop-filter: blur(14px);
+  padding: 8px 18px;
+}
+
+nav {
+  max-width: 1500px;
+  margin: auto;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  gap: 14px;
+}
+
+.logo-area {
+  display: flex;
+  align-items: center;
+  gap: 2px;
+}
+
+.logo {
+  width: 82px;
+  height: 82px;
+  border-radius: 50%;
+  object-fit: cover;
+}
+
+.logo-text {
+  font-size: 34px;
+  font-weight: 800;
+  margin-left: -4px;
+  white-space: nowrap;
+  text-shadow: 0 4px 14px rgba(0,0,0,0.7);
+}
+
+.nav-links {
+  display: flex;
+  gap: 30px;
+  flex-wrap: wrap;
+}
+
+.nav-links a {
+  color: #fff;
+  text-decoration: none;
+  font-size: 17px;
+  font-weight: 600;
+  transition: 0.3s;
+}
+
+.nav-links a:hover {
+  color: #F2A365;
+}
+
+/* BACKGROUND */
+.background-layer {
+  position: fixed;
+  inset: 0;
+  z-index: 0;
+  background: #000;
+  overflow: hidden;
+}
+
+#bg-video {
+  position: absolute;
+  inset: 0;
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  animation: cinematicBg 18s ease-in-out infinite alternate;
+}
+
+.background-overlay {
+  position: absolute;
+  inset: 0;
+  background:
+    radial-gradient(circle at center, rgba(255,170,0,0.12), rgba(0,0,0,0.22) 45%, rgba(0,0,0,0.65) 100%),
+    linear-gradient(to bottom, rgba(0,0,0,0.20), rgba(0,0,0,0.48));
+}
+
+/* HERO */
+.hero {
+  position: relative;
+  z-index: 10;
+  min-height: 100vh;
+  padding-top: 92px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  text-align: center;
+  overflow: hidden;
+}
+
+.hero-inner {
+  width: 100%;
+  animation: heroFade 1.5s ease both;
+}
+
+.hero-logo-wrap {
+  position: relative;
+  display: inline-block;
+  margin-bottom: -44px;
+  animation: slowFloat 5s ease-in-out infinite;
+}
+
+.hero-logo-wrap::after {
+  content: "";
+  position: absolute;
+  inset: -34px;
+  border-radius: 50%;
+  background: radial-gradient(circle, rgba(255,205,70,0.38), rgba(255,150,0,0.12), transparent 72%);
+  filter: blur(18px);
+  z-index: -1;
+}
+
+.hero-logo {
+  width: 390px;
+  height: 390px;
+  border-radius: 50%;
+  object-fit: cover;
+  display: block;
+  margin: auto;
+  box-shadow: 0 22px 55px rgba(0,0,0,0.82);
+  animation: logoZoom 8s ease-in-out infinite alternate;
+}
+
+/* CLEAN BIG TITLE */
+.hero-title-box {
+  width: 100vw;
+  max-width: 100vw;
+  overflow: visible;
+  animation: titleSlideUp 1.4s ease both;
+  animation-delay: 0.25s;
+}
+
+.hero-title-image {
+  width: 116vw;
+  max-width: none;
+  height: auto;
+  display: block;
+  margin: auto;
+  transform: translateX(-8vw);
+  filter: none;
+}
+
+.scroll-cue {
+  margin-top: 18px;
+  font-size: 14px;
+  letter-spacing: 3px;
+  opacity: 0.75;
+  animation: cuePulse 2s ease-in-out infinite;
+}
+
+/* CONTENT */
+.content-wrapper {
+  position: relative;
+  z-index: 10;
+}
+
+.section,
+.meeting-section {
+  padding: 90px 20px;
+  text-align: center;
+  background: rgba(0,0,0,0.62);
+  backdrop-filter: blur(6px);
+}
+
+.section h2,
+.meeting-section h2 {
+  font-size: 38px;
+  margin-bottom: 10px;
+}
+
+.section p,
+.meeting-section p {
+  color: #d8d8d8;
+  max-width: 800px;
+  margin: 0 auto 25px;
+  line-height: 1.7;
+}
+
+.cards,
+.meeting-list {
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: center;
+  gap: 24px;
+  margin-top: 25px;
+  max-width: 1100px;
+  margin-left: auto;
+  margin-right: auto;
+}
+
+.card,
+.meeting-card {
+  width: 300px;
+  background: rgba(255,255,255,0.08);
+  border: 1px solid rgba(255,255,255,0.10);
+  border-radius: 18px;
+  padding: 28px 22px;
+  box-shadow: 0 10px 28px rgba(0,0,0,0.35);
+  transition: 0.35s;
+}
+
+.card:hover,
+.meeting-card:hover {
+  transform: translateY(-8px);
+  background: rgba(255,255,255,0.13);
+}
+
+.card h3,
+.meeting-card h3 {
+  margin-top: 0;
+  margin-bottom: 12px;
+  color: #F2A365;
+  font-size: 24px;
+}
+
+.card p,
+.meeting-card p {
+  margin: 8px 0;
+  color: #e5e5e5;
+  line-height: 1.6;
+}
+
+.today-date {
+  color: #F2A365;
+  font-size: 20px;
+  font-weight: 700;
+  margin-bottom: 35px;
+}
+
+.meeting-time {
+  font-size: 20px;
+  font-weight: 700;
+  color: #fff;
+  margin-bottom: 10px;
+}
+
+.meeting-status {
+  margin-top: 25px;
+  color: #ccc;
+  font-size: 18px;
+}
+
+.btn {
+  display: inline-block;
+  margin-top: 18px;
+  padding: 13px 30px;
+  background: #F2A365;
+  color: #fff;
+  text-decoration: none;
+  border-radius: 8px;
+  font-weight: 700;
+  transition: 0.3s;
+}
+
+.btn:hover {
+  transform: translateY(-3px);
+  background: #e79047;
+}
+
+footer {
+  background: rgba(0,0,0,0.82);
+  color: #bbb;
+  text-align: center;
+  padding: 22px 15px;
+  font-size: 14px;
+}
+
+/* ANIMATIONS */
+@keyframes cinematicBg {
+  from { transform: scale(1); }
+  to { transform: scale(1.08); }
+}
+
+@keyframes heroFade {
+  from { opacity: 0; transform: translateY(28px); }
+  to { opacity: 1; transform: translateY(0); }
+}
+
+@keyframes logoZoom {
+  from { transform: scale(1); }
+  to { transform: scale(1.035); }
+}
+
+@keyframes slowFloat {
+  0%, 100% { transform: translateY(0); }
+  50% { transform: translateY(-8px); }
+}
+
+@keyframes titleSlideUp {
+  from { opacity: 0; transform: translateY(34px); }
+  to { opacity: 1; transform: translateY(0); }
+}
+
+@keyframes cuePulse {
+  0%, 100% { opacity: 0.35; transform: translateY(0); }
+  50% { opacity: 0.9; transform: translateY(6px); }
+}
+
+/* RESPONSIVE */
+@media (max-width: 1200px) {
+  .hero-logo {
+    width: 310px;
+    height: 310px;
+  }
+
+  .hero-logo-wrap {
+    margin-bottom: -35px;
+  }
+
+  .hero-title-image {
+    width: 120vw;
+    transform: translateX(-10vw);
+  }
+
+  .logo {
+    width: 70px;
+    height: 70px;
+  }
+
+  .logo-text {
+    font-size: 29px;
+  }
+}
+
+@media (max-width: 768px) {
+  header {
+    padding: 10px 14px;
+  }
+
+  nav {
+    justify-content: center;
+  }
+
+  .logo-area {
+    width: 100%;
+    justify-content: center;
+  }
+
+  .logo {
+    width: 58px;
+    height: 58px;
+  }
+
+  .logo-text {
+    font-size: 24px;
+  }
+
+  .nav-links {
+    justify-content: center;
+    gap: 16px;
+  }
+
+  .nav-links a {
+    font-size: 14px;
+  }
+
+  .hero {
+    padding-top: 150px;
+  }
+
+  .hero-logo {
+    width: 210px;
+    height: 210px;
+  }
+
+  .hero-logo-wrap {
+    margin-bottom: -18px;
+  }
+
+  .hero-title-image {
+    width: 132vw;
+    transform: translateX(-16vw);
+  }
+
+  .scroll-cue {
+    font-size: 12px;
+  }
+
+  .section h2,
+  .meeting-section h2 {
+    font-size: 30px;
+  }
+
+  .card,
+  .meeting-card {
+    width: 100%;
+    max-width: 340px;
+  }
+}
+
+@media (max-width: 480px) {
+  .logo {
+    width: 52px;
+    height: 52px;
+  }
+
+  .logo-text {
+    font-size: 21px;
+  }
+
+  .nav-links {
+    gap: 12px;
+  }
+
+  .nav-links a {
+    font-size: 13px;
+  }
+
+  .hero-logo {
+    width: 178px;
+    height: 178px;
+  }
+
+  .hero-title-image {
+    width: 145vw;
+    transform: translateX(-22.5vw);
+  }
+}
+</style>
 </head>
+
 <body>
 
-  <div class="background-layer">
-    <video id="bg-video" autoplay muted loop playsinline preload="auto" poster="images/logo-circle.png">
-      <source src="videos/home.mp4" type="video/mp4">
-    </video>
-    <div class="background-overlay"></div>
-  </div>
+<div class="background-layer">
+  <video id="bg-video" autoplay muted loop playsinline preload="auto" poster="images/logo-circle.png">
+    <source src="videos/home.mp4" type="video/mp4">
+  </video>
+  <div class="background-overlay"></div>
+</div>
 
-  <div class="page-content">
-    <header>
-      <nav>
-        <div class="logo-area">
-          <img src="images/logo-circle.png" alt="TGPM Logo" class="logo">
-          <span class="logo-text">TGPM Ministry</span>
-        </div>
-
-        <div class="nav-links">
-          <a href="index.html">Home</a>
-          <a href="about.html">About</a>
-          <a href="sermons.html">Sermons</a>
-          <a href="gallery.html">Gallery</a>
-          <a href="prayer.html">Prayer</a>
-          <a href="contact.html">Contact</a>
-        </div>
-      </nav>
-    </header>
-
-    <section class="hero">
-      <div class="hero-text">
-
-        <div class="hero-logo-wrap">
-          <img src="images/logo-circle.png" alt="TGPM Logo" class="hero-logo">
-        </div>
-
-        <div class="hero-title-box">
-          <img src="images/gold-title.png" alt="The God's Power Ministry" class="hero-title-image">
-        </div>
-
-      </div>
-    </section>
-
-    <div class="content-wrapper">
-      <section class="section">
-        <h2>Our Ministry</h2>
-        <p>
-          We are committed to spreading the Word of God through prayer, healing,
-          biblical teaching, and faith in Jesus Christ.
-        </p>
-
-        <div class="cards">
-          <div class="card">
-            <h3>Healing Ministry</h3>
-            <p>Praying for the sick and believing God for miracles, healing, and restoration.</p>
-          </div>
-
-          <div class="card">
-            <h3>Prayer Meetings</h3>
-            <p>Standing together in faith through powerful prayer gatherings and worship.</p>
-          </div>
-
-          <div class="card">
-            <h3>Bible Teaching</h3>
-            <p>Sharing the truth of the Word of God with clarity, wisdom, and spiritual power.</p>
-          </div>
-        </div>
-      </section>
-
-      <section class="meeting-section">
-        <h2>Today's Google Meet Links</h2>
-        <p>Daily prayer meetings with direct Google Meet joining links.</p>
-        <div id="todayDate" class="today-date"></div>
-
-        <div id="meetingList" class="meeting-list"></div>
-        <div id="meetingStatus" class="meeting-status">Loading today's meetings...</div>
-      </section>
-
-      <footer>
-        © 2026 TGPM Ministry | All Rights Reserved
-      </footer>
+<header>
+  <nav>
+    <div class="logo-area">
+      <img src="images/logo-circle.png" alt="TGPM Logo" class="logo">
+      <span class="logo-text">TGPM Ministry</span>
     </div>
+
+    <div class="nav-links">
+      <a href="index.html">Home</a>
+      <a href="about.html">About</a>
+      <a href="sermons.html">Sermons</a>
+      <a href="gallery.html">Gallery</a>
+      <a href="prayer.html">Prayer</a>
+      <a href="contact.html">Contact</a>
+    </div>
+  </nav>
+</header>
+
+<section class="hero">
+  <div class="hero-inner">
+
+    <div class="hero-logo-wrap">
+      <img src="images/logo-circle.png" alt="TGPM Logo" class="hero-logo">
+    </div>
+
+    <div class="hero-title-box">
+      <img src="images/gold-title.png" alt="The God's Power Ministry" class="hero-title-image">
+    </div>
+
+    <div class="scroll-cue">SCROLL DOWN</div>
+
   </div>
+</section>
 
-  <script>
-    async function loadTodayMeetings() {
-      const meetingList = document.getElementById("meetingList");
-      const meetingStatus = document.getElementById("meetingStatus");
-      const todayDate = document.getElementById("todayDate");
+<div class="content-wrapper">
+  <section class="section">
+    <h2>Our Ministry</h2>
+    <p>
+      We are committed to spreading the Word of God through prayer, healing,
+      biblical teaching, and faith in Jesus Christ.
+    </p>
 
-      const now = new Date();
+    <div class="cards">
+      <div class="card">
+        <h3>Healing Ministry</h3>
+        <p>Praying for the sick and believing God for miracles, healing, and restoration.</p>
+      </div>
 
-      const formattedDate = now.toLocaleDateString("en-IN", {
-        weekday: "long",
-        year: "numeric",
-        month: "long",
-        day: "numeric"
-      });
+      <div class="card">
+        <h3>Prayer Meetings</h3>
+        <p>Standing together in faith through powerful prayer gatherings and worship.</p>
+      </div>
 
-      todayDate.textContent = "Today: " + formattedDate;
+      <div class="card">
+        <h3>Bible Teaching</h3>
+        <p>Sharing the truth of the Word of God with clarity, wisdom, and spiritual power.</p>
+      </div>
+    </div>
+  </section>
 
-      const dayName = now.toLocaleDateString("en-US", {
-        weekday: "long"
-      });
+  <section class="meeting-section">
+    <h2>Today's Google Meet Links</h2>
+    <p>Daily prayer meetings with direct Google Meet joining links.</p>
+    <div id="todayDate" class="today-date"></div>
 
-      try {
-        const response = await fetch("meetings.json");
-        if (!response.ok) {
-          throw new Error("meetings.json not found");
-        }
+    <div id="meetingList" class="meeting-list"></div>
+    <div id="meetingStatus" class="meeting-status">Loading today's meetings...</div>
+  </section>
 
-        const data = await response.json();
+  <footer>
+    © 2026 TGPM Ministry | All Rights Reserved
+  </footer>
+</div>
 
-        const meetingOrder = [
-          { key: "morning", title: "Morning Meeting" },
-          { key: "afternoon", title: "Afternoon Meeting" },
-          { key: "evening", title: "Evening Meeting" }
-        ];
+<script>
+async function loadTodayMeetings() {
+  const meetingList = document.getElementById("meetingList");
+  const meetingStatus = document.getElementById("meetingStatus");
+  const todayDate = document.getElementById("todayDate");
 
-        let html = "";
+  const now = new Date();
 
-        meetingOrder.forEach(item => {
-          if (data[item.key] && data[item.key].link) {
-            html += `
-              <div class="meeting-card">
-                <h3>${item.title}</h3>
-                <div class="meeting-time">${data[item.key].time}</div>
-                <p>Click below to join today's ${item.title.toLowerCase()}.</p>
-                <a href="${data[item.key].link}" target="_blank" rel="noopener noreferrer" class="btn">Join Meeting</a>
-              </div>
-            `;
-          }
-        });
+  const formattedDate = now.toLocaleDateString("en-IN", {
+    weekday: "long",
+    year: "numeric",
+    month: "long",
+    day: "numeric"
+  });
 
-        if (dayName === "Sunday" && data.sundayMorning && data.sundayMorning.link) {
-          html += `
-            <div class="meeting-card">
-              <h3>Sunday Special Service</h3>
-              <div class="meeting-time">${data.sundayMorning.time}</div>
-              <p>Join today's Sunday special prayer and worship service.</p>
-              <a href="${data.sundayMorning.link}" target="_blank" rel="noopener noreferrer" class="btn">Join Sunday Service</a>
-            </div>
-          `;
-        }
+  todayDate.textContent = "Today: " + formattedDate;
 
-        if (html.trim() === "") {
-          meetingStatus.textContent = "No meetings available.";
-          return;
-        }
+  const dayName = now.toLocaleDateString("en-US", {
+    weekday: "long"
+  });
 
-        meetingList.innerHTML = html;
-        meetingStatus.style.display = "none";
+  try {
+    const response = await fetch("meetings.json");
 
-      } catch (error) {
-        meetingStatus.textContent = "Unable to load meetings. Please check meetings.json.";
-        console.error(error);
+    if (!response.ok) {
+      throw new Error("meetings.json not found");
+    }
+
+    const data = await response.json();
+
+    const meetingOrder = [
+      { key: "morning", title: "Morning Meeting" },
+      { key: "afternoon", title: "Afternoon Meeting" },
+      { key: "evening", title: "Evening Meeting" }
+    ];
+
+    let html = "";
+
+    meetingOrder.forEach(item => {
+      if (data[item.key] && data[item.key].link) {
+        html += `
+          <div class="meeting-card">
+            <h3>${item.title}</h3>
+            <div class="meeting-time">${data[item.key].time}</div>
+            <p>Click below to join today's ${item.title.toLowerCase()}.</p>
+            <a href="${data[item.key].link}" target="_blank" rel="noopener noreferrer" class="btn">Join Meeting</a>
+          </div>
+        `;
       }
+    });
+
+    if (dayName === "Sunday" && data.sundayMorning && data.sundayMorning.link) {
+      html += `
+        <div class="meeting-card">
+          <h3>Sunday Special Service</h3>
+          <div class="meeting-time">${data.sundayMorning.time}</div>
+          <p>Join today's Sunday special prayer and worship service.</p>
+          <a href="${data.sundayMorning.link}" target="_blank" rel="noopener noreferrer" class="btn">Join Sunday Service</a>
+        </div>
+      `;
     }
 
-    function setupBackgroundVideo() {
-      const video = document.getElementById("bg-video");
-      if (!video) return;
+    if (html.trim() === "") {
+      meetingStatus.textContent = "No meetings available.";
+      return;
+    }
 
-      const tryPlay = () => {
-        video.muted = true;
-        video.defaultMuted = true;
-        const promise = video.play();
-        if (promise !== undefined) {
-          promise.catch((err) => {
-            console.log("Autoplay blocked:", err);
-          });
-        }
-      };
+    meetingList.innerHTML = html;
+    meetingStatus.style.display = "none";
 
-      video.addEventListener("canplay", tryPlay);
-      window.addEventListener("load", tryPlay);
-      document.addEventListener("visibilitychange", () => {
-        if (!document.hidden) tryPlay();
+  } catch (error) {
+    meetingStatus.textContent = "Unable to load meetings. Please check meetings.json.";
+    console.error(error);
+  }
+}
+
+function setupBackgroundVideo() {
+  const video = document.getElementById("bg-video");
+  if (!video) return;
+
+  const tryPlay = () => {
+    video.muted = true;
+    video.defaultMuted = true;
+    const promise = video.play();
+
+    if (promise !== undefined) {
+      promise.catch((err) => {
+        console.log("Autoplay blocked:", err);
       });
     }
+  };
 
-    loadTodayMeetings();
-    setupBackgroundVideo();
-  </script>
+  video.addEventListener("canplay", tryPlay);
+  window.addEventListener("load", tryPlay);
+
+  document.addEventListener("visibilitychange", () => {
+    if (!document.hidden) tryPlay();
+  });
+}
+
+loadTodayMeetings();
+setupBackgroundVideo();
+</script>
 
 </body>
 </html>
