@@ -31,7 +31,7 @@
       z-index: 1000;
       background: rgba(0, 0, 0, 0.82);
       backdrop-filter: blur(10px);
-      padding: 10px 20px;
+      padding: 8px 18px;
     }
 
     nav {
@@ -40,18 +40,18 @@
       display: flex;
       align-items: center;
       justify-content: space-between;
-      gap: 20px;
+      gap: 15px;
     }
 
     .logo-area {
       display: flex;
       align-items: center;
-      gap: 8px;
+      gap: 2px;
     }
 
     .logo {
-      width: 76px;
-      height: 76px;
+      width: 82px;
+      height: 82px;
       border-radius: 50%;
       object-fit: cover;
       display: block;
@@ -59,11 +59,12 @@
     }
 
     .logo-text {
-      font-size: 30px;
+      font-size: 34px;
       font-weight: 800;
       color: #fff;
       line-height: 1;
       white-space: nowrap;
+      margin-left: -4px;
       text-shadow: 0 3px 12px rgba(0,0,0,0.7);
     }
 
@@ -113,8 +114,8 @@
       inset: 0;
       z-index: 2;
       background:
-        radial-gradient(circle at center, rgba(255, 170, 0, 0.18), rgba(0,0,0,0.12) 38%, rgba(0,0,0,0.35) 100%),
-        linear-gradient(to bottom, rgba(0,0,0,0.08), rgba(0,0,0,0.20));
+        radial-gradient(circle at center, rgba(255, 170, 0, 0.22), rgba(0,0,0,0.08) 35%, rgba(0,0,0,0.34) 100%),
+        linear-gradient(to bottom, rgba(0,0,0,0.05), rgba(0,0,0,0.18));
       pointer-events: none;
     }
 
@@ -125,7 +126,7 @@
 
     .hero {
       min-height: 100vh;
-      padding: 105px 0 20px;
+      padding: 95px 0 20px;
       display: flex;
       align-items: center;
       justify-content: center;
@@ -142,29 +143,29 @@
       position: relative;
       z-index: 5;
       display: inline-block;
-      margin-bottom: -18px;
+      margin-bottom: -48px;
     }
 
     .hero-logo-wrap::after {
       content: "";
       position: absolute;
-      inset: -28px;
+      inset: -30px;
       border-radius: 50%;
-      background: radial-gradient(circle, rgba(255,210,70,0.58), rgba(255,150,0,0.20), transparent 72%);
-      filter: blur(12px);
+      background: radial-gradient(circle, rgba(255,210,70,0.68), rgba(255,150,0,0.24), transparent 72%);
+      filter: blur(14px);
       z-index: -1;
       animation: logoGlow 3s infinite alternate;
     }
 
     .hero-logo {
-      width: 300px;
-      height: 300px;
+      width: 320px;
+      height: 320px;
       border-radius: 50%;
       object-fit: cover;
       display: block;
       margin: 0 auto;
       box-shadow:
-        0 0 30px rgba(255, 195, 30, 0.55),
+        0 0 36px rgba(255, 195, 30, 0.65),
         0 18px 45px rgba(0,0,0,0.75);
     }
 
@@ -188,7 +189,7 @@
         110deg,
         transparent 0%,
         rgba(255,255,255,0.05) 35%,
-        rgba(255,255,255,0.40) 50%,
+        rgba(255,255,255,0.45) 50%,
         rgba(255,255,255,0.08) 65%,
         transparent 100%
       );
@@ -198,40 +199,16 @@
     }
 
     .hero-title-image {
-      width: 96vw;
-      max-width: 1700px;
+      width: 115vw;
+      max-width: none;
       height: auto;
       display: block;
       margin: 0 auto;
+      transform: translateX(-7.5vw);
       filter:
-        drop-shadow(0 12px 24px rgba(0,0,0,0.85))
-        drop-shadow(0 0 28px rgba(255,180,0,0.75));
+        drop-shadow(0 14px 26px rgba(0,0,0,0.90))
+        drop-shadow(0 0 36px rgba(255,180,0,0.90));
       animation: titleGlow 3s infinite alternate;
-    }
-
-    .hero-text p {
-      margin: -8px 0 0;
-      font-size: 24px;
-      font-weight: 300;
-      text-shadow: 0 4px 18px rgba(0,0,0,0.7);
-    }
-
-    .btn {
-      display: inline-block;
-      margin-top: 18px;
-      padding: 13px 30px;
-      background: #F2A365;
-      color: #fff;
-      text-decoration: none;
-      border-radius: 8px;
-      font-weight: 700;
-      transition: 0.3s;
-      box-shadow: 0 8px 22px rgba(0,0,0,0.4);
-    }
-
-    .btn:hover {
-      transform: translateY(-3px);
-      background: #e79047;
     }
 
     .content-wrapper {
@@ -346,13 +323,13 @@
     @keyframes titleGlow {
       from {
         filter:
-          drop-shadow(0 12px 24px rgba(0,0,0,0.85))
-          drop-shadow(0 0 22px rgba(255,180,0,0.55));
+          drop-shadow(0 14px 26px rgba(0,0,0,0.90))
+          drop-shadow(0 0 28px rgba(255,180,0,0.65));
       }
       to {
         filter:
-          drop-shadow(0 12px 28px rgba(0,0,0,0.95))
-          drop-shadow(0 0 42px rgba(255,210,60,0.90));
+          drop-shadow(0 14px 32px rgba(0,0,0,1))
+          drop-shadow(0 0 50px rgba(255,210,60,1));
       }
     }
 
@@ -364,21 +341,26 @@
 
     @media (max-width: 1200px) {
       .hero-logo {
-        width: 245px;
-        height: 245px;
+        width: 260px;
+        height: 260px;
+      }
+
+      .hero-logo-wrap {
+        margin-bottom: -38px;
       }
 
       .hero-title-image {
-        width: 98vw;
+        width: 118vw;
+        transform: translateX(-9vw);
       }
 
       .logo {
-        width: 68px;
-        height: 68px;
+        width: 70px;
+        height: 70px;
       }
 
       .logo-text {
-        font-size: 27px;
+        font-size: 29px;
       }
     }
 
@@ -394,6 +376,7 @@
       .logo-area {
         width: 100%;
         justify-content: center;
+        gap: 1px;
       }
 
       .logo {
@@ -402,7 +385,8 @@
       }
 
       .logo-text {
-        font-size: 23px;
+        font-size: 24px;
+        margin-left: -4px;
       }
 
       .nav-links {
@@ -419,21 +403,17 @@
       }
 
       .hero-logo-wrap {
-        margin-bottom: -8px;
+        margin-bottom: -18px;
       }
 
       .hero-logo {
-        width: 150px;
-        height: 150px;
+        width: 160px;
+        height: 160px;
       }
 
       .hero-title-image {
-        width: 105vw;
-      }
-
-      .hero-text p {
-        font-size: 17px;
-        margin-top: 0;
+        width: 125vw;
+        transform: translateX(-12.5vw);
       }
 
       .section h2,
@@ -467,12 +447,17 @@
       }
 
       .hero-logo {
-        width: 125px;
-        height: 125px;
+        width: 135px;
+        height: 135px;
+      }
+
+      .hero-logo-wrap {
+        margin-bottom: -12px;
       }
 
       .hero-title-image {
-        width: 112vw;
+        width: 135vw;
+        transform: translateX(-17.5vw);
       }
     }
   </style>
