@@ -130,7 +130,7 @@
       justify-content: center;
       align-items: center;
       text-align: center;
-      padding: 110px 20px 40px;
+      padding: 105px 20px 40px;
     }
 
     .hero-text {
@@ -140,35 +140,98 @@
       animation: fadeUp 1.3s ease;
     }
 
+    .hero-logo-wrap {
+      position: relative;
+      z-index: 5;
+      display: inline-block;
+      margin-bottom: -42px;
+    }
+
+    .hero-logo-wrap::before {
+      content: "✝";
+      position: absolute;
+      top: 50%;
+      left: 50%;
+      transform: translate(-50%, -50%);
+      font-size: 170px;
+      color: rgba(255, 196, 40, 0.22);
+      filter: blur(2px);
+      z-index: -2;
+      text-shadow:
+        0 0 25px rgba(255, 196, 40, 0.45),
+        0 0 55px rgba(255, 145, 0, 0.35);
+    }
+
+    .hero-logo-wrap::after {
+      content: "";
+      position: absolute;
+      inset: -22px;
+      border-radius: 50%;
+      background: radial-gradient(circle, rgba(255,210,70,0.32), rgba(255,150,0,0.12), transparent 70%);
+      filter: blur(10px);
+      z-index: -1;
+      animation: logoGlow 3s infinite alternate;
+    }
+
     .hero-logo {
-      width: 260px;
-      height: 260px;
+      width: 170px;
+      height: 170px;
       object-fit: cover;
       border-radius: 50%;
       overflow: hidden;
-      margin-bottom: 12px;
       background: transparent;
-      box-shadow: 0 8px 20px rgba(0,0,0,0.4);
+      box-shadow:
+        0 10px 30px rgba(0,0,0,0.55),
+        0 0 22px rgba(255, 190, 40, 0.35);
       display: block;
       margin-left: auto;
       margin-right: auto;
-      flex-shrink: 0;
+    }
+
+    .hero-title-box {
+      position: relative;
+      z-index: 3;
+      display: block;
+      overflow: hidden;
+      width: 760px;
+      max-width: 88vw;
+      margin: 0 auto;
+    }
+
+    .hero-title-box::after {
+      content: "";
+      position: absolute;
+      top: 0;
+      left: -120%;
+      width: 70%;
+      height: 100%;
+      background: linear-gradient(
+        110deg,
+        transparent 0%,
+        rgba(255,255,255,0.05) 35%,
+        rgba(255,255,255,0.35) 50%,
+        rgba(255,255,255,0.08) 65%,
+        transparent 100%
+      );
+      transform: skewX(-18deg);
+      animation: shineMove 4s infinite;
+      pointer-events: none;
     }
 
     .hero-title-image {
-      width: 700px;
-      max-width: 88vw;
+      width: 100%;
       height: auto;
       display: block;
-      margin: 8px auto 6px;
+      margin: 0 auto;
       filter:
-        drop-shadow(0 6px 12px rgba(0,0,0,0.65))
-        drop-shadow(0 0 10px rgba(255,180,0,0.28));
+        drop-shadow(0 10px 22px rgba(0,0,0,0.75))
+        drop-shadow(0 0 18px rgba(255,180,0,0.38));
+      animation: titleGlow 3s infinite alternate;
       mix-blend-mode: normal;
     }
 
     .hero-text p {
-      margin-top: 12px;
+      margin-top: 10px;
       font-size: 22px;
       font-weight: 300;
       text-shadow: 0 4px 18px rgba(0,0,0,0.5);
@@ -176,7 +239,7 @@
 
     .btn {
       display: inline-block;
-      margin-top: 24px;
+      margin-top: 22px;
       padding: 13px 28px;
       background: #F2A365;
       color: #fff;
@@ -293,54 +356,84 @@
     }
 
     @keyframes fadeUp {
+      from { opacity: 0; transform: translateY(35px); }
+      to { opacity: 1; transform: translateY(0); }
+    }
+
+    @keyframes logoGlow {
+      from { opacity: 0.55; transform: scale(0.96); }
+      to { opacity: 1; transform: scale(1.08); }
+    }
+
+    @keyframes titleGlow {
       from {
-        opacity: 0;
-        transform: translateY(35px);
+        filter:
+          drop-shadow(0 10px 22px rgba(0,0,0,0.75))
+          drop-shadow(0 0 12px rgba(255,180,0,0.28));
       }
       to {
-        opacity: 1;
-        transform: translateY(0);
+        filter:
+          drop-shadow(0 10px 26px rgba(0,0,0,0.8))
+          drop-shadow(0 0 26px rgba(255,205,60,0.55));
       }
     }
 
+    @keyframes shineMove {
+      0% { left: -120%; }
+      45% { left: 130%; }
+      100% { left: 130%; }
+    }
+
     @media (max-width: 992px) {
-      .hero-logo {
-        width: 170px;
-        height: 170px;
+      .hero-logo-wrap {
+        margin-bottom: -34px;
       }
 
-      .hero-title-image {
-        width: 620px;
+      .hero-logo {
+        width: 145px;
+        height: 145px;
+      }
+
+      .hero-title-box {
+        width: 660px;
         max-width: 90vw;
       }
     }
 
     @media (max-width: 768px) {
-      nav {
-        justify-content: center;
-      }
+      nav { justify-content: center; }
 
       .logo-area {
         justify-content: center;
         width: 100%;
       }
 
-      .nav-links {
-        justify-content: center;
+      .nav-links { justify-content: center; }
+
+      .hero {
+        padding-top: 145px;
+      }
+
+      .hero-logo-wrap {
+        margin-bottom: -24px;
+      }
+
+      .hero-logo {
+        width: 105px;
+        height: 105px;
+      }
+
+      .hero-logo-wrap::before {
+        font-size: 105px;
+      }
+
+      .hero-title-box {
+        width: 94vw;
       }
 
       .hero-text p {
         font-size: 17px;
-      }
-
-      .hero-logo {
-        width: 100px;
-        height: 100px;
-      }
-
-      .hero-title-image {
-        width: 92vw;
-        margin-top: 6px;
+        margin-top: 8px;
       }
 
       .section h2,
@@ -356,16 +449,15 @@
     }
 
     @media (max-width: 480px) {
-      .nav-links a {
-        font-size: 14px;
+      .nav-links a { font-size: 14px; }
+      .logo-text { font-size: 18px; }
+
+      .hero-logo-wrap {
+        margin-bottom: -18px;
       }
 
-      .logo-text {
-        font-size: 18px;
-      }
-
-      .hero-title-image {
-        width: 94vw;
+      .hero-title-box {
+        width: 96vw;
       }
     }
   </style>
@@ -400,9 +492,14 @@
 
     <section class="hero">
       <div class="hero-text">
-        <img src="images/logo-circle.png" alt="TGPM Logo" class="hero-logo">
 
-        <img src="images/gold-title.png" alt="" class="hero-title-image">
+        <div class="hero-logo-wrap">
+          <img src="images/logo-circle.png" alt="TGPM Logo" class="hero-logo">
+        </div>
+
+        <div class="hero-title-box">
+          <img src="images/gold-title.png" alt="" class="hero-title-image">
+        </div>
 
         <p>Jesus is the only God</p>
         <a href="sermons.html" class="btn">Watch Sermons</a>
