@@ -5,7 +5,7 @@
 <meta name="viewport" content="width=device-width, initial-scale=1.0" />
 <title>TGPM Ministry</title>
 
-<link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;500;600;700;800&display=swap" rel="stylesheet">
+<link href="https://fonts.googleapis.com/css2?family=Cinzel:wght@500;700;900&family=Poppins:wght@300;500;600;700;800&display=swap" rel="stylesheet">
 
 <style>
 * { box-sizing: border-box; }
@@ -19,8 +19,93 @@ html, body {
   overflow-x: hidden;
 }
 
-body {
-  min-height: 100vh;
+body { min-height: 100vh; }
+
+/* LIVE CINEMATIC BACKGROUND */
+.background-layer {
+  position: fixed;
+  inset: 0;
+  z-index: 0;
+  background:
+    linear-gradient(rgba(0,0,0,0.12), rgba(0,0,0,0.35)),
+    url("images/home-bg.png") center center / cover no-repeat;
+  overflow: hidden;
+  animation: cinematicBg 20s ease-in-out infinite alternate;
+}
+
+.background-overlay {
+  position: absolute;
+  inset: 0;
+  background:
+    radial-gradient(circle at 50% 42%, rgba(255,190,40,0.18), transparent 32%),
+    radial-gradient(circle at 82% 45%, rgba(255,160,0,0.25), transparent 28%),
+    linear-gradient(to bottom, rgba(0,0,0,0.10), rgba(0,0,0,0.55));
+  animation: goldenBreath 6s ease-in-out infinite;
+}
+
+/* LIGHTNING FLASH */
+.lightning-flash {
+  position: absolute;
+  inset: 0;
+  background: rgba(255,220,90,0.75);
+  opacity: 0;
+  mix-blend-mode: screen;
+  animation: lightningFlash 7s infinite;
+}
+
+/* MOVING WATER */
+.water-effect {
+  position: absolute;
+  left: -25%;
+  bottom: -7%;
+  width: 160%;
+  height: 30%;
+  background:
+    repeating-linear-gradient(
+      90deg,
+      rgba(255,190,40,0) 0px,
+      rgba(255,190,40,0.20) 4px,
+      rgba(255,255,180,0.10) 8px,
+      rgba(255,190,40,0) 18px
+    );
+  opacity: 0.58;
+  filter: blur(2px);
+  mix-blend-mode: screen;
+  animation: waterMove 5s linear infinite;
+}
+
+/* LAMP FIRE GLOW */
+.lamp-glow {
+  position: absolute;
+  left: 2%;
+  top: 23%;
+  width: 32%;
+  height: 45%;
+  background:
+    radial-gradient(circle at 9% 14%, rgba(255,230,90,0.38), transparent 8%),
+    radial-gradient(circle at 22% 12%, rgba(255,200,60,0.35), transparent 8%),
+    radial-gradient(circle at 35% 10%, rgba(255,230,90,0.42), transparent 8%),
+    radial-gradient(circle at 48% 12%, rgba(255,210,70,0.36), transparent 8%),
+    radial-gradient(circle at 61% 14%, rgba(255,230,90,0.40), transparent 8%),
+    radial-gradient(circle at 74% 16%, rgba(255,210,70,0.32), transparent 8%);
+  filter: blur(7px);
+  mix-blend-mode: screen;
+  animation: flameFlicker 0.25s infinite alternate;
+}
+
+/* DOVE LIVE GLOW */
+.dove-glow {
+  position: absolute;
+  right: 4%;
+  top: 18%;
+  width: 40%;
+  height: 58%;
+  background:
+    radial-gradient(circle at 50% 50%, rgba(255,235,145,0.48), transparent 28%),
+    radial-gradient(circle at 50% 50%, rgba(255,150,0,0.25), transparent 48%);
+  filter: blur(10px);
+  mix-blend-mode: screen;
+  animation: doveFloat 4s ease-in-out infinite;
 }
 
 /* HEADER */
@@ -29,8 +114,7 @@ header {
   top: 0;
   width: 100%;
   z-index: 1000;
-  background: transparent;   /* changed */
-  backdrop-filter: none;     /* removed blur */
+  background: transparent;
   padding: 8px 18px;
 }
 
@@ -54,14 +138,17 @@ nav {
   height: 82px;
   border-radius: 50%;
   object-fit: cover;
+  filter: drop-shadow(0 0 14px rgba(255,190,40,0.9));
 }
 
 .logo-text {
+  font-family: 'Cinzel', serif;
   font-size: 34px;
-  font-weight: 800;
+  font-weight: 900;
   margin-left: -4px;
   white-space: nowrap;
-  text-shadow: 0 4px 14px rgba(0,0,0,0.7);
+  color: #ffd76a;
+  text-shadow: 0 0 14px #ff9d00, 0 4px 14px #000;
 }
 
 .nav-links {
@@ -74,38 +161,26 @@ nav {
   color: #fff;
   text-decoration: none;
   font-size: 17px;
-  font-weight: 600;
+  font-weight: 700;
   transition: 0.3s;
+  text-shadow: 0 0 8px #000;
+  position: relative;
 }
 
-.nav-links a:hover {
-  color: #F2A365;
+.nav-links a:hover,
+.nav-links a:first-child {
+  color: #ffc83d;
 }
 
-/* BACKGROUND VIDEO */
-.background-layer {
-  position: fixed;
-  inset: 0;
-  z-index: 0;
-  background: #000;
-  overflow: hidden;
-}
-
-#bg-video {
+.nav-links a:first-child::after {
+  content: "";
   position: absolute;
-  inset: 0;
-  width: 100%;
-  height: 100%;
-  object-fit: cover;
-  animation: cinematicBg 18s ease-in-out infinite alternate;
-}
-
-.background-overlay {
-  position: absolute;
-  inset: 0;
-  background:
-    radial-gradient(circle at center, rgba(255,170,0,0.12), rgba(0,0,0,0.22) 45%, rgba(0,0,0,0.65) 100%),
-    linear-gradient(to bottom, rgba(0,0,0,0.20), rgba(0,0,0,0.48));
+  left: -12px;
+  right: -12px;
+  bottom: -12px;
+  height: 2px;
+  background: linear-gradient(90deg, transparent, #ffc300, transparent);
+  box-shadow: 0 0 12px #ffb300;
 }
 
 /* HERO */
@@ -139,7 +214,7 @@ nav {
   position: absolute;
   inset: -34px;
   border-radius: 50%;
-  background: radial-gradient(circle, rgba(255,205,70,0.38), rgba(255,150,0,0.12), transparent 72%);
+  background: radial-gradient(circle, rgba(255,205,70,0.42), rgba(255,150,0,0.12), transparent 72%);
   filter: blur(18px);
   z-index: -1;
 }
@@ -155,10 +230,8 @@ nav {
   animation: logoZoom 8s ease-in-out infinite alternate;
 }
 
-/* FIXED TITLE - NO CUTTING */
 .hero-title-box {
   width: 100%;
-  max-width: 100%;
   overflow: visible;
   padding: 0 10px;
   animation: titleSlideUp 1.4s ease both;
@@ -172,15 +245,14 @@ nav {
   height: auto;
   display: block;
   margin: 0 auto;
-  transform: none;
-  filter: none;
+  filter: drop-shadow(0 0 18px rgba(255,170,0,0.8));
 }
 
 .scroll-cue {
   margin-top: 18px;
   font-size: 14px;
   letter-spacing: 3px;
-  opacity: 0.75;
+  opacity: 0.8;
   animation: cuePulse 2s ease-in-out infinite;
 }
 
@@ -194,7 +266,7 @@ nav {
 .meeting-section {
   padding: 90px 20px;
   text-align: center;
-  background: rgba(0,0,0,0.62);
+  background: rgba(0,0,0,0.68);
   backdrop-filter: blur(6px);
 }
 
@@ -202,6 +274,7 @@ nav {
 .meeting-section h2 {
   font-size: 38px;
   margin-bottom: 10px;
+  color: #ffd76a;
 }
 
 .section p,
@@ -228,7 +301,7 @@ nav {
 .meeting-card {
   width: 300px;
   background: rgba(255,255,255,0.08);
-  border: 1px solid rgba(255,255,255,0.10);
+  border: 1px solid rgba(255,210,90,0.25);
   border-radius: 18px;
   padding: 28px 22px;
   box-shadow: 0 10px 28px rgba(0,0,0,0.35);
@@ -238,7 +311,7 @@ nav {
 .card:hover,
 .meeting-card:hover {
   transform: translateY(-8px);
-  background: rgba(255,255,255,0.13);
+  background: rgba(255,190,40,0.13);
 }
 
 .card h3,
@@ -247,13 +320,6 @@ nav {
   margin-bottom: 12px;
   color: #F2A365;
   font-size: 24px;
-}
-
-.card p,
-.meeting-card p {
-  margin: 8px 0;
-  color: #e5e5e5;
-  line-height: 1.6;
 }
 
 .today-date {
@@ -280,21 +346,21 @@ nav {
   display: inline-block;
   margin-top: 18px;
   padding: 13px 30px;
-  background: #F2A365;
-  color: #fff;
+  background: linear-gradient(180deg, #ffd75b, #c98900);
+  color: #111;
   text-decoration: none;
-  border-radius: 8px;
-  font-weight: 700;
+  border-radius: 30px;
+  font-weight: 800;
   transition: 0.3s;
+  box-shadow: 0 0 20px rgba(255,190,30,0.55);
 }
 
 .btn:hover {
   transform: translateY(-3px);
-  background: #e79047;
 }
 
 footer {
-  background: rgba(0,0,0,0.82);
+  background: rgba(0,0,0,0.88);
   color: #bbb;
   text-align: center;
   padding: 22px 15px;
@@ -305,6 +371,34 @@ footer {
 @keyframes cinematicBg {
   from { transform: scale(1); }
   to { transform: scale(1.08); }
+}
+
+@keyframes goldenBreath {
+  0%, 100% { opacity: 0.72; }
+  50% { opacity: 1; }
+}
+
+@keyframes lightningFlash {
+  0%, 88%, 100% { opacity: 0; }
+  90% { opacity: 0.65; }
+  91% { opacity: 0.08; }
+  92% { opacity: 0.95; }
+  94% { opacity: 0; }
+}
+
+@keyframes waterMove {
+  0% { transform: translateX(0) skewY(-2deg); }
+  100% { transform: translateX(-130px) skewY(-2deg); }
+}
+
+@keyframes flameFlicker {
+  from { opacity: 0.50; transform: scale(1); }
+  to { opacity: 1; transform: scale(1.04) translateY(-5px); }
+}
+
+@keyframes doveFloat {
+  0%, 100% { transform: translateY(0) scale(1); opacity: 0.72; }
+  50% { transform: translateY(-18px) scale(1.04); opacity: 1; }
 }
 
 @keyframes heroFade {
@@ -349,7 +443,6 @@ footer {
 
   .hero-title-image {
     width: min(94vw, 850px);
-    transform: none;
   }
 }
 
@@ -383,7 +476,6 @@ footer {
     width: 100%;
     display: grid;
     grid-template-columns: repeat(3, 1fr);
-    justify-content: center;
     gap: 10px;
     text-align: center;
   }
@@ -409,8 +501,6 @@ footer {
 
   .hero-title-image {
     width: 94vw;
-    max-width: 100%;
-    transform: none;
   }
 
   .scroll-cue {
@@ -428,6 +518,10 @@ footer {
     width: 100%;
     max-width: 340px;
   }
+
+  .background-layer {
+    background-position: center center;
+  }
 }
 
 /* SMALL MOBILE */
@@ -439,10 +533,6 @@ footer {
 
   .logo-text {
     font-size: 21px;
-  }
-
-  .nav-links {
-    gap: 8px;
   }
 
   .nav-links a {
@@ -464,12 +554,6 @@ footer {
 
   .hero-title-image {
     width: 96vw;
-    max-width: 100%;
-    transform: none;
-  }
-
-  .scroll-cue {
-    letter-spacing: 2px;
   }
 }
 
@@ -492,10 +576,11 @@ footer {
 <body>
 
 <div class="background-layer">
-  <video id="bg-video" autoplay muted loop playsinline preload="auto" poster="images/logo-circle.png">
-    <source src="videos/home.mp4" type="video/mp4">
-  </video>
   <div class="background-overlay"></div>
+  <div class="lightning-flash"></div>
+  <div class="water-effect"></div>
+  <div class="lamp-glow"></div>
+  <div class="dove-glow"></div>
 </div>
 
 <header>
@@ -648,32 +733,7 @@ async function loadTodayMeetings() {
   }
 }
 
-function setupBackgroundVideo() {
-  const video = document.getElementById("bg-video");
-  if (!video) return;
-
-  const tryPlay = () => {
-    video.muted = true;
-    video.defaultMuted = true;
-    const promise = video.play();
-
-    if (promise !== undefined) {
-      promise.catch((err) => {
-        console.log("Autoplay blocked:", err);
-      });
-    }
-  };
-
-  video.addEventListener("canplay", tryPlay);
-  window.addEventListener("load", tryPlay);
-
-  document.addEventListener("visibilitychange", () => {
-    if (!document.hidden) tryPlay();
-  });
-}
-
 loadTodayMeetings();
-setupBackgroundVideo();
 </script>
 
 </body>
