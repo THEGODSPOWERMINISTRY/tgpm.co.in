@@ -74,25 +74,26 @@ body { min-height: 100vh; }
   animation: waterMove 5s linear infinite;
 }
 
-/* LAMP FIRE GLOW */
+/* LAMP FIRE GLOW - FIXED POSITION */
 .lamp-glow {
   position: absolute;
-  left: 2%;
+  left: 2.5%;
   top: 23%;
-  width: 32%;
-  height: 45%;
+  width: 31%;
+  height: 34%;
+  pointer-events: none;
   background:
-    radial-gradient(circle at 9% 14%, rgba(255,230,90,0.38), transparent 8%),
-    radial-gradient(circle at 22% 12%, rgba(255,200,60,0.35), transparent 8%),
-    radial-gradient(circle at 35% 10%, rgba(255,230,90,0.42), transparent 8%),
-    radial-gradient(circle at 48% 12%, rgba(255,210,70,0.36), transparent 8%),
-    radial-gradient(circle at 61% 14%, rgba(255,230,90,0.40), transparent 8%),
-    radial-gradient(circle at 74% 16%, rgba(255,210,70,0.32), transparent 8%);
-  filter: blur(7px);
+    radial-gradient(circle at 8% 18%, rgba(255,230,90,0.38), transparent 5%),
+    radial-gradient(circle at 21% 15%, rgba(255,220,70,0.38), transparent 5%),
+    radial-gradient(circle at 34% 13%, rgba(255,230,90,0.42), transparent 5%),
+    radial-gradient(circle at 48% 14%, rgba(255,220,70,0.38), transparent 5%),
+    radial-gradient(circle at 61% 16%, rgba(255,230,90,0.40), transparent 5%),
+    radial-gradient(circle at 74% 18%, rgba(255,220,70,0.35), transparent 5%),
+    radial-gradient(circle at 86% 21%, rgba(255,220,70,0.30), transparent 5%);
+  filter: blur(5px);
   mix-blend-mode: screen;
-  animation: flameFlicker 0.25s infinite alternate;
+  animation: flameFlicker 0.22s infinite alternate;
 }
-
 /* DOVE LIVE GLOW */
 .dove-glow {
   position: absolute;
@@ -448,9 +449,13 @@ footer {
 
 /* MOBILE */
 @media (max-width: 768px) {
-  header {
-    padding: 10px 14px;
+  .lamp-glow {
+    left: -2%;
+    top: 26%;
+    width: 42%;
+    height: 30%;
   }
+}
 
   nav {
     justify-content: center;
@@ -526,10 +531,13 @@ footer {
 
 /* SMALL MOBILE */
 @media (max-width: 480px) {
-  .logo {
-    width: 52px;
-    height: 52px;
+  .lamp-glow {
+    left: -6%;
+    top: 28%;
+    width: 48%;
+    height: 26%;
   }
+}
 
   .logo-text {
     font-size: 21px;
