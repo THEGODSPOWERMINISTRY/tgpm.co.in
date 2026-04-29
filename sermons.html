@@ -178,6 +178,72 @@ h1 {
   padding:25px;
 }
 
+/* LATEST SERMON */
+.latest-sermon-box {
+  margin:35px auto 40px;
+  width:95%;
+  max-width:950px;
+  padding:20px;
+  border-radius:22px;
+  background:rgba(255,255,255,0.10);
+  border:2px solid rgba(255,204,102,0.65);
+  box-shadow:0 0 42px rgba(255,174,43,0.35);
+  backdrop-filter:blur(14px);
+}
+
+.latest-sermon-box h2 {
+  color:#ffcc66;
+  margin-top:0;
+}
+
+.latest-video {
+  width:100%;
+  height:460px;
+  border-radius:18px;
+  overflow:hidden;
+  background:#000;
+  border:1px solid rgba(255,204,102,0.65);
+}
+
+.latest-video iframe {
+  width:100%;
+  height:100%;
+  border:0;
+}
+
+.latest-sermon-box h3 {
+  color:#fff;
+  font-size:18px;
+  word-break:break-word;
+}
+
+/* FILTER BUTTONS */
+.filter-buttons {
+  margin:30px auto;
+  display:flex;
+  justify-content:center;
+  flex-wrap:wrap;
+  gap:12px;
+}
+
+.filter-buttons button {
+  padding:10px 20px;
+  border:1px solid #ffcc66;
+  background:rgba(255,204,102,0.15);
+  color:#fff;
+  border-radius:25px;
+  cursor:pointer;
+  font-weight:700;
+  transition:0.3s;
+}
+
+.filter-buttons button:hover,
+.filter-buttons button.active-filter {
+  background:#ffcc66;
+  color:#111;
+}
+
+/* GRID */
 .sermon-grid {
   display:grid;
   grid-template-columns:repeat(auto-fit, minmax(280px, 1fr));
@@ -192,6 +258,7 @@ h1 {
   box-shadow:0 0 25px rgba(255,174,43,0.22);
   backdrop-filter:blur(14px);
   transition:0.35s;
+  position:relative;
 }
 
 .sermon-card:hover {
@@ -214,6 +281,18 @@ h1 {
 .sermon-info {
   padding:18px;
   text-align:left;
+}
+
+.new-badge {
+  display:inline-block;
+  background:#e60000;
+  color:#fff;
+  padding:5px 11px;
+  border-radius:20px;
+  font-size:12px;
+  font-weight:800;
+  margin-bottom:8px;
+  box-shadow:0 0 15px rgba(255,0,0,0.65);
 }
 
 .sermon-info h3 {
@@ -294,6 +373,19 @@ h1 {
   .video-box {
     height:210px;
   }
+
+  .latest-video {
+    height:240px;
+  }
+
+  .latest-sermon-box {
+    padding:14px;
+  }
+
+  .filter-buttons button {
+    padding:9px 15px;
+    font-size:13px;
+  }
 }
 </style>
 </head>
@@ -339,6 +431,16 @@ h1 {
     <h2 class="sermon-title">Latest Google Meet Recordings</h2>
     <p class="sermon-note">Automatically fetched from Google Drive Meet Recordings folder</p>
 
+    <div id="latestSermonBox"></div>
+
+    <div class="filter-buttons">
+      <button class="active-filter" onclick="renderSermons('all', this)">All</button>
+      <button onclick="renderSermons('morning', this)">Morning</button>
+      <button onclick="renderSermons('afternoon', this)">Afternoon</button>
+      <button onclick="renderSermons('evening', this)">Evening</button>
+      <button onclick="renderSermons('sunday', this)">Sunday</button>
+    </div>
+
     <div id="driveLoading" class="loading">Loading Google Drive recordings...</div>
     <div id="sermonGrid" class="sermon-grid"></div>
   </section>
@@ -356,6 +458,7 @@ h1 {
 <script>
 const API_KEY = "AIzaSyCW_XSdKfIDC7xVUszUkak_YCxYCmLD0Ns";
 const FOLDER_ID = "1UVqgZ4uIQ_ZVR-cLPLexJ-GEoKDrFPMG";
+let allSermons = [];
 
 /* LOADER */
 window.addEventListener("load", function(){
@@ -409,7 +512,6 @@ async function loadVerse(){
 
 /* GOOGLE DRIVE SERMON FETCH */
 async function loadDriveSermons() {
-  const grid = document.getElementById("sermonGrid");
   const loading = document.getElementById("driveLoading");
 
   const query = `'${FOLDER_ID}' in parents and trashed=false and mimeType contains 'video/'`;
@@ -432,48 +534,110 @@ async function loadDriveSermons() {
       return;
     }
 
+    allSermons = data.files || [];
     loading.style.display = "none";
 
-    if (!data.files || data.files.length === 0) {
-      grid.innerHTML = "<p>No sermon videos found in Google Drive folder.</p>";
+    if (allSermons.length === 0) {
+      document.getElementById("sermonGrid").innerHTML = "<p>No sermon videos found in Google Drive folder.</p>";
       return;
     }
 
-    data.files.forEach(file => {
-      const date = new Date(file.createdTime).toLocaleDateString("en-IN", {
-        day: "numeric",
-        month: "long",
-        year: "numeric"
-      });
-
-      const card = document.createElement("div");
-      card.className = "sermon-card";
-
-      card.innerHTML = `
-        <div class="video-box">
-          <iframe
-            src="https://drive.google.com/file/d/${file.id}/preview"
-            allow="autoplay"
-            allowfullscreen>
-          </iframe>
-        </div>
-
-        <div class="sermon-info">
-          <h3>${file.name}</h3>
-          <p>Uploaded: ${date}</p>
-          <a class="open-drive" href="https://drive.google.com/file/d/${file.id}/view" target="_blank">
-            Open in Google Drive
-          </a>
-        </div>
-      `;
-
-      grid.appendChild(card);
-    });
+    showLatestSermon(allSermons[0]);
+    renderSermons("all");
 
   } catch (error) {
     loading.innerHTML = "Unable to load recordings. Please check internet/API settings.";
     console.error(error);
   }
+}
+
+/* LATEST SERMON TOP PLAYER */
+function showLatestSermon(file) {
+  const latestBox = document.getElementById("latestSermonBox");
+
+  latestBox.innerHTML = `
+    <div class="latest-sermon-box">
+      <h2>🔥 Latest Sermon</h2>
+      <div class="latest-video">
+        <iframe
+          src="https://drive.google.com/file/d/${file.id}/preview"
+          allow="autoplay"
+          allowfullscreen>
+        </iframe>
+      </div>
+      <h3>${file.name}</h3>
+      <a class="open-drive" href="https://drive.google.com/file/d/${file.id}/view" target="_blank">
+        Open Latest Recording in Google Drive
+      </a>
+    </div>
+  `;
+}
+
+/* FILTER + CARDS */
+function renderSermons(filter, btn) {
+  const grid = document.getElementById("sermonGrid");
+  grid.innerHTML = "";
+
+  if (btn) {
+    document.querySelectorAll(".filter-buttons button").forEach(button => {
+      button.classList.remove("active-filter");
+    });
+    btn.classList.add("active-filter");
+  }
+
+  const filtered = allSermons.filter(file => {
+    const name = file.name.toLowerCase();
+
+    if (filter === "all") return true;
+    if (filter === "morning") return name.includes("morning");
+    if (filter === "afternoon") return name.includes("afternoon");
+    if (filter === "evening") return name.includes("evening");
+    if (filter === "sunday") return name.includes("sunday");
+
+    return true;
+  });
+
+  if (filtered.length === 0) {
+    grid.innerHTML = "<p>No videos found for this filter.</p>";
+    return;
+  }
+
+  filtered.forEach(file => {
+    const date = new Date(file.createdTime).toLocaleDateString("en-IN", {
+      day: "numeric",
+      month: "long",
+      year: "numeric"
+    });
+
+    const uploadedDate = new Date(file.createdTime);
+    const now = new Date();
+    const diffDays = (now - uploadedDate) / (1000 * 60 * 60 * 24);
+    const isNew = diffDays <= 7;
+
+    const card = document.createElement("div");
+    card.className = "sermon-card";
+
+    card.innerHTML = `
+      <div class="video-box">
+        <iframe
+          src="https://drive.google.com/file/d/${file.id}/preview"
+          allow="autoplay"
+          allowfullscreen>
+        </iframe>
+      </div>
+
+      <div class="sermon-info">
+        ${isNew ? '<span class="new-badge">NEW</span>' : ''}
+        <h3>${file.name}</h3>
+        <p>Uploaded: ${date}</p>
+        <a class="open-drive" href="https://drive.google.com/file/d/${file.id}/view" target="_blank">
+          Open in Google Drive
+        </a>
+      </div>
+    `;
+
+    grid.appendChild(card);
+  });
 }
 
 loadVerse();
