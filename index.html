@@ -19,7 +19,9 @@ html, body {
   overflow-x: hidden;
 }
 
-body { min-height: 100vh; }
+body {
+  min-height: 100vh;
+}
 
 /* BACKGROUND */
 .background-layer {
@@ -33,34 +35,16 @@ body { min-height: 100vh; }
   animation: cinematicBg 22s ease-in-out infinite alternate;
 }
 
-.background-layer::before {
-  content: "";
-  position: absolute;
-  inset: -20%;
-  background:
-    radial-gradient(circle at 30% 40%, rgba(255,170,0,0.18), transparent 30%),
-    radial-gradient(circle at 70% 45%, rgba(255,120,0,0.14), transparent 35%);
-  animation: cloudMove 18s ease-in-out infinite alternate;
-  mix-blend-mode: screen;
-}
-
-.background-layer::after {
-  content: "";
-  position: absolute;
-  inset: 0;
-  background: radial-gradient(circle at 68% 42%, rgba(255,210,80,0.22), transparent 28%);
-  animation: divinePulse 4s ease-in-out infinite;
-  mix-blend-mode: screen;
-}
-
 .background-overlay {
   position: absolute;
   inset: 0;
   background:
     radial-gradient(circle at center, rgba(255,170,0,0.10), rgba(0,0,0,0.20) 45%, rgba(0,0,0,0.60) 100%),
     linear-gradient(to bottom, rgba(0,0,0,0.14), rgba(0,0,0,0.45));
+  animation: goldenBreath 6s ease-in-out infinite;
 }
 
+/* LIGHTNING */
 .lightning-flash {
   position: absolute;
   inset: 0;
@@ -71,7 +55,7 @@ body { min-height: 100vh; }
   animation: lightningFlash 7s infinite;
 }
 
-/* LAMP */
+/* LAMP GLOW FIXED */
 .lamp-glow {
   position: absolute;
   left: 2.5%;
@@ -170,8 +154,17 @@ nav {
 .nav-links a:hover,
 .nav-links a:first-child {
   color: #ffc83d;
-  text-shadow: 0 0 12px #ffc83d, 0 0 25px #ff9900;
-  transform: translateY(-2px);
+}
+
+.nav-links a:first-child::after {
+  content: "";
+  position: absolute;
+  left: -12px;
+  right: -12px;
+  bottom: -12px;
+  height: 2px;
+  background: linear-gradient(90deg, transparent, #ffc300, transparent);
+  box-shadow: 0 0 12px #ffb300;
 }
 
 /* HERO */
@@ -185,17 +178,6 @@ nav {
   justify-content: center;
   text-align: center;
   overflow: hidden;
-}
-
-.hero::after {
-  content: "";
-  position: absolute;
-  left: 0;
-  right: 0;
-  bottom: 0;
-  height: 160px;
-  background: linear-gradient(to bottom, transparent, rgba(0,0,0,0.85));
-  pointer-events: none;
 }
 
 .hero-inner {
@@ -229,7 +211,16 @@ nav {
   display: block;
   margin: auto;
   box-shadow: 0 22px 55px rgba(0,0,0,0.82);
-  animation: logoFloat 5s ease-in-out infinite, logoPulse 6s ease-in-out infinite;
+  animation: logoZoom 8s ease-in-out infinite alternate;
+}
+
+.hero-title-box {
+  width: 100%;
+  overflow: visible;
+  padding: 0 10px;
+  animation: titleSlideUp 1.4s ease both;
+  animation-delay: 0.25s;
+  margin-top: -10px;
 }
 
 .hero-title-image {
@@ -237,8 +228,8 @@ nav {
   max-width: 100%;
   height: auto;
   display: block;
-  margin: -10px auto 0;
-  animation: titleGlow 3.5s ease-in-out infinite;
+  margin: 0 auto;
+  filter: drop-shadow(0 0 14px rgba(255,170,0,0.65));
 }
 
 .scroll-cue {
@@ -246,21 +237,7 @@ nav {
   font-size: 14px;
   letter-spacing: 3px;
   opacity: 0.8;
-  text-shadow: 0 0 12px #fff, 0 0 25px #ffb300;
   animation: cuePulse 2s ease-in-out infinite;
-}
-
-/* REAL FLYING DOVE */
-.flying-dove {
-  position: absolute;
-  right: 9%;
-  top: 28%;
-  width: 145px;
-  z-index: 30;
-  pointer-events: none;
-  filter: drop-shadow(0 0 20px rgba(255,230,130,0.95));
-  animation: doveFly 7s ease-in-out infinite, doveFlap 0.65s ease-in-out infinite;
-  transform-origin: center;
 }
 
 /* CONTENT */
@@ -387,14 +364,9 @@ footer {
   to { transform: scale(1.06); }
 }
 
-@keyframes cloudMove {
-  from { transform: translateX(-3%) translateY(0) scale(1); opacity: 0.45; }
-  to { transform: translateX(4%) translateY(-2%) scale(1.08); opacity: 0.75; }
-}
-
-@keyframes divinePulse {
-  0%, 100% { opacity: 0.35; }
-  50% { opacity: 0.8; }
+@keyframes goldenBreath {
+  0%, 100% { opacity: 0.72; }
+  50% { opacity: 1; }
 }
 
 @keyframes lightningFlash {
@@ -415,22 +387,14 @@ footer {
   50% { transform: translateY(-12px) scale(1.025); opacity: 0.95; }
 }
 
-@keyframes doveFly {
-  0% { transform: translate(0, 0) scale(1); opacity: 0.85; }
-  25% { transform: translate(-18px, -18px) scale(1.04); opacity: 1; }
-  50% { transform: translate(-35px, 0) scale(1.02); opacity: 0.95; }
-  75% { transform: translate(-18px, 18px) scale(1.05); opacity: 1; }
-  100% { transform: translate(0, 0) scale(1); opacity: 0.85; }
-}
-
-@keyframes doveFlap {
-  0%, 100% { rotate: -2deg; }
-  50% { rotate: 4deg; }
-}
-
 @keyframes heroFade {
   from { opacity: 0; transform: translateY(28px); }
   to { opacity: 1; transform: translateY(0); }
+}
+
+@keyframes logoZoom {
+  from { transform: scale(1); }
+  to { transform: scale(1.035); }
 }
 
 @keyframes slowFloat {
@@ -438,29 +402,41 @@ footer {
   50% { transform: translateY(-8px); }
 }
 
+@keyframes titleSlideUp {
+  from { opacity: 0; transform: translateY(34px); }
+  to { opacity: 1; transform: translateY(0); }
+}
+
 @keyframes cuePulse {
   0%, 100% { opacity: 0.35; transform: translateY(0); }
   50% { opacity: 0.9; transform: translateY(6px); }
 }
 
-@keyframes titleGlow {
-  0%, 100% { filter: drop-shadow(0 0 12px rgba(255,180,0,0.55)); }
-  50% { filter: drop-shadow(0 0 28px rgba(255,210,80,0.95)); }
-}
+/* TABLET */
+@media (max-width: 1200px) {
+  .logo {
+    width: 70px;
+    height: 70px;
+  }
 
-@keyframes logoFloat {
-  0%, 100% { transform: translateY(0); }
-  50% { transform: translateY(-10px); }
-}
+  .logo-text {
+    font-size: 29px;
+  }
 
-@keyframes logoPulse {
-  0%, 100% { filter: drop-shadow(0 0 12px rgba(255,190,40,0.6)); }
-  50% { filter: drop-shadow(0 0 30px rgba(255,220,90,1)); }
+  .hero-logo-wrap {
+    margin-bottom: -24px;
+  }
+
+  .hero-title-image {
+    width: min(94vw, 850px);
+  }
 }
 
 /* MOBILE */
 @media (max-width: 768px) {
-  header { padding: 8px 10px; }
+  header {
+    padding: 10px 14px;
+  }
 
   nav {
     justify-content: center;
@@ -479,14 +455,14 @@ footer {
   }
 
   .logo-text {
-    font-size: 23px;
+    font-size: 24px;
   }
 
   .nav-links {
     width: 100%;
     display: grid;
     grid-template-columns: repeat(3, 1fr);
-    gap: 12px 8px;
+    gap: 10px;
     text-align: center;
   }
 
@@ -494,38 +470,28 @@ footer {
     font-size: 14px;
   }
 
-  .background-layer {
-    background-size: auto 100%;
-    background-position: 48% center;
-  }
-
   .hero {
-    padding-top: 210px;
+    min-height: 100vh;
+    padding-top: 170px;
     padding-bottom: 25px;
   }
 
   .hero-logo {
-    width: 175px;
-    height: 175px;
+    width: 205px;
+    height: 205px;
   }
 
   .hero-logo-wrap {
-    margin-bottom: -8px;
+    margin-bottom: -12px;
   }
 
   .hero-title-image {
-    width: 90vw;
+    width: 94vw;
   }
 
-  .flying-dove {
-    right: 0;
-    top: 31%;
-    width: 86px;
-  }
-
-  .lamp-glow,
-  .dove-glow {
-    display: none;
+  .scroll-cue {
+    font-size: 12px;
+    margin-top: 12px;
   }
 
   .section h2,
@@ -538,8 +504,27 @@ footer {
     width: 100%;
     max-width: 340px;
   }
+
+  .background-layer {
+    background-position: center center;
+  }
+
+  .lamp-glow {
+    left: -2%;
+    top: 26%;
+    width: 42%;
+    height: 30%;
+  }
+
+  .dove-glow {
+    right: -4%;
+    top: 24%;
+    width: 50%;
+    height: 45%;
+  }
 }
 
+/* SMALL MOBILE */
 @media (max-width: 480px) {
   .logo {
     width: 52px;
@@ -554,28 +539,49 @@ footer {
     font-size: 13px;
   }
 
-  .background-layer {
-    background-size: auto 100%;
-    background-position: 48% center;
-  }
-
   .hero {
-    padding-top: 205px;
+    padding-top: 165px;
   }
 
   .hero-logo {
-    width: 165px;
-    height: 165px;
+    width: 178px;
+    height: 178px;
+  }
+
+  .hero-logo-wrap {
+    margin-bottom: -8px;
   }
 
   .hero-title-image {
-    width: 92vw;
+    width: 96vw;
   }
 
-  .flying-dove {
-    right: -8px;
-    top: 33%;
-    width: 72px;
+  .lamp-glow {
+    left: -6%;
+    top: 28%;
+    width: 48%;
+    height: 26%;
+  }
+
+  .dove-glow {
+    right: -10%;
+    top: 28%;
+    width: 58%;
+    height: 40%;
+  }
+}
+
+@media (max-width: 360px) {
+  .logo-text {
+    font-size: 19px;
+  }
+
+  .nav-links a {
+    font-size: 12px;
+  }
+
+  .hero-title-image {
+    width: 97vw;
   }
 }
 </style>
@@ -609,16 +615,18 @@ footer {
 </header>
 
 <section class="hero">
-  <img src="images/dove.png" class="flying-dove" alt="Holy Spirit Dove">
-
   <div class="hero-inner">
+
     <div class="hero-logo-wrap">
       <img src="images/logo-circle.png" alt="TGPM Logo" class="hero-logo">
     </div>
 
-    <img src="images/gold-title.png" alt="The God's Power Ministry" class="hero-title-image">
+    <div class="hero-title-box">
+      <img src="images/gold-title.png" alt="The God's Power Ministry" class="hero-title-image">
+    </div>
 
     <div class="scroll-cue">SCROLL DOWN</div>
+
   </div>
 </section>
 
@@ -686,7 +694,9 @@ async function loadTodayMeetings() {
   try {
     const response = await fetch("meetings.json");
 
-    if (!response.ok) throw new Error("meetings.json not found");
+    if (!response.ok) {
+      throw new Error("meetings.json not found");
+    }
 
     const data = await response.json();
 
