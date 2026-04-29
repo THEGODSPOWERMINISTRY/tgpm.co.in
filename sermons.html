@@ -420,7 +420,7 @@ async function loadDriveSermons() {
     "&q=" + encodeURIComponent(query) +
     "&fields=files(id,name,createdTime,mimeType,webViewLink)" +
     "&orderBy=createdTime desc" +
-    "&pageSize=12";
+    "&pageSize=100";
 
   try {
     const response = await fetch(url);
