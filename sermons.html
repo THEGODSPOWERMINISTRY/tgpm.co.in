@@ -5,7 +5,7 @@
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 <title>Sermons - TGPM</title>
 
-<link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;600&display=swap" rel="stylesheet">
+<link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;600;700;800&display=swap" rel="stylesheet">
 <script src="https://cdn.jsdelivr.net/npm/particles.js"></script>
 
 <style>
@@ -13,21 +13,29 @@ body {
   margin:0;
   font-family:'Poppins', sans-serif;
   color:white;
+  background:#000;
 }
 
 /* NAVBAR */
 header {
   position:fixed;
   width:100%;
-  background:rgba(0,0,0,0.6);
+  background:rgba(0,0,0,0.65);
   padding:15px;
   text-align:center;
   z-index:1000;
+  backdrop-filter:blur(8px);
 }
+
 nav a {
   color:white;
   margin:15px;
   text-decoration:none;
+  font-weight:700;
+}
+
+nav a:hover {
+  color:#ffcc66;
 }
 
 /* LOADER */
@@ -75,22 +83,18 @@ nav a {
   position:fixed;
   width:100%;
   height:100%;
-  background:rgba(0,0,0,0.7);
+  background:rgba(0,0,0,0.76);
   z-index:-1;
 }
 
 /* CONTENT */
 .container {
-  display:flex;
-  justify-content:center;
-  align-items:center;
-  flex-direction:column;
   min-height:100vh;
   text-align:center;
-  padding-top:120px;
+  padding:120px 20px 70px;
 }
 
-/* 🔥 DAILY VERSE */
+/* DAILY VERSE */
 .daily-verse{
   margin:20px auto 30px;
   width:90%;
@@ -120,46 +124,176 @@ nav a {
   to{box-shadow:0 0 42px rgba(255,174,43,.75);}
 }
 
+h1 {
+  color:#ffcc66;
+  font-size:clamp(32px,5vw,56px);
+  margin-bottom:10px;
+}
+
+.subtitle {
+  color:#ddd;
+  font-size:18px;
+}
+
 /* BUTTON */
 .btn {
+  display:inline-block;
   margin-top:20px;
   padding:15px 30px;
   font-size:18px;
-  background:red;
+  background:#d90000;
   color:white;
   text-decoration:none;
   border-radius:30px;
   transition:0.3s;
+  font-weight:700;
 }
+
 .btn:hover {
   background:orange;
   transform:scale(1.05);
 }
 
+/* SERMON SECTION */
+.sermon-section {
+  margin:45px auto 0;
+  width:95%;
+  max-width:1200px;
+}
+
+.sermon-title {
+  color:#ffcc66;
+  font-size:34px;
+  margin-bottom:10px;
+}
+
+.sermon-note {
+  color:#ccc;
+  margin-bottom:28px;
+}
+
+.loading {
+  color:#ffcc66;
+  font-size:20px;
+  padding:25px;
+}
+
+.sermon-grid {
+  display:grid;
+  grid-template-columns:repeat(auto-fit, minmax(280px, 1fr));
+  gap:25px;
+}
+
+.sermon-card {
+  background:rgba(255,255,255,0.10);
+  border:1px solid rgba(255,204,102,0.45);
+  border-radius:18px;
+  overflow:hidden;
+  box-shadow:0 0 25px rgba(255,174,43,0.22);
+  backdrop-filter:blur(14px);
+  transition:0.35s;
+}
+
+.sermon-card:hover {
+  transform:translateY(-8px);
+  box-shadow:0 0 40px rgba(255,174,43,0.45);
+}
+
+.video-box {
+  width:100%;
+  height:220px;
+  background:#000;
+}
+
+.video-box iframe {
+  width:100%;
+  height:100%;
+  border:0;
+}
+
+.sermon-info {
+  padding:18px;
+  text-align:left;
+}
+
+.sermon-info h3 {
+  color:#ffcc66;
+  font-size:17px;
+  margin:0 0 10px;
+  line-height:1.4;
+  word-break:break-word;
+}
+
+.sermon-info p {
+  color:#ddd;
+  font-size:14px;
+  margin:0;
+}
+
+.open-drive {
+  display:inline-block;
+  margin-top:14px;
+  color:#fff;
+  background:rgba(255,174,43,0.25);
+  border:1px solid rgba(255,204,102,0.5);
+  padding:9px 15px;
+  border-radius:20px;
+  text-decoration:none;
+  font-size:13px;
+}
+
+.open-drive:hover {
+  background:#ffcc66;
+  color:#111;
+}
+
 /* YOUTUBE CARD */
 .youtube-card {
-  margin-top:30px;
+  margin:45px auto 0;
   width:90%;
   max-width:800px;
-  min-height:280px;
   border-radius:18px;
   background:rgba(255,255,255,0.1);
   border:1px solid rgba(255,255,255,0.25);
   backdrop-filter:blur(14px);
-  display:flex;
-  flex-direction:column;
-  justify-content:center;
-  align-items:center;
   padding:30px;
 }
 
 .youtube-btn {
   margin-top:20px;
+  display:inline-block;
   padding:15px 35px;
   background:#ff0000;
   color:white;
   text-decoration:none;
   border-radius:35px;
+  font-weight:700;
+}
+
+/* MOBILE */
+@media(max-width:768px){
+  header {
+    padding:12px 5px;
+  }
+
+  nav {
+    display:grid;
+    grid-template-columns:repeat(3,1fr);
+    gap:10px;
+  }
+
+  nav a {
+    margin:0;
+    font-size:14px;
+  }
+
+  .container {
+    padding-top:135px;
+  }
+
+  .video-box {
+    height:210px;
+  }
 }
 </style>
 </head>
@@ -181,7 +315,7 @@ nav a {
 </nav>
 </header>
 
-<video autoplay muted loop class="bg-video">
+<video autoplay muted loop playsinline class="bg-video">
   <source src="videos/sermon.mp4" type="video/mp4">
 </video>
 
@@ -189,21 +323,29 @@ nav a {
 
 <div class="container">
 
-  <!-- 🔥 DAILY VERSE -->
   <div class="daily-verse">
     <span>आज का वचन</span>
     <p id="dailyVerse">लोड हो रहा है...</p>
   </div>
 
   <h1>📖 Watch Our Sermons</h1>
-  <p>Be blessed by the Word of God</p>
+  <p class="subtitle">Be blessed by the Word of God</p>
 
   <a href="https://www.youtube.com/@TheGodsPowerMinistrySD/videos" target="_blank" class="btn">
     ▶ Watch All Sermons on YouTube
   </a>
 
+  <section class="sermon-section">
+    <h2 class="sermon-title">Latest Google Meet Recordings</h2>
+    <p class="sermon-note">Automatically fetched from Google Drive Meet Recordings folder</p>
+
+    <div id="driveLoading" class="loading">Loading Google Drive recordings...</div>
+    <div id="sermonGrid" class="sermon-grid"></div>
+  </section>
+
   <div class="youtube-card">
-    <h2>Latest Sermons</h2>
+    <h2>More Sermons on YouTube</h2>
+    <p>Visit our YouTube channel for more messages and worship videos.</p>
     <a href="https://www.youtube.com/@TheGodsPowerMinistrySD/videos" target="_blank" class="youtube-btn">
       ▶ Open Sermons
     </a>
@@ -212,6 +354,9 @@ nav a {
 </div>
 
 <script>
+const API_KEY = "AIzaSyCW_XSdKfIDC7xVUszUkak_YCxYCmLD0Ns";
+const FOLDER_ID = "1UVqgZ4uIQ_ZVR-cLPLexJ-GEoKDrFPMG";
+
 /* LOADER */
 window.addEventListener("load", function(){
   document.getElementById("loader").style.display = "none";
@@ -230,10 +375,15 @@ document.querySelectorAll("a").forEach(link => {
 
 /* PARTICLES */
 particlesJS("particles-js", {
-  particles:{ number:{value:80}, size:{value:3}, move:{speed:2} }
+  particles:{
+    number:{value:80},
+    color:{value:"#ffcc66"},
+    size:{value:3},
+    move:{speed:2}
+  }
 });
 
-/* 🔥 FREE DAILY HINDI VERSE */
+/* DAILY HINDI VERSE */
 async function loadVerse(){
   try{
     let res = await fetch("https://beta.ourmanna.com/api/v1/get/?format=json");
@@ -257,7 +407,77 @@ async function loadVerse(){
   }
 }
 
+/* GOOGLE DRIVE SERMON FETCH */
+async function loadDriveSermons() {
+  const grid = document.getElementById("sermonGrid");
+  const loading = document.getElementById("driveLoading");
+
+  const query = `'${FOLDER_ID}' in parents and trashed=false and mimeType contains 'video/'`;
+
+  const url =
+    "https://www.googleapis.com/drive/v3/files" +
+    "?key=" + API_KEY +
+    "&q=" + encodeURIComponent(query) +
+    "&fields=files(id,name,createdTime,mimeType,webViewLink)" +
+    "&orderBy=createdTime desc" +
+    "&pageSize=12";
+
+  try {
+    const response = await fetch(url);
+    const data = await response.json();
+
+    if (data.error) {
+      loading.innerHTML = "Unable to load recordings. Please check Drive folder sharing and API key.";
+      console.error(data.error);
+      return;
+    }
+
+    loading.style.display = "none";
+
+    if (!data.files || data.files.length === 0) {
+      grid.innerHTML = "<p>No sermon videos found in Google Drive folder.</p>";
+      return;
+    }
+
+    data.files.forEach(file => {
+      const date = new Date(file.createdTime).toLocaleDateString("en-IN", {
+        day: "numeric",
+        month: "long",
+        year: "numeric"
+      });
+
+      const card = document.createElement("div");
+      card.className = "sermon-card";
+
+      card.innerHTML = `
+        <div class="video-box">
+          <iframe
+            src="https://drive.google.com/file/d/${file.id}/preview"
+            allow="autoplay"
+            allowfullscreen>
+          </iframe>
+        </div>
+
+        <div class="sermon-info">
+          <h3>${file.name}</h3>
+          <p>Uploaded: ${date}</p>
+          <a class="open-drive" href="https://drive.google.com/file/d/${file.id}/view" target="_blank">
+            Open in Google Drive
+          </a>
+        </div>
+      `;
+
+      grid.appendChild(card);
+    });
+
+  } catch (error) {
+    loading.innerHTML = "Unable to load recordings. Please check internet/API settings.";
+    console.error(error);
+  }
+}
+
 loadVerse();
+loadDriveSermons();
 </script>
 
 </body>
