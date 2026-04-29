@@ -435,7 +435,6 @@ h1 {
 
     <div class="filter-buttons">
       <button class="active-filter" onclick="renderSermons('all', this)">All</button>
-      <button onclick="renderSermons('morning', this)">Morning</button>
       <button onclick="renderSermons('afternoon', this)">Afternoon</button>
       <button onclick="renderSermons('evening', this)">Evening</button>
       <button onclick="renderSermons('sunday', this)">Sunday</button>
@@ -523,7 +522,6 @@ function renderSermons(filter, btn) {
     const day = getIndiaDay(file);
 
     if (filter === "all") return true;
-    if (filter === "morning") return hour >= 5 && hour < 12;
     if (filter === "afternoon") return hour >= 12 && hour < 17;
     if (filter === "evening") return hour >= 17 && hour <= 23;
     if (filter === "sunday") return day === 0;
