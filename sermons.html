@@ -5,15 +5,20 @@
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 <title>Sermons - TGPM</title>
 
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
 <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;600;700;800&display=swap" rel="stylesheet">
 <script src="https://cdn.jsdelivr.net/npm/particles.js"></script>
 
 <style>
+*{box-sizing:border-box;}
+
 body {
   margin:0;
   font-family:'Poppins', sans-serif;
   color:white;
   background:#000;
+  overflow-x:hidden;
 }
 
 header {
@@ -187,19 +192,95 @@ h1 {
   margin-top:0;
 }
 
-.latest-video {
+.latest-thumb {
+  display:block;
   width:100%;
   height:460px;
   border-radius:18px;
   overflow:hidden;
   background:#000;
   border:1px solid rgba(255,204,102,0.65);
+  position:relative;
+  text-decoration:none;
 }
 
-.latest-video iframe {
+.latest-thumb img {
   width:100%;
   height:100%;
-  border:0;
+  object-fit:cover;
+  display:block;
+  opacity:.88;
+  transition:.35s ease;
+}
+
+.latest-thumb:hover img {
+  transform:scale(1.06);
+  opacity:1;
+}
+
+.thumbnail-box {
+  display:block;
+  width:100%;
+  height:220px;
+  background:#000;
+  position:relative;
+  overflow:hidden;
+  text-decoration:none;
+}
+
+.thumbnail-box img {
+  width:100%;
+  height:100%;
+  object-fit:cover;
+  display:block;
+  opacity:.88;
+  transition:.35s ease;
+}
+
+.sermon-card:hover .thumbnail-box img {
+  transform:scale(1.07);
+  opacity:1;
+}
+
+.thumb-overlay {
+  position:absolute;
+  inset:0;
+  background:linear-gradient(to top,rgba(0,0,0,.65),rgba(0,0,0,.05));
+}
+
+.play-small,
+.play-center {
+  position:absolute;
+  top:50%;
+  left:50%;
+  border-radius:50%;
+  background:rgba(255,255,255,.95);
+  color:#d90000;
+  display:flex;
+  justify-content:center;
+  align-items:center;
+  opacity:0;
+  transform:translate(-50%,-50%) scale(.7);
+  transition:all .35s ease;
+  box-shadow:0 0 25px rgba(255,255,255,.7);
+}
+
+.play-small {
+  width:62px;
+  height:62px;
+  font-size:28px;
+}
+
+.play-center {
+  width:82px;
+  height:82px;
+  font-size:38px;
+}
+
+.thumbnail-box:hover .play-small,
+.latest-thumb:hover .play-center {
+  opacity:1;
+  transform:translate(-50%,-50%) scale(1.08);
 }
 
 .latest-sermon-box h3 {
@@ -252,18 +333,6 @@ h1 {
 .sermon-card:hover {
   transform:translateY(-8px);
   box-shadow:0 0 40px rgba(255,174,43,0.45);
-}
-
-.video-box {
-  width:100%;
-  height:220px;
-  background:#000;
-}
-
-.video-box iframe {
-  width:100%;
-  height:100%;
-  border:0;
 }
 
 .sermon-info {
@@ -365,15 +434,21 @@ h1 {
 
   .container { padding-top:135px; }
 
-  .video-box { height:210px; }
+  .thumbnail-box { height:210px; }
 
-  .latest-video { height:240px; }
+  .latest-thumb { height:240px; }
 
   .latest-sermon-box { padding:14px; }
 
   .filter-buttons button {
     padding:9px 15px;
     font-size:13px;
+  }
+
+  .play-small,
+  .play-center {
+    opacity:1;
+    transform:translate(-50%,-50%) scale(1);
   }
 }
 </style>
@@ -418,7 +493,7 @@ h1 {
 
   <section class="sermon-section">
     <h2 class="sermon-title">Latest Google Meet Recordings</h2>
-    <p class="sermon-note">Automatically fetched from Google Drive Meet Recordings folder</p>
+    <p class="sermon-note">Fast thumbnail view — video opens only after clicking</p>
 
     <div id="latestSermonBox"></div>
 
@@ -469,7 +544,7 @@ document.querySelectorAll("a").forEach(link => {
 if (window.particlesJS) {
   particlesJS("particles-js", {
     particles:{
-      number:{value:80},
+      number:{value:55},
       color:{value:"#ffcc66"},
       size:{value:3},
       move:{speed:2}
@@ -517,6 +592,13 @@ function getCategory(file) {
   return "Other";
 }
 
+function getThumbnail(file) {
+  if (file.thumbnailLink) {
+    return file.thumbnailLink.replace("=s220", "=s800");
+  }
+  return "images/sermon-thumbnail.jpg";
+}
+
 async function loadDriveSermons() {
   const loading = document.getElementById("driveLoading");
 
@@ -526,7 +608,7 @@ async function loadDriveSermons() {
     "https://www.googleapis.com/drive/v3/files" +
     "?key=" + API_KEY +
     "&q=" + encodeURIComponent(query) +
-    "&fields=files(id,name,createdTime,mimeType,webViewLink)" +
+    "&fields=files(id,name,createdTime,mimeType,webViewLink,thumbnailLink)" +
     "&orderBy=createdTime desc" +
     "&pageSize=100";
 
@@ -560,21 +642,23 @@ async function loadDriveSermons() {
 function showLatestSermon(file) {
   const latestBox = document.getElementById("latestSermonBox");
   const category = getCategory(file);
+  const thumb = getThumbnail(file);
 
   latestBox.innerHTML = `
     <div class="latest-sermon-box">
       <h2>🔥 Latest Sermon</h2>
-      <div class="latest-video">
-        <iframe
-          src="https://drive.google.com/file/d/${file.id}/preview"
-          allow="autoplay"
-          allowfullscreen>
-        </iframe>
-      </div>
+
+      <a href="https://drive.google.com/file/d/${file.id}/view" target="_blank" class="latest-thumb">
+        <img src="${thumb}" alt="${file.name}" loading="lazy" onerror="this.src='images/sermon-thumbnail.jpg'">
+        <div class="thumb-overlay"></div>
+        <div class="play-center">▶</div>
+      </a>
+
       <h3>${file.name}</h3>
       <span class="category-badge">${category}</span><br>
+
       <a class="open-drive" href="https://drive.google.com/file/d/${file.id}/view" target="_blank">
-        Open Latest Recording in Google Drive
+        ▶ Watch Latest Sermon
       </a>
     </div>
   `;
@@ -625,18 +709,17 @@ function renderSermons(filter, btn) {
     const diffDays = (now - uploadedDate) / (1000 * 60 * 60 * 24);
     const isNew = diffDays <= 7;
     const category = getCategory(file);
+    const thumb = getThumbnail(file);
 
     const card = document.createElement("div");
     card.className = "sermon-card";
 
     card.innerHTML = `
-      <div class="video-box">
-        <iframe
-          src="https://drive.google.com/file/d/${file.id}/preview"
-          allow="autoplay"
-          allowfullscreen>
-        </iframe>
-      </div>
+      <a href="https://drive.google.com/file/d/${file.id}/view" target="_blank" class="thumbnail-box">
+        <img src="${thumb}" alt="${file.name}" loading="lazy" onerror="this.src='images/sermon-thumbnail.jpg'">
+        <div class="thumb-overlay"></div>
+        <div class="play-small">▶</div>
+      </a>
 
       <div class="sermon-info">
         ${isNew ? '<span class="new-badge">NEW</span>' : ''}
@@ -644,7 +727,7 @@ function renderSermons(filter, btn) {
         <h3>${file.name}</h3>
         <p>Uploaded: ${date}</p>
         <a class="open-drive" href="https://drive.google.com/file/d/${file.id}/view" target="_blank">
-          Open in Google Drive
+          ▶ Watch Sermon
         </a>
       </div>
     `;
