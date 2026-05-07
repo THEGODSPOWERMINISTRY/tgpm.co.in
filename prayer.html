@@ -1,380 +1,465 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-  <meta charset="UTF-8" />
-  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <title>Prayer Request - TGPM</title>
-<meta name="description" content="The God's Power Ministry - Prayer, Healing, Sermons, Faith and Deliverance.">
-<meta name="keywords" content="TGPM, The God's Power Ministry, Prayer, Healing, Sermons, Jesus Ministry India">
+<meta charset="UTF-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1.0" />
+
+<title>Prayer Request - TGPM | The God's Power Ministry</title>
+
+<meta name="description" content="Submit your prayer request to The God's Power Ministry. We stand with you in prayer, healing, deliverance and faith.">
+<meta name="keywords" content="Prayer Request, TGPM Prayer, Christian Prayer Support, Healing Prayer, Deliverance Prayer">
 <meta name="author" content="The God's Power Ministry">
-  <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;600;700&display=swap" rel="stylesheet" />
-  <script src="https://cdn.jsdelivr.net/npm/particles.js@2.0.0/particles.min.js"></script>
 
-  <style>
-    * { box-sizing: border-box; }
+<meta property="og:title" content="Prayer Request - TGPM">
+<meta property="og:description" content="Share your prayer request with faith. Our ministry team will pray for you.">
+<meta property="og:image" content="https://tgpm.co.in/images/logo-circle.png">
+<meta property="og:url" content="https://tgpm.co.in/prayer.html">
+<meta property="og:type" content="website">
 
-    body {
-      margin: 0;
-      font-family: 'Poppins', sans-serif;
-      color: white;
-      overflow-x: hidden;
-      background: black;
-    }
+<link rel="icon" type="image/png" href="images/logo-circle.png">
 
-    header {
-      position: fixed;
-      top: 0;
-      left: 0;
-      width: 100%;
-      background: rgba(0, 0, 0, 0.6);
-      padding: 15px;
-      text-align: center;
-      z-index: 1000;
-    }
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
 
-    nav a {
-      color: white;
-      margin: 15px;
-      text-decoration: none;
-      transition: 0.3s;
-      font-weight: 600;
-    }
+<link href="https://fonts.googleapis.com/css2?family=Cinzel:wght@600;700;900&family=Poppins:wght@300;400;600;700;800&display=swap" rel="stylesheet">
 
-    nav a:hover { color: #F2A365; }
+<style>
+*{
+  margin:0;
+  padding:0;
+  box-sizing:border-box;
+}
 
-    #loader {
-      position: fixed;
-      inset: 0;
-      background: black;
-      display: flex;
-      justify-content: center;
-      align-items: center;
-      z-index: 9999;
-    }
+html{
+  scroll-behavior:smooth;
+}
 
-    #transition {
-      position: fixed;
-      inset: 0;
-      background: black;
-      z-index: 9998;
-      transform: scaleY(0);
-      transform-origin: top;
-      transition: transform 0.5s ease;
-      pointer-events: none;
-    }
+body{
+  font-family:'Poppins',sans-serif;
+  color:white;
+  overflow-x:hidden;
+  background:black;
+}
 
-    #particles-js {
-      position: fixed;
-      inset: 0;
-      z-index: -3;
-    }
+/* BACKGROUND */
+.bg-video{
+  position:fixed;
+  inset:0;
+  width:100%;
+  height:100%;
+  object-fit:cover;
+  z-index:-3;
+}
 
-    .bg-video {
-      position: fixed;
-      inset: 0;
-      width: 100%;
-      height: 100%;
-      object-fit: cover;
-      z-index: -2;
-      background: black;
-    }
+.overlay{
+  position:fixed;
+  inset:0;
+  background:
+    radial-gradient(circle at center, rgba(255,204,102,.10), transparent 30%),
+    rgba(0,0,0,.78);
+  z-index:-2;
+}
 
-    .overlay {
-      position: fixed;
-      inset: 0;
-      background: rgba(0, 0, 0, 0.72);
-      z-index: -1;
-    }
+/* HEADER */
+header{
+  position:fixed;
+  top:0;
+  left:0;
+  width:100%;
+  padding:15px 20px;
+  z-index:1000;
+  background:linear-gradient(to bottom, rgba(0,0,0,.75), rgba(0,0,0,.25));
+  backdrop-filter:blur(10px);
+}
 
-    .container {
-      min-height: 100vh;
-      display: grid;
-      grid-template-columns: 1fr 450px 1fr;
-      align-items: center;
-      gap: 35px;
-      padding: 120px 60px 50px;
-    }
+nav{
+  max-width:1300px;
+  margin:auto;
+  display:flex;
+  justify-content:center;
+  flex-wrap:wrap;
+  gap:24px;
+}
 
-    .side-box {
-      background: rgba(255, 255, 255, 0.08);
-      backdrop-filter: blur(12px);
-      -webkit-backdrop-filter: blur(12px);
-      border: 1px solid rgba(242, 163, 101, 0.25);
-      border-radius: 22px;
-      padding: 30px;
-      box-shadow: 0 0 30px rgba(242, 163, 101, 0.12);
-    }
+nav a{
+  color:white;
+  text-decoration:none;
+  font-weight:700;
+  font-size:16px;
+  transition:.3s;
+  position:relative;
+}
 
-    .side-box h2 {
-      font-size: 26px;
-      margin: 0 0 15px;
-      color: #F2A365;
-    }
+nav a:hover,
+nav a.active{
+  color:#ffcc66;
+}
 
-    .side-box p {
-      font-size: 16px;
-      line-height: 1.7;
-      margin: 0;
-      color: rgba(255,255,255,0.9);
-    }
+nav a.active::after{
+  content:"";
+  position:absolute;
+  left:-10px;
+  right:-10px;
+  bottom:-8px;
+  height:2px;
+  background:linear-gradient(90deg,transparent,#ffcc66,transparent);
+}
 
-    .verse {
-      margin-top: 18px;
-      font-style: italic;
-      color: #fff4dc;
-    }
+/* MAIN */
+.container{
+  min-height:100vh;
+  display:grid;
+  grid-template-columns:1fr 500px 1fr;
+  align-items:center;
+  gap:35px;
+  padding:130px 60px 60px;
+  max-width:1600px;
+  margin:auto;
+}
 
-    .form-box {
-      background: rgba(255, 255, 255, 0.12);
-      backdrop-filter: blur(16px);
-      -webkit-backdrop-filter: blur(16px);
-      padding: 40px;
-      border-radius: 22px;
-      text-align: center;
-      width: 100%;
-      border: 1px solid rgba(242, 163, 101, 0.3);
-      box-shadow: 0 0 40px rgba(0,0,0,0.45);
-    }
+/* SIDE BOX */
+.side-box{
+  background:rgba(255,255,255,.08);
+  border:1px solid rgba(255,204,102,.18);
+  backdrop-filter:blur(14px);
+  border-radius:28px;
+  padding:38px;
+  box-shadow:0 18px 40px rgba(0,0,0,.35);
+}
 
-    .form-box h2 {
-      font-size: 32px;
-      margin-bottom: 20px;
-    }
+.side-box h2{
+  font-family:'Cinzel',serif;
+  font-size:32px;
+  color:#ffcc66;
+  margin-bottom:18px;
+}
 
-    input,
-    textarea {
-      width: 100%;
-      padding: 15px;
-      margin: 10px 0;
-      border: none;
-      border-radius: 10px;
-      font-size: 16px;
-      font-family: 'Poppins', sans-serif;
-      outline: none;
-    }
+.side-box p{
+  line-height:1.9;
+  color:#e6e6e6;
+  font-size:16px;
+}
 
-    textarea {
-      resize: vertical;
-      min-height: 120px;
-    }
+.verse{
+  margin-top:25px;
+  padding:18px;
+  border-left:3px solid #ffcc66;
+  background:rgba(255,204,102,.08);
+  border-radius:14px;
+  color:#fff6dc;
+  line-height:1.8;
+}
 
-    button {
-      width: 100%;
-      padding: 15px;
-      font-size: 18px;
-      background: linear-gradient(135deg, #F2A365, #ff8c2a);
-      border: none;
-      color: white;
-      cursor: pointer;
-      border-radius: 10px;
-      transition: 0.3s;
-      font-family: 'Poppins', sans-serif;
-      font-weight: 600;
-      margin-top: 8px;
-    }
+/* FORM */
+.form-box{
+  background:rgba(255,255,255,.10);
+  border:1px solid rgba(255,204,102,.20);
+  backdrop-filter:blur(16px);
+  border-radius:30px;
+  padding:42px;
+  box-shadow:0 18px 50px rgba(0,0,0,.45);
+}
 
-    button:hover {
-      transform: translateY(-2px);
-      box-shadow: 0 0 20px rgba(242, 163, 101, 0.5);
-    }
+.form-box h1{
+  text-align:center;
+  font-family:'Cinzel',serif;
+  font-size:42px;
+  color:#ffcc66;
+  margin-bottom:10px;
+}
 
-    .prayer-points {
-      margin-top: 18px;
-      padding-left: 18px;
-      line-height: 1.8;
-      color: rgba(255,255,255,0.9);
-    }
+.form-subtitle{
+  text-align:center;
+  color:#d8d8d8;
+  margin-bottom:28px;
+  line-height:1.7;
+}
 
-    .whatsapp-box {
-      margin-top: 18px;
-      display: inline-block;
-      padding: 12px 18px;
-      border-radius: 50px;
-      background: rgba(37, 211, 102, 0.18);
-      border: 1px solid rgba(37, 211, 102, 0.45);
-      color: white;
-      text-decoration: none;
-      font-weight: 600;
-    }
+.input-group{
+  margin-bottom:18px;
+}
 
-    @media (max-width: 1000px) {
-      .container {
-        grid-template-columns: 1fr;
-        padding: 110px 20px 40px;
-      }
+input,
+textarea{
+  width:100%;
+  padding:16px 18px;
+  border-radius:14px;
+  border:1px solid rgba(255,255,255,.10);
+  background:rgba(255,255,255,.08);
+  color:white;
+  font-size:15px;
+  outline:none;
+  font-family:'Poppins',sans-serif;
+  transition:.3s;
+}
 
-      .side-box,
-      .form-box {
-        max-width: 550px;
-        width: 100%;
-        margin: auto;
-      }
-    }
+input:focus,
+textarea:focus{
+  border-color:#ffcc66;
+  box-shadow:0 0 15px rgba(255,204,102,.25);
+}
 
-    @media (max-width: 768px) {
-      nav a {
-        margin: 8px;
-        font-size: 14px;
-      }
+textarea{
+  resize:vertical;
+  min-height:140px;
+}
 
-      .form-box,
-      .side-box {
-        padding: 25px;
-      }
+input::placeholder,
+textarea::placeholder{
+  color:#cccccc;
+}
 
-      .form-box h2 {
-        font-size: 26px;
-      }
-    }
-  </style>
+/* BUTTON */
+button{
+  width:100%;
+  border:none;
+  padding:17px;
+  border-radius:16px;
+  background:linear-gradient(135deg,#ffcc66,#ff9f2d);
+  color:#111;
+  font-size:17px;
+  font-weight:800;
+  cursor:pointer;
+  transition:.35s;
+  margin-top:10px;
+}
+
+button:hover{
+  transform:translateY(-3px);
+  box-shadow:0 0 28px rgba(255,204,102,.45);
+}
+
+/* LIST */
+.prayer-points{
+  margin-top:22px;
+  display:grid;
+  gap:14px;
+}
+
+.prayer-item{
+  padding:14px 16px;
+  border-radius:14px;
+  background:rgba(255,255,255,.06);
+  border:1px solid rgba(255,204,102,.12);
+}
+
+.prayer-item strong{
+  color:#ffcc66;
+}
+
+/* CONTACT BUTTON */
+.contact-btn{
+  display:inline-block;
+  margin-top:25px;
+  padding:14px 24px;
+  border-radius:40px;
+  text-decoration:none;
+  color:white;
+  background:rgba(37,211,102,.18);
+  border:1px solid rgba(37,211,102,.45);
+  transition:.3s;
+  font-weight:700;
+}
+
+.contact-btn:hover{
+  background:#25D366;
+}
+
+/* FOOTER */
+footer{
+  background:rgba(0,0,0,.92);
+  color:#bbb;
+  text-align:center;
+  padding:32px 15px;
+  font-size:14px;
+  border-top:1px solid rgba(255,255,255,.08);
+}
+
+footer strong{
+  color:#ffcc66;
+}
+
+/* MOBILE */
+@media(max-width:1100px){
+
+  .container{
+    grid-template-columns:1fr;
+    padding:120px 20px 50px;
+  }
+
+  .side-box,
+  .form-box{
+    width:100%;
+    max-width:650px;
+    margin:auto;
+  }
+
+  .form-box{
+    order:-1;
+  }
+}
+
+@media(max-width:768px){
+
+  nav{
+    display:grid;
+    grid-template-columns:repeat(3,1fr);
+    gap:10px;
+  }
+
+  nav a{
+    font-size:14px;
+    text-align:center;
+  }
+
+  .form-box{
+    padding:30px 22px;
+    border-radius:24px;
+  }
+
+  .form-box h1{
+    font-size:32px;
+  }
+
+  .side-box{
+    padding:28px 22px;
+  }
+
+  .side-box h2{
+    font-size:26px;
+  }
+}
+</style>
 </head>
 
 <body>
 
-  <div id="loader"><h1>Loading...</h1></div>
-  <div id="transition"></div>
-  <div id="particles-js"></div>
+<header>
+  <nav>
+    <a href="index.html">Home</a>
+    <a href="about.html">About</a>
+    <a href="sermons.html">Sermons</a>
+    <a href="gallery.html">Gallery</a>
+    <a href="prayer.html" class="active">Prayer</a>
+    <a href="contact.html">Contact</a>
+  </nav>
+</header>
 
-  <header>
-    <nav>
-      <a href="index.html">Home</a>
-      <a href="about.html">About</a>
-      <a href="sermons.html">Sermons</a>
-      <a href="gallery.html">Gallery</a>
-      <a href="prayer.html">Prayer</a>
-      <a href="contact.html">Contact</a>
-    </nav>
-  </header>
+<video autoplay muted loop playsinline class="bg-video">
+  <source src="videos/prayer.mp4" type="video/mp4">
+</video>
 
-  <video autoplay muted loop playsinline class="bg-video">
-    <source src="videos/prayer.mp4" type="video/mp4" />
-  </video>
+<div class="overlay"></div>
 
-  <div class="overlay"></div>
+<div class="container">
 
-  <div class="container">
+  <!-- LEFT -->
+  <div class="side-box">
+    <h2>🙏 We Pray With You</h2>
 
-    <div class="side-box">
-      <h2>🙏 We Pray With You</h2>
-      <p>
-        अपने प्रार्थना निवेदन को विश्वास के साथ साझा करें। हमारी सेवकाई आपके साथ प्रार्थना में खड़ी रहेगी।
-      </p>
-      <p class="verse">
-       “तू मुझ से पुकार, मैं तुझे उत्तर दूंगा, और बड़ी-बड़ी और गूढ़ बातें, जिन्हें तू अब तक नहीं जानता, तुझे बताऊंगा।”
-        <br><br>— यिर्मयाह 33:3
-      </p>
+    <p>
+      अपने प्रार्थना निवेदन को विश्वास के साथ साझा करें।
+      हमारी सेवकाई आपके साथ प्रार्थना में खड़ी रहेगी।
+    </p>
+
+    <div class="verse">
+      “तू मुझ से पुकार, मैं तुझे उत्तर दूंगा,
+      और बड़ी-बड़ी और गूढ़ बातें, जिन्हें तू अब तक नहीं जानता,
+      तुझे बताऊंगा।”
+
+      <br><br>
+      <strong>— यिर्मयाह 33:3</strong>
+    </div>
+  </div>
+
+  <!-- FORM -->
+  <div class="form-box">
+
+    <h1>Prayer Request</h1>
+
+    <p class="form-subtitle">
+      Share your prayer request with faith.
+      Our ministry team will stand with you in prayer.
+    </p>
+
+    <form action="https://api.web3forms.com/submit" method="POST">
+
+      <input type="hidden" name="access_key" value="0041ebab-7ef0-4a38-abc4-e1c64e39fdad">
+
+      <input type="hidden" name="subject" value="New Prayer Request Received - TGPM">
+
+      <input type="hidden" name="redirect" value="https://tgpm.co.in/thankyou.html">
+
+      <div class="input-group">
+        <input type="text" name="name" placeholder="Your Name" required>
+      </div>
+
+      <div class="input-group">
+        <input type="email" name="email" placeholder="Your Email Address" required>
+      </div>
+
+      <div class="input-group">
+        <input type="tel" name="phone" placeholder="Your Phone Number" required>
+      </div>
+
+      <div class="input-group">
+        <textarea name="message" placeholder="Write your prayer request..." required></textarea>
+      </div>
+
+      <button type="submit">
+        🙏 Submit Prayer Request
+      </button>
+
+    </form>
+  </div>
+
+  <!-- RIGHT -->
+  <div class="side-box">
+
+    <h2>📞 Prayer Support</h2>
+
+    <p>
+      Need healing, guidance, deliverance, or spiritual encouragement?
+      We are here to pray with you.
+    </p>
+
+    <div class="prayer-points">
+
+      <div class="prayer-item">
+        <strong>Healing Prayer</strong><br>
+        Prayer for sickness and restoration.
+      </div>
+
+      <div class="prayer-item">
+        <strong>Family Prayer</strong><br>
+        Prayer for family peace and unity.
+      </div>
+
+      <div class="prayer-item">
+        <strong>Deliverance Prayer</strong><br>
+        Prayer for freedom and spiritual victory.
+      </div>
+
+      <div class="prayer-item">
+        <strong>Financial Breakthrough</strong><br>
+        Prayer for God's provision and blessings.
+      </div>
+
     </div>
 
-    <div class="form-box">
-      <h2>🙏 Prayer Request</h2>
-
-      <form action="https://api.web3forms.com/submit" method="POST">
-        <input type="hidden" name="access_key" value="0041ebab-7ef0-4a38-abc4-e1c64e39fdad" />
-        <input type="hidden" name="subject" value="New Prayer Request Received - TGPM" />
-        <input type="hidden" name="redirect" value="https://tgpm.co.in/thankyou.html" />
-
-        <input type="text" name="name" placeholder="Your Name" required />
-        <input type="email" name="email" placeholder="Your Email" required />
-        <input type="tel" name="phone" placeholder="Your Phone Number" required />
-        <textarea name="message" rows="5" placeholder="Write your prayer request" required></textarea>
-
-        <button type="submit">Submit Prayer Request</button>
-      </form>
-    </div>
-
-    <div class="side-box">
-      <h2>📞 Prayer Support</h2>
-      <p>
-        Need prayer, guidance, or spiritual support? We are here to pray for you.
-      </p>
-
-      <ul class="prayer-points">
-        <li>Healing Prayer</li>
-        <li>Family Prayer</li>
-        <li>Deliverance Prayer</li>
-        <li>Financial Breakthrough</li>
-      </ul>
-
-      <a href="contact.html" class="whatsapp-box">Contact Prayer Team</a>
-    </div>
+    <a href="contact.html" class="contact-btn">
+      Contact Prayer Team
+    </a>
 
   </div>
 
-  <script>
-    window.addEventListener("load", function () {
-      const loader = document.getElementById("loader");
-      if (loader) {
-        loader.style.display = "none";
-      }
-    });
+</div>
 
-    document.querySelectorAll("a").forEach(function (link) {
-      link.addEventListener("click", function (e) {
-        const href = this.getAttribute("href");
-
-        if (href && href.endsWith(".html")) {
-          e.preventDefault();
-          const transition = document.getElementById("transition");
-          transition.style.transform = "scaleY(1)";
-
-          setTimeout(() => {
-            window.location.href = href;
-          }, 500);
-        }
-      });
-    });
-
-    if (window.particlesJS) {
-      particlesJS("particles-js", {
-        particles: {
-          number: {
-            value: 80,
-            density: {
-              enable: true,
-              value_area: 800
-            }
-          },
-          color: { value: "#ffffff" },
-          shape: { type: "circle" },
-          opacity: { value: 0.5 },
-          size: {
-            value: 3,
-            random: true
-          },
-          line_linked: {
-            enable: true,
-            distance: 150,
-            color: "#ffffff",
-            opacity: 0.3,
-            width: 1
-          },
-          move: {
-            enable: true,
-            speed: 2
-          }
-        },
-        interactivity: {
-          detect_on: "canvas",
-          events: {
-            onhover: {
-              enable: true,
-              mode: "repulse"
-            },
-            onclick: {
-              enable: true,
-              mode: "push"
-            },
-            resize: true
-          },
-          modes: {
-            repulse: { distance: 100 },
-            push: { particles_nb: 4 }
-          }
-        },
-        retina_detect: true
-      });
-    }
-  </script>
+<footer>
+  <p><strong>The God's Power Ministry</strong></p>
+  <p>© 2026 TGPM Ministry | All Rights Reserved</p>
+  <p>Jesus is the only God ✝</p>
+</footer>
 
 </body>
 </html>
