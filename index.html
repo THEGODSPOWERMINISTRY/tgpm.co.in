@@ -3,15 +3,31 @@
 <head>
 <meta charset="UTF-8" />
 <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-<title>TGPM Ministry</title>
-  <meta name="description" content="The God's Power Ministry - Prayer, Healing, Sermons, Faith and Deliverance.">
-<meta name="keywords" content="TGPM, The God's Power Ministry, Prayer, Healing, Sermons, Jesus Ministry India">
+
+<title>TGPM Ministry | The God's Power Ministry</title>
+
+<meta name="description" content="The God's Power Ministry - Prayer, Healing, Sermons, Faith and Deliverance through Jesus Christ.">
+<meta name="keywords" content="TGPM, The God's Power Ministry, Prayer, Healing, Sermons, Deliverance, Jesus Ministry India">
 <meta name="author" content="The God's Power Ministry">
 
+<meta property="og:title" content="The God's Power Ministry">
+<meta property="og:description" content="Prayer, Healing, Sermons, Faith and Deliverance through Jesus Christ.">
+<meta property="og:image" content="https://tgpm.co.in/images/logo-circle.png">
+<meta property="og:url" content="https://tgpm.co.in">
+<meta property="og:type" content="website">
+
+<link rel="icon" type="image/png" href="images/logo-circle.png">
+
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
 <link href="https://fonts.googleapis.com/css2?family=Cinzel:wght@500;700;900&family=Poppins:wght@300;500;600;700;800&display=swap" rel="stylesheet">
 
 <style>
 * { box-sizing: border-box; }
+
+html {
+  scroll-behavior: smooth;
+}
 
 html, body {
   margin: 0;
@@ -32,33 +48,29 @@ body {
   inset: 0;
   z-index: 0;
   background:
-    linear-gradient(rgba(0,0,0,0.10), rgba(0,0,0,0.35)),
+    linear-gradient(rgba(0,0,0,0.20), rgba(0,0,0,0.70)),
     url("images/home-bg.png") center center / cover no-repeat;
   overflow: hidden;
-  animation: cinematicBg 22s ease-in-out infinite alternate;
+  animation: cinematicBg 28s ease-in-out infinite alternate;
 }
 
 .background-overlay {
   position: absolute;
   inset: 0;
   background:
-    radial-gradient(circle at center, rgba(255,170,0,0.10), rgba(0,0,0,0.20) 45%, rgba(0,0,0,0.60) 100%),
-    linear-gradient(to bottom, rgba(0,0,0,0.14), rgba(0,0,0,0.45));
-  animation: goldenBreath 6s ease-in-out infinite;
+    radial-gradient(circle at center, rgba(255,190,70,0.10), rgba(0,0,0,0.25) 45%, rgba(0,0,0,0.75) 100%);
 }
 
-/* LIGHTNING */
 .lightning-flash {
   position: absolute;
   inset: 0;
-  background: rgba(255,220,90,0.55);
+  background: rgba(255,220,90,0.35);
   opacity: 0;
   mix-blend-mode: screen;
   pointer-events: none;
-  animation: lightningFlash 7s infinite;
+  animation: lightningFlash 12s infinite;
 }
 
-/* LAMP GLOW FIXED */
 .lamp-glow {
   position: absolute;
   left: 2.5%;
@@ -67,19 +79,14 @@ body {
   height: 34%;
   pointer-events: none;
   background:
-    radial-gradient(circle at 8% 18%, rgba(255,230,90,0.36), transparent 5%),
-    radial-gradient(circle at 21% 15%, rgba(255,220,70,0.36), transparent 5%),
-    radial-gradient(circle at 34% 13%, rgba(255,230,90,0.40), transparent 5%),
-    radial-gradient(circle at 48% 14%, rgba(255,220,70,0.36), transparent 5%),
-    radial-gradient(circle at 61% 16%, rgba(255,230,90,0.38), transparent 5%),
-    radial-gradient(circle at 74% 18%, rgba(255,220,70,0.32), transparent 5%),
-    radial-gradient(circle at 86% 21%, rgba(255,220,70,0.28), transparent 5%);
-  filter: blur(5px);
+    radial-gradient(circle at 8% 18%, rgba(255,230,90,0.30), transparent 5%),
+    radial-gradient(circle at 34% 13%, rgba(255,230,90,0.32), transparent 5%),
+    radial-gradient(circle at 61% 16%, rgba(255,230,90,0.28), transparent 5%);
+  filter: blur(6px);
   mix-blend-mode: screen;
-  animation: flameFlicker 0.24s infinite alternate;
+  animation: flameFlicker 0.5s infinite alternate;
 }
 
-/* DOVE GLOW */
 .dove-glow {
   position: absolute;
   right: 4%;
@@ -88,11 +95,10 @@ body {
   height: 58%;
   pointer-events: none;
   background:
-    radial-gradient(circle at 50% 50%, rgba(255,235,145,0.38), transparent 28%),
-    radial-gradient(circle at 50% 50%, rgba(255,150,0,0.18), transparent 48%);
-  filter: blur(10px);
+    radial-gradient(circle at 50% 50%, rgba(255,235,145,0.25), transparent 30%),
+    radial-gradient(circle at 50% 50%, rgba(255,150,0,0.12), transparent 50%);
+  filter: blur(14px);
   mix-blend-mode: screen;
-  animation: doveFloat 4.5s ease-in-out infinite;
 }
 
 /* HEADER */
@@ -101,12 +107,13 @@ header {
   top: 0;
   width: 100%;
   z-index: 1000;
-  background: transparent;
   padding: 8px 18px;
+  background: linear-gradient(to bottom, rgba(0,0,0,0.72), rgba(0,0,0,0.20));
+  backdrop-filter: blur(10px);
 }
 
 nav {
-  max-width: 1500px;
+  max-width: 1450px;
   margin: auto;
   display: flex;
   justify-content: space-between;
@@ -117,37 +124,36 @@ nav {
 .logo-area {
   display: flex;
   align-items: center;
-  gap: 4px;
+  gap: 8px;
 }
 
 .logo {
-  width: 82px;
-  height: 82px;
+  width: 70px;
+  height: 70px;
   border-radius: 50%;
   object-fit: cover;
-  filter: drop-shadow(0 0 14px rgba(255,190,40,0.9));
+  filter: drop-shadow(0 0 10px rgba(255,200,80,0.65));
 }
 
 .logo-text {
   font-family: 'Cinzel', serif;
-  font-size: 34px;
+  font-size: 30px;
   font-weight: 900;
-  margin-left: -4px;
   white-space: nowrap;
   color: #ffd76a;
-  text-shadow: 0 0 14px #ff9d00, 0 4px 14px #000;
+  text-shadow: 0 3px 14px #000;
 }
 
 .nav-links {
   display: flex;
-  gap: 30px;
+  gap: 28px;
   flex-wrap: wrap;
 }
 
 .nav-links a {
   color: #fff;
   text-decoration: none;
-  font-size: 17px;
+  font-size: 16px;
   font-weight: 700;
   transition: 0.3s;
   text-shadow: 0 0 8px #000;
@@ -155,19 +161,18 @@ nav {
 }
 
 .nav-links a:hover,
-.nav-links a:first-child {
+.nav-links a.active {
   color: #ffc83d;
 }
 
-.nav-links a:first-child::after {
+.nav-links a.active::after {
   content: "";
   position: absolute;
-  left: -12px;
-  right: -12px;
-  bottom: -12px;
+  left: -10px;
+  right: -10px;
+  bottom: -10px;
   height: 2px;
   background: linear-gradient(90deg, transparent, #ffc300, transparent);
-  box-shadow: 0 0 12px #ffb300;
 }
 
 /* HERO */
@@ -175,72 +180,104 @@ nav {
   position: relative;
   z-index: 10;
   min-height: 100vh;
-  padding-top: 96px;
+  padding: 105px 18px 40px;
   display: flex;
   align-items: center;
   justify-content: center;
   text-align: center;
-  overflow: hidden;
 }
 
 .hero-inner {
   width: 100%;
-  padding: 0 12px;
-  animation: heroFade 1.5s ease both;
+  max-width: 1100px;
+  animation: heroFade 1.2s ease both;
 }
 
 .hero-logo-wrap {
   position: relative;
   display: inline-block;
-  margin-bottom: -115px;
-  animation: slowFloat 5s ease-in-out infinite;
+  margin-bottom: -78px;
 }
 
 .hero-logo-wrap::after {
   content: "";
   position: absolute;
-  inset: -34px;
+  inset: -28px;
   border-radius: 50%;
-  background: radial-gradient(circle, rgba(255,205,70,0.38), rgba(255,150,0,0.12), transparent 72%);
+  background: radial-gradient(circle, rgba(255,205,70,0.25), rgba(255,150,0,0.10), transparent 72%);
   filter: blur(18px);
   z-index: -1;
 }
 
 .hero-logo {
-  width: clamp(190px, 24vw, 390px);
-  height: clamp(190px, 24vw, 390px);
+  width: clamp(185px, 23vw, 350px);
+  height: clamp(185px, 23vw, 350px);
   border-radius: 50%;
   object-fit: cover;
   display: block;
   margin: auto;
   box-shadow: 0 22px 55px rgba(0,0,0,0.82);
-  animation: logoZoom 8s ease-in-out infinite alternate;
-}
-
-.hero-title-box {
-  width: 100%;
-  overflow: visible;
-  padding: 0 10px;
-  animation: titleSlideUp 1.4s ease both;
-  animation-delay: 0.25s;
-  margin-top: -10px;
 }
 
 .hero-title-image {
-  width: min(95vw, 980px);
+  width: min(94vw, 920px);
   max-width: 100%;
   height: auto;
   display: block;
   margin: 0 auto;
-  filter: drop-shadow(0 0 14px rgba(255,170,0,0.65));
+  filter: drop-shadow(0 0 10px rgba(255,170,0,0.45));
+}
+
+.hero-subtitle {
+  color: #ffcc66;
+  font-size: clamp(16px, 2.5vw, 23px);
+  font-weight: 700;
+  letter-spacing: 1px;
+  margin: 14px auto 0;
+}
+
+.hero-message {
+  max-width: 760px;
+  margin: 14px auto 0;
+  color: #e8e8e8;
+  font-size: 17px;
+  line-height: 1.7;
+}
+
+.hero-buttons {
+  margin-top: 28px;
+  display: flex;
+  gap: 15px;
+  justify-content: center;
+  flex-wrap: wrap;
+}
+
+.hero-btn {
+  padding: 14px 30px;
+  background: linear-gradient(180deg, #ffd75b, #c98900);
+  color: #111;
+  border-radius: 35px;
+  text-decoration: none;
+  font-weight: 800;
+  transition: .3s;
+  box-shadow: 0 10px 28px rgba(0,0,0,.35);
+}
+
+.hero-btn:hover {
+  transform: translateY(-4px);
+}
+
+.hero-btn.secondary {
+  background: rgba(255,255,255,0.08);
+  color: #fff;
+  border: 1px solid rgba(255,204,102,0.65);
 }
 
 .scroll-cue {
-  margin-top: 18px;
-  font-size: 14px;
+  margin-top: 24px;
+  font-size: 13px;
   letter-spacing: 3px;
-  opacity: 0.8;
-  animation: cuePulse 2s ease-in-out infinite;
+  opacity: 0.75;
 }
 
 /* CONTENT */
@@ -251,15 +288,19 @@ nav {
 
 .section,
 .meeting-section {
-  padding: 90px 20px;
+  padding: 85px 20px;
   text-align: center;
-  background: rgba(0,0,0,0.68);
+  background: rgba(0,0,0,0.76);
   backdrop-filter: blur(6px);
+}
+
+.section.light-section {
+  background: rgba(10,10,10,0.82);
 }
 
 .section h2,
 .meeting-section h2 {
-  font-size: 38px;
+  font-size: clamp(30px, 4vw, 42px);
   margin-bottom: 10px;
   color: #ffd76a;
 }
@@ -267,9 +308,10 @@ nav {
 .section p,
 .meeting-section p {
   color: #d8d8d8;
-  max-width: 800px;
+  max-width: 850px;
   margin: 0 auto 25px;
-  line-height: 1.7;
+  line-height: 1.75;
+  font-size: 16px;
 }
 
 .cards,
@@ -278,27 +320,27 @@ nav {
   flex-wrap: wrap;
   justify-content: center;
   gap: 24px;
-  margin-top: 25px;
-  max-width: 1100px;
+  margin-top: 28px;
+  max-width: 1120px;
   margin-left: auto;
   margin-right: auto;
 }
 
 .card,
 .meeting-card {
-  width: 300px;
-  background: rgba(255,255,255,0.08);
-  border: 1px solid rgba(255,210,90,0.25);
-  border-radius: 18px;
-  padding: 28px 22px;
+  width: 310px;
+  background: rgba(255,255,255,0.07);
+  border: 1px solid rgba(255,210,90,0.22);
+  border-radius: 20px;
+  padding: 30px 22px;
   box-shadow: 0 10px 28px rgba(0,0,0,0.35);
   transition: 0.35s;
 }
 
 .card:hover,
 .meeting-card:hover {
-  transform: translateY(-8px);
-  background: rgba(255,190,40,0.13);
+  transform: translateY(-7px);
+  background: rgba(255,190,40,0.11);
 }
 
 .card h3,
@@ -313,7 +355,7 @@ nav {
 .meeting-card p {
   margin: 8px 0;
   color: #e5e5e5;
-  line-height: 1.6;
+  line-height: 1.65;
 }
 
 .today-date {
@@ -346,99 +388,108 @@ nav {
   border-radius: 30px;
   font-weight: 800;
   transition: 0.3s;
-  box-shadow: 0 0 20px rgba(255,190,30,0.55);
 }
 
 .btn:hover {
   transform: translateY(-3px);
 }
 
+/* TRUST SECTION */
+.trust-strip {
+  display: flex;
+  justify-content: center;
+  gap: 18px;
+  flex-wrap: wrap;
+  max-width: 1050px;
+  margin: 30px auto 0;
+}
+
+.trust-item {
+  padding: 14px 20px;
+  border-radius: 999px;
+  background: rgba(255,255,255,0.07);
+  border: 1px solid rgba(255,204,102,0.25);
+  color: #f3f3f3;
+  font-weight: 700;
+}
+
+/* WHATSAPP */
+.whatsapp-float {
+  position: fixed;
+  right: 18px;
+  bottom: 18px;
+  width: 58px;
+  height: 58px;
+  border-radius: 50%;
+  background: #25D366;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  color: white;
+  font-size: 30px;
+  text-decoration: none;
+  z-index: 9999;
+  box-shadow: 0 0 20px rgba(37,211,102,.6);
+}
+
+/* FOOTER */
 footer {
-  background: rgba(0,0,0,0.88);
+  background: rgba(0,0,0,0.92);
   color: #bbb;
   text-align: center;
-  padding: 22px 15px;
+  padding: 34px 15px;
   font-size: 14px;
+  border-top: 1px solid rgba(255,255,255,.08);
+}
+
+footer strong {
+  color: #ffd76a;
 }
 
 /* ANIMATIONS */
 @keyframes cinematicBg {
   from { transform: scale(1); }
-  to { transform: scale(1.06); }
-}
-
-@keyframes goldenBreath {
-  0%, 100% { opacity: 0.72; }
-  50% { opacity: 1; }
+  to { transform: scale(1.045); }
 }
 
 @keyframes lightningFlash {
-  0%, 88%, 100% { opacity: 0; }
-  90% { opacity: 0.48; }
-  91% { opacity: 0.06; }
-  92% { opacity: 0.65; }
-  94% { opacity: 0; }
+  0%, 94%, 100% { opacity: 0; }
+  95% { opacity: 0.35; }
+  96% { opacity: 0.04; }
+  97% { opacity: 0.42; }
+  98% { opacity: 0; }
 }
 
 @keyframes flameFlicker {
-  from { opacity: 0.45; transform: scale(1); }
-  to { opacity: 0.9; transform: scale(1.025) translateY(-3px); }
-}
-
-@keyframes doveFloat {
-  0%, 100% { transform: translateY(0) scale(1); opacity: 0.65; }
-  50% { transform: translateY(-12px) scale(1.025); opacity: 0.95; }
+  from { opacity: 0.35; transform: scale(1); }
+  to { opacity: 0.75; transform: scale(1.02) translateY(-2px); }
 }
 
 @keyframes heroFade {
-  from { opacity: 0; transform: translateY(28px); }
+  from { opacity: 0; transform: translateY(24px); }
   to { opacity: 1; transform: translateY(0); }
-}
-
-@keyframes logoZoom {
-  from { transform: scale(1); }
-  to { transform: scale(1.035); }
-}
-
-@keyframes slowFloat {
-  0%, 100% { transform: translateY(0); }
-  50% { transform: translateY(-8px); }
-}
-
-@keyframes titleSlideUp {
-  from { opacity: 0; transform: translateY(34px); }
-  to { opacity: 1; transform: translateY(0); }
-}
-
-@keyframes cuePulse {
-  0%, 100% { opacity: 0.35; transform: translateY(0); }
-  50% { opacity: 0.9; transform: translateY(6px); }
 }
 
 /* TABLET */
 @media (max-width: 1200px) {
   .logo {
-    width: 70px;
-    height: 70px;
+    width: 64px;
+    height: 64px;
   }
 
   .logo-text {
-    font-size: 29px;
+    font-size: 27px;
   }
 
   .hero-logo-wrap {
-    margin-bottom: -24px;
-  }
-
-  .hero-title-image {
-    width: min(94vw, 850px);
+    margin-bottom: -35px;
   }
 }
 
 /* MOBILE */
 @media (max-width: 768px) {
   header {
-    padding: 10px 14px;
+    padding: 10px 12px;
   }
 
   nav {
@@ -453,12 +504,12 @@ footer {
   }
 
   .logo {
-    width: 58px;
-    height: 58px;
+    width: 56px;
+    height: 56px;
   }
 
   .logo-text {
-    font-size: 24px;
+    font-size: 23px;
   }
 
   .nav-links {
@@ -473,39 +524,47 @@ footer {
     font-size: 14px;
   }
 
+  .nav-links a.active::after {
+    bottom: -5px;
+  }
+
   .hero {
-    min-height: 100vh;
-    padding-top: 170px;
-    padding-bottom: 25px;
+    padding-top: 165px;
+    padding-bottom: 40px;
   }
 
   .hero-logo {
-    width: 205px;
-    height: 205px;
+    width: 185px;
+    height: 185px;
   }
 
   .hero-logo-wrap {
-    margin-bottom: -12px;
+    margin-bottom: -16px;
   }
 
   .hero-title-image {
     width: 94vw;
   }
 
-  .scroll-cue {
-    font-size: 12px;
-    margin-top: 12px;
+  .hero-message {
+    font-size: 15px;
+    padding: 0 8px;
   }
 
-  .section h2,
-  .meeting-section h2 {
-    font-size: 30px;
+  .hero-btn {
+    width: 100%;
+    max-width: 320px;
+  }
+
+  .section,
+  .meeting-section {
+    padding: 60px 16px;
   }
 
   .card,
   .meeting-card {
     width: 100%;
-    max-width: 340px;
+    max-width: 350px;
   }
 
   .background-layer {
@@ -525,17 +584,23 @@ footer {
     width: 50%;
     height: 45%;
   }
+
+  .whatsapp-float {
+    width: 52px;
+    height: 52px;
+    font-size: 26px;
+  }
 }
 
 /* SMALL MOBILE */
 @media (max-width: 480px) {
   .logo {
-    width: 52px;
-    height: 52px;
+    width: 50px;
+    height: 50px;
   }
 
   .logo-text {
-    font-size: 21px;
+    font-size: 20px;
   }
 
   .nav-links a {
@@ -543,12 +608,12 @@ footer {
   }
 
   .hero {
-    padding-top: 165px;
+    padding-top: 160px;
   }
 
   .hero-logo {
-    width: 178px;
-    height: 178px;
+    width: 165px;
+    height: 165px;
   }
 
   .hero-logo-wrap {
@@ -559,32 +624,9 @@ footer {
     width: 96vw;
   }
 
-  .lamp-glow {
-    left: -6%;
-    top: 28%;
-    width: 48%;
-    height: 26%;
-  }
-
-  .dove-glow {
-    right: -10%;
-    top: 28%;
-    width: 58%;
-    height: 40%;
-  }
-}
-
-@media (max-width: 360px) {
-  .logo-text {
-    font-size: 19px;
-  }
-
-  .nav-links a {
-    font-size: 12px;
-  }
-
-  .hero-title-image {
-    width: 97vw;
+  .section h2,
+  .meeting-section h2 {
+    font-size: 28px;
   }
 }
 </style>
@@ -602,12 +644,12 @@ footer {
 <header>
   <nav>
     <div class="logo-area">
-      <img src="images/logo-circle.png" alt="TGPM Logo" class="logo">
+      <img src="images/logo-circle.png" alt="TGPM Logo" class="logo" loading="eager">
       <span class="logo-text">TGPM Ministry</span>
     </div>
 
     <div class="nav-links">
-      <a href="index.html">Home</a>
+      <a href="index.html" class="active">Home</a>
       <a href="about.html">About</a>
       <a href="sermons.html">Sermons</a>
       <a href="gallery.html">Gallery</a>
@@ -621,11 +663,23 @@ footer {
   <div class="hero-inner">
 
     <div class="hero-logo-wrap">
-      <img src="images/logo-circle.png" alt="TGPM Logo" class="hero-logo">
+      <img src="images/logo-circle.png" alt="TGPM Logo" class="hero-logo" loading="eager">
     </div>
 
     <div class="hero-title-box">
-      <img src="images/gold-title.png" alt="The God's Power Ministry" class="hero-title-image">
+      <img src="images/gold-title.png" alt="The God's Power Ministry" class="hero-title-image" loading="eager">
+    </div>
+
+    <p class="hero-subtitle">Healing • Prayer • Deliverance • Faith</p>
+
+    <p class="hero-message">
+      Spreading the love of Jesus Christ through prayer, biblical teaching,
+      healing ministry, and faith-filled worship.
+    </p>
+
+    <div class="hero-buttons">
+      <a href="sermons.html" class="hero-btn">▶ Watch Sermons</a>
+      <a href="prayer.html" class="hero-btn secondary">🙏 Prayer Request</a>
     </div>
 
     <div class="scroll-cue">SCROLL DOWN</div>
@@ -634,6 +688,7 @@ footer {
 </section>
 
 <div class="content-wrapper">
+
   <section class="section">
     <h2>Our Ministry</h2>
     <p>
@@ -659,6 +714,21 @@ footer {
     </div>
   </section>
 
+  <section class="section light-section">
+    <h2>Why Visit TGPM?</h2>
+    <p>
+      Receive spiritual encouragement, join prayer meetings, watch sermons,
+      and grow in faith through the Word of God.
+    </p>
+
+    <div class="trust-strip">
+      <div class="trust-item">✝ Christ-Centered</div>
+      <div class="trust-item">🙏 Prayer Support</div>
+      <div class="trust-item">📖 Bible Teaching</div>
+      <div class="trust-item">🎥 Online Sermons</div>
+    </div>
+  </section>
+
   <section class="meeting-section">
     <h2>Today's Google Meet Links</h2>
     <p>Daily prayer meetings with direct Google Meet joining links.</p>
@@ -669,9 +739,13 @@ footer {
   </section>
 
   <footer>
-    © 2026 TGPM Ministry | All Rights Reserved
+    <p><strong>The God's Power Ministry</strong></p>
+    <p>© 2026 TGPM Ministry | All Rights Reserved</p>
+    <p>Jesus is the only God ✝</p>
   </footer>
 </div>
+
+<a href="https://wa.me/917724953676" class="whatsapp-float" target="_blank" aria-label="Chat on WhatsApp">💬</a>
 
 <script>
 async function loadTodayMeetings() {
