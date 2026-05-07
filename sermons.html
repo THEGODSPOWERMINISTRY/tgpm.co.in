@@ -3,17 +3,29 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>Sermons - TGPM</title>
-<meta name="description" content="The God's Power Ministry - Prayer, Healing, Sermons, Faith and Deliverance.">
-<meta name="keywords" content="TGPM, The God's Power Ministry, Prayer, Healing, Sermons, Jesus Ministry India">
+
+<title>Sermons - TGPM | The God's Power Ministry</title>
+
+<meta name="description" content="Watch sermons from The God's Power Ministry - Prayer, Healing, Faith, Deliverance and biblical teaching through Jesus Christ.">
+<meta name="keywords" content="TGPM sermons, The God's Power Ministry, Christian sermons, prayer meeting, healing prayer, Jesus Ministry India">
 <meta name="author" content="The God's Power Ministry">
+
+<meta property="og:title" content="Sermons - The God's Power Ministry">
+<meta property="og:description" content="Watch powerful sermons, prayer meetings and teachings from TGPM.">
+<meta property="og:image" content="https://tgpm.co.in/images/logo-circle.png">
+<meta property="og:url" content="https://tgpm.co.in/sermons.html">
+<meta property="og:type" content="website">
+
+<link rel="icon" type="image/png" href="images/logo-circle.png">
+
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-<link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;600;700;800&display=swap" rel="stylesheet">
-<script src="https://cdn.jsdelivr.net/npm/particles.js"></script>
+<link href="https://fonts.googleapis.com/css2?family=Cinzel:wght@500;700;900&family=Poppins:wght@300;600;700;800&display=swap" rel="stylesheet">
 
 <style>
 *{box-sizing:border-box;}
+
+html{scroll-behavior:smooth;}
 
 body {
   margin:0;
@@ -23,50 +35,52 @@ body {
   overflow-x:hidden;
 }
 
+/* HEADER */
 header {
   position:fixed;
+  top:0;
   width:100%;
-  background:rgba(0,0,0,0.65);
-  padding:15px;
+  background:linear-gradient(to bottom, rgba(0,0,0,0.78), rgba(0,0,0,0.25));
+  padding:14px 18px;
   text-align:center;
   z-index:1000;
-  backdrop-filter:blur(8px);
+  backdrop-filter:blur(10px);
+}
+
+nav {
+  max-width:1300px;
+  margin:auto;
+  display:flex;
+  justify-content:center;
+  flex-wrap:wrap;
+  gap:24px;
 }
 
 nav a {
   color:white;
-  margin:15px;
   text-decoration:none;
   font-weight:700;
+  font-size:16px;
+  position:relative;
+  transition:0.3s;
 }
 
-nav a:hover { color:#ffcc66; }
-
-#loader {
-  position:fixed;
-  width:100%;
-  height:100%;
-  background:black;
-  display:flex;
-  justify-content:center;
-  align-items:center;
-  z-index:9999;
+nav a:hover,
+nav a.active {
   color:#ffcc66;
-  font-size:40px;
-  font-weight:800;
 }
 
-#transition {
-  position:fixed;
-  width:100%;
-  height:100%;
-  background:black;
-  z-index:9998;
-  transform:scaleY(0);
-  transform-origin:top;
-  transition:0.5s;
+nav a.active::after {
+  content:"";
+  position:absolute;
+  left:-10px;
+  right:-10px;
+  bottom:-10px;
+  height:2px;
+  background:linear-gradient(90deg, transparent, #ffcc66, transparent);
 }
 
+/* BACKGROUND */
 #particles-js {
   position:fixed;
   width:100%;
@@ -86,10 +100,39 @@ nav a:hover { color:#ffcc66; }
   position:fixed;
   width:100%;
   height:100%;
-  background:rgba(0,0,0,0.76);
+  background:
+    radial-gradient(circle at center, rgba(255,204,102,0.10), transparent 35%),
+    rgba(0,0,0,0.82);
   z-index:-1;
 }
 
+/* LOADER */
+#loader {
+  position:fixed;
+  width:100%;
+  height:100%;
+  background:black;
+  display:flex;
+  justify-content:center;
+  align-items:center;
+  z-index:9999;
+  color:#ffcc66;
+  font-size:36px;
+  font-weight:800;
+}
+
+#transition {
+  position:fixed;
+  width:100%;
+  height:100%;
+  background:black;
+  z-index:9998;
+  transform:scaleY(0);
+  transform-origin:top;
+  transition:0.5s;
+}
+
+/* MAIN */
 .container {
   min-height:100vh;
   text-align:center;
@@ -97,15 +140,15 @@ nav a:hover { color:#ffcc66; }
 }
 
 .daily-verse{
-  margin:20px auto 30px;
+  margin:20px auto 35px;
   width:90%;
   max-width:900px;
   padding:18px 25px;
-  border-radius:18px;
-  background:linear-gradient(135deg,rgba(255,174,43,.25),rgba(255,255,255,.08));
-  border:1px solid rgba(255,174,43,.7);
-  box-shadow:0 0 30px rgba(255,174,43,.4);
-  animation:verseGlow 1.8s infinite alternate;
+  border-radius:20px;
+  background:rgba(255,255,255,.09);
+  border:1px solid rgba(255,204,102,.35);
+  box-shadow:0 18px 45px rgba(0,0,0,.35);
+  backdrop-filter:blur(12px);
 }
 
 .daily-verse span{
@@ -116,53 +159,55 @@ nav a:hover { color:#ffcc66; }
 
 .daily-verse p{
   color:#fff;
-  font-size:clamp(17px,3vw,25px);
+  font-size:clamp(17px,3vw,24px);
   font-weight:700;
-}
-
-@keyframes verseGlow{
-  from{box-shadow:0 0 15px rgba(255,174,43,.25);}
-  to{box-shadow:0 0 42px rgba(255,174,43,.75);}
+  line-height:1.5;
 }
 
 h1 {
+  font-family:'Cinzel', serif;
   color:#ffcc66;
-  font-size:clamp(32px,5vw,56px);
+  font-size:clamp(34px,5vw,58px);
   margin-bottom:10px;
 }
 
 .subtitle {
   color:#ddd;
   font-size:18px;
+  max-width:720px;
+  margin:0 auto;
 }
 
 .btn {
   display:inline-block;
-  margin-top:20px;
-  padding:15px 30px;
-  font-size:18px;
-  background:#d90000;
+  margin-top:22px;
+  padding:15px 32px;
+  font-size:17px;
+  background:linear-gradient(180deg,#ff3b3b,#b60000);
   color:white;
   text-decoration:none;
-  border-radius:30px;
+  border-radius:35px;
   transition:0.3s;
-  font-weight:700;
+  font-weight:800;
+  box-shadow:0 12px 28px rgba(0,0,0,.35);
 }
 
 .btn:hover {
-  background:orange;
-  transform:scale(1.05);
+  transform:translateY(-4px);
+  background:linear-gradient(180deg,#ffcc66,#c98900);
+  color:#111;
 }
 
+/* SERMON SECTION */
 .sermon-section {
-  margin:45px auto 0;
+  margin:50px auto 0;
   width:95%;
   max-width:1200px;
 }
 
 .sermon-title {
   color:#ffcc66;
-  font-size:34px;
+  font-size:clamp(28px,4vw,38px);
   margin-bottom:10px;
 }
 
@@ -177,15 +222,16 @@ h1 {
   padding:25px;
 }
 
+/* LATEST */
 .latest-sermon-box {
-  margin:35px auto 40px;
+  margin:35px auto 42px;
   width:95%;
   max-width:950px;
-  padding:20px;
-  border-radius:22px;
-  background:rgba(255,255,255,0.10);
-  border:2px solid rgba(255,204,102,0.65);
-  box-shadow:0 0 42px rgba(255,174,43,0.35);
+  padding:22px;
+  border-radius:24px;
+  background:rgba(255,255,255,0.09);
+  border:1px solid rgba(255,204,102,0.35);
+  box-shadow:0 18px 45px rgba(0,0,0,0.45);
   backdrop-filter:blur(14px);
 }
 
@@ -198,10 +244,10 @@ h1 {
   display:block;
   width:100%;
   height:460px;
-  border-radius:18px;
+  border-radius:20px;
   overflow:hidden;
   background:#000;
-  border:1px solid rgba(255,204,102,0.65);
+  border:1px solid rgba(255,204,102,0.35);
   position:relative;
   text-decoration:none;
 }
@@ -220,6 +266,7 @@ h1 {
   opacity:1;
 }
 
+/* THUMBNAILS */
 .thumbnail-box {
   display:block;
   width:100%;
@@ -247,7 +294,7 @@ h1 {
 .thumb-overlay {
   position:absolute;
   inset:0;
-  background:linear-gradient(to top,rgba(0,0,0,.65),rgba(0,0,0,.05));
+  background:linear-gradient(to top,rgba(0,0,0,.72),rgba(0,0,0,.08));
 }
 
 .play-small,
@@ -285,12 +332,7 @@ h1 {
   transform:translate(-50%,-50%) scale(1.08);
 }
 
-.latest-sermon-box h3 {
-  color:#fff;
-  font-size:18px;
-  word-break:break-word;
-}
-
+/* FILTERS */
 .filter-buttons {
   margin:30px auto;
   display:flex;
@@ -301,8 +343,8 @@ h1 {
 
 .filter-buttons button {
   padding:10px 20px;
-  border:1px solid #ffcc66;
-  background:rgba(255,204,102,0.15);
+  border:1px solid rgba(255,204,102,.65);
+  background:rgba(255,204,102,0.12);
   color:#fff;
   border-radius:25px;
   cursor:pointer;
@@ -316,6 +358,7 @@ h1 {
   color:#111;
 }
 
+/* GRID */
 .sermon-grid {
   display:grid;
   grid-template-columns:repeat(auto-fit, minmax(280px, 1fr));
@@ -323,18 +366,18 @@ h1 {
 }
 
 .sermon-card {
-  background:rgba(255,255,255,0.10);
-  border:1px solid rgba(255,204,102,0.45);
-  border-radius:18px;
+  background:rgba(255,255,255,0.09);
+  border:1px solid rgba(255,204,102,0.28);
+  border-radius:20px;
   overflow:hidden;
-  box-shadow:0 0 25px rgba(255,174,43,0.22);
-  backdrop-filter:blur(14px);
+  box-shadow:0 18px 40px rgba(0,0,0,0.38);
+  backdrop-filter:blur(12px);
   transition:0.35s;
 }
 
 .sermon-card:hover {
   transform:translateY(-8px);
-  box-shadow:0 0 40px rgba(255,174,43,0.45);
+  background:rgba(255,204,102,0.10);
 }
 
 .sermon-info {
@@ -351,13 +394,13 @@ h1 {
   font-size:12px;
   font-weight:800;
   margin-bottom:8px;
-  box-shadow:0 0 15px rgba(255,0,0,0.65);
+  box-shadow:0 0 15px rgba(255,0,0,0.55);
 }
 
 .category-badge {
   display:inline-block;
-  background:rgba(255,204,102,0.18);
-  border:1px solid rgba(255,204,102,0.55);
+  background:rgba(255,204,102,0.16);
+  border:1px solid rgba(255,204,102,0.45);
   color:#ffcc66;
   padding:5px 11px;
   border-radius:20px;
@@ -384,29 +427,33 @@ h1 {
 .open-drive {
   display:inline-block;
   margin-top:14px;
-  color:#fff;
-  background:rgba(255,174,43,0.25);
-  border:1px solid rgba(255,204,102,0.5);
-  padding:9px 15px;
-  border-radius:20px;
+  color:#111;
+  background:#ffcc66;
+  padding:10px 16px;
+  border-radius:22px;
   text-decoration:none;
   font-size:13px;
+  font-weight:800;
 }
 
 .open-drive:hover {
-  background:#ffcc66;
-  color:#111;
+  background:white;
 }
 
+/* YOUTUBE */
 .youtube-card {
-  margin:45px auto 0;
+  margin:50px auto 0;
   width:90%;
   max-width:800px;
-  border-radius:18px;
-  background:rgba(255,255,255,0.1);
-  border:1px solid rgba(255,255,255,0.25);
+  border-radius:22px;
+  background:rgba(255,255,255,0.09);
+  border:1px solid rgba(255,255,255,0.18);
   backdrop-filter:blur(14px);
-  padding:30px;
+  padding:34px 24px;
+}
+
+.youtube-card h2 {
+  color:#ffcc66;
 }
 
 .youtube-btn {
@@ -417,11 +464,46 @@ h1 {
   color:white;
   text-decoration:none;
   border-radius:35px;
-  font-weight:700;
+  font-weight:800;
 }
 
+/* FOOTER */
+footer {
+  margin-top:60px;
+  background:rgba(0,0,0,0.92);
+  color:#bbb;
+  text-align:center;
+  padding:34px 15px;
+  font-size:14px;
+  border-top:1px solid rgba(255,255,255,.08);
+}
+
+footer strong {
+  color:#ffd76a;
+}
+
+/* WHATSAPP */
+.whatsapp-float {
+  position:fixed;
+  right:18px;
+  bottom:18px;
+  width:58px;
+  height:58px;
+  border-radius:50%;
+  background:#25D366;
+  display:flex;
+  justify-content:center;
+  align-items:center;
+  color:white;
+  font-size:30px;
+  text-decoration:none;
+  z-index:9999;
+  box-shadow:0 0 20px rgba(37,211,102,.6);
+}
+
+/* MOBILE */
 @media(max-width:768px){
-  header { padding:12px 5px; }
+  header { padding:12px 8px; }
 
   nav {
     display:grid;
@@ -434,7 +516,16 @@ h1 {
     font-size:14px;
   }
 
-  .container { padding-top:135px; }
+  nav a.active::after {
+    bottom:-5px;
+  }
+
+  .container { padding:120px 14px 50px; }
+
+  .daily-verse {
+    width:100%;
+    padding:16px;
+  }
 
   .thumbnail-box { height:210px; }
 
@@ -452,6 +543,18 @@ h1 {
     opacity:1;
     transform:translate(-50%,-50%) scale(1);
   }
+
+  .btn,
+  .youtube-btn {
+    width:100%;
+    max-width:330px;
+  }
+
+  .whatsapp-float {
+    width:52px;
+    height:52px;
+    font-size:26px;
+  }
 }
 </style>
 </head>
@@ -466,7 +569,7 @@ h1 {
 <nav>
 <a href="index.html">Home</a>
 <a href="about.html">About</a>
-<a href="sermons.html">Sermons</a>
+<a href="sermons.html" class="active">Sermons</a>
 <a href="gallery.html">Gallery</a>
 <a href="prayer.html">Prayer</a>
 <a href="contact.html">Contact</a>
@@ -486,8 +589,8 @@ h1 {
     <p id="dailyVerse">लोड हो रहा है...</p>
   </div>
 
-  <h1>📖 Watch Our Sermons</h1>
-  <p class="subtitle">Be blessed by the Word of God</p>
+  <h1>Watch Our Sermons</h1>
+  <p class="subtitle">Be blessed through the Word of God, prayer, worship and faith-filled teaching.</p>
 
   <a href="https://www.youtube.com/@TheGodsPowerMinistrySD/videos" target="_blank" class="btn">
     ▶ Watch All Sermons on YouTube
@@ -495,7 +598,7 @@ h1 {
 
   <section class="sermon-section">
     <h2 class="sermon-title">Latest Google Meet Recordings</h2>
-    <p class="sermon-note">Fast thumbnail view — video opens only after clicking</p>
+    <p class="sermon-note">Fast thumbnail view — videos open only after clicking.</p>
 
     <div id="latestSermonBox"></div>
 
@@ -512,13 +615,21 @@ h1 {
 
   <div class="youtube-card">
     <h2>More Sermons on YouTube</h2>
-    <p>Visit our YouTube channel for more messages and worship videos.</p>
+    <p>Visit our YouTube channel for more messages, worship videos and spiritual teachings.</p>
     <a href="https://www.youtube.com/@TheGodsPowerMinistrySD/videos" target="_blank" class="youtube-btn">
       ▶ Open Sermons
     </a>
   </div>
 
+  <footer>
+    <p><strong>The God's Power Ministry</strong></p>
+    <p>© 2026 TGPM Ministry | All Rights Reserved</p>
+    <p>Jesus is the only God ✝</p>
+  </footer>
+
 </div>
+
+<a href="https://wa.me/917724953676" class="whatsapp-float" target="_blank" aria-label="Chat on WhatsApp">💬</a>
 
 <script>
 const API_KEY = "AIzaSyCW_XSdKfIDC7xVUszUkak_YCxYCmLD0Ns";
@@ -531,7 +642,7 @@ function hideLoader() {
 }
 
 window.addEventListener("load", hideLoader);
-setTimeout(hideLoader, 2000);
+setTimeout(hideLoader, 1800);
 
 document.querySelectorAll("a").forEach(link => {
   link.addEventListener("click", function(e){
@@ -546,10 +657,10 @@ document.querySelectorAll("a").forEach(link => {
 if (window.particlesJS) {
   particlesJS("particles-js", {
     particles:{
-      number:{value:55},
+      number:{value:35},
       color:{value:"#ffcc66"},
-      size:{value:3},
-      move:{speed:2}
+      size:{value:2},
+      move:{speed:1.4}
     }
   });
 }
@@ -598,7 +709,7 @@ function getThumbnail(file) {
   if (file.thumbnailLink) {
     return file.thumbnailLink.replace("=s220", "=s800");
   }
-  return "images/sermon-thumbnail.jpg";
+  return "images/sermon-thumbnail.png";
 }
 
 async function loadDriveSermons() {
@@ -651,7 +762,7 @@ function showLatestSermon(file) {
       <h2>🔥 Latest Sermon</h2>
 
       <a href="https://drive.google.com/file/d/${file.id}/view" target="_blank" class="latest-thumb">
-        <img src="${thumb}" alt="${file.name}" loading="lazy" onerror="this.src='images/sermon-thumbnail.jpg'">
+        <img src="${thumb}" alt="${file.name}" loading="lazy" onerror="this.src='images/sermon-thumbnail.png'">
         <div class="thumb-overlay"></div>
         <div class="play-center">▶</div>
       </a>
