@@ -186,41 +186,172 @@ nav a.active::after{
   color:#ddd;
 }
 
-/* BUTTONS */
+/* PREMIUM BUTTON GROUP */
 .button-group{
-  margin-top:28px;
-  display:flex;
-  flex-wrap:wrap;
-  gap:16px;
+  margin-top:30px;
+  display:grid;
+  grid-template-columns:1fr 1fr;
+  gap:20px;
 }
 
+/* PREMIUM BUTTONS */
 .btn{
-  flex:1;
-  min-width:180px;
-  padding:16px 20px;
-  border-radius:16px;
-  text-decoration:none;
+  position:relative;
+  overflow:hidden;
+
+  display:flex;
+  align-items:center;
+  justify-content:flex-start;
+  gap:18px;
+
+  min-height:118px;
+  padding:22px 24px;
+  border-radius:26px;
+
   color:white;
-  font-weight:700;
-  text-align:center;
-  transition:.35s;
-}
+  text-decoration:none;
+  font-size:20px;
+  font-weight:800;
+  text-align:left;
 
-.call-btn{
-  background:linear-gradient(135deg,#1a8cff,#0057e7);
-}
+  transition:.35s ease;
 
-.whatsapp-btn{
-  background:linear-gradient(135deg,#25D366,#0ea94a);
+  border:1px solid rgba(255,255,255,.18);
+
+  box-shadow:
+    inset 0 1px 1px rgba(255,255,255,.25),
+    inset 0 -5px 10px rgba(0,0,0,.28),
+    0 16px 30px rgba(0,0,0,.50);
+
+  backdrop-filter:blur(12px);
 }
 
 .email-btn{
-  background:linear-gradient(135deg,#ff7b35,#ff3d00);
+  grid-column:1 / -1;
+}
+
+/* round icon inside button */
+.btn-icon{
+  min-width:64px;
+  width:64px;
+  height:64px;
+  border-radius:50%;
+  display:flex;
+  justify-content:center;
+  align-items:center;
+  font-size:30px;
+  background:rgba(255,255,255,.14);
+  box-shadow:
+    inset 0 2px 4px rgba(255,255,255,.35),
+    inset 0 -4px 8px rgba(0,0,0,.28),
+    0 0 22px rgba(255,255,255,.28);
+}
+
+.btn-text{
+  display:flex;
+  flex-direction:column;
+  line-height:1.3;
+}
+
+.btn-title{
+  font-size:24px;
+  font-weight:800;
+}
+
+.btn-sub{
+  font-size:14px;
+  font-weight:500;
+  color:rgba(255,255,255,.75);
+  margin-top:5px;
+}
+
+.btn-arrow{
+  margin-left:auto;
+  width:38px;
+  height:38px;
+  border-radius:50%;
+  display:flex;
+  justify-content:center;
+  align-items:center;
+  background:rgba(255,255,255,.12);
+  border:1px solid rgba(255,255,255,.25);
+  font-size:24px;
+}
+
+/* SHINE EFFECT */
+.btn::before{
+  content:"";
+  position:absolute;
+  top:-120%;
+  left:-45%;
+  width:55%;
+  height:300%;
+  background:linear-gradient(120deg, transparent, rgba(255,255,255,.38), transparent);
+  transform:rotate(25deg);
+  transition:.8s;
+}
+
+.btn:hover::before{
+  left:125%;
 }
 
 .btn:hover{
-  transform:translateY(-4px);
-  box-shadow:0 0 25px rgba(255,255,255,.15);
+  transform:translateY(-7px) scale(1.02);
+}
+
+.btn:active{
+  transform:translateY(2px);
+}
+
+/* CALL */
+.call-btn{
+  background:linear-gradient(145deg,#1e90ff,#004bc9);
+  box-shadow:
+    0 0 24px rgba(30,144,255,.42),
+    0 16px 35px rgba(0,0,0,.50),
+    inset 0 1px 1px rgba(255,255,255,.28),
+    inset 0 -5px 10px rgba(0,0,0,.25);
+}
+
+.call-btn .btn-icon{
+  box-shadow:
+    0 0 26px rgba(30,144,255,.9),
+    inset 0 2px 4px rgba(255,255,255,.35),
+    inset 0 -4px 8px rgba(0,0,0,.28);
+}
+
+/* WHATSAPP */
+.whatsapp-btn{
+  background:linear-gradient(145deg,#2ee86d,#079640);
+  box-shadow:
+    0 0 24px rgba(46,232,109,.42),
+    0 16px 35px rgba(0,0,0,.50),
+    inset 0 1px 1px rgba(255,255,255,.28),
+    inset 0 -5px 10px rgba(0,0,0,.25);
+}
+
+.whatsapp-btn .btn-icon{
+  box-shadow:
+    0 0 26px rgba(46,232,109,.9),
+    inset 0 2px 4px rgba(255,255,255,.35),
+    inset 0 -4px 8px rgba(0,0,0,.28);
+}
+
+/* EMAIL */
+.email-btn{
+  background:linear-gradient(145deg,#ff8a2b,#ff3d00);
+  box-shadow:
+    0 0 24px rgba(255,138,43,.42),
+    0 16px 35px rgba(0,0,0,.50),
+    inset 0 1px 1px rgba(255,255,255,.28),
+    inset 0 -5px 10px rgba(0,0,0,.25);
+}
+
+.email-btn .btn-icon{
+  box-shadow:
+    0 0 26px rgba(255,138,43,.9),
+    inset 0 2px 4px rgba(255,255,255,.35),
+    inset 0 -4px 8px rgba(0,0,0,.28);
 }
 
 /* RIGHT */
@@ -251,6 +382,7 @@ nav a.active::after{
   justify-content:space-between;
   padding:16px 0;
   border-bottom:1px solid rgba(255,255,255,.08);
+  gap:18px;
 }
 
 .service-item:last-child{
@@ -265,6 +397,7 @@ nav a.active::after{
 .service-time{
   color:#ffcc66;
   font-weight:700;
+  white-space:nowrap;
 }
 
 /* MAP */
@@ -334,11 +467,31 @@ footer strong{
   }
 
   .button-group{
-    flex-direction:column;
+    grid-template-columns:1fr;
+  }
+
+  .email-btn{
+    grid-column:auto;
   }
 
   .btn{
-    min-width:100%;
+    min-height:105px;
+    padding:20px;
+  }
+
+  .btn-title{
+    font-size:21px;
+  }
+
+  .btn-sub{
+    font-size:13px;
+  }
+
+  .btn-icon{
+    min-width:56px;
+    width:56px;
+    height:56px;
+    font-size:26px;
   }
 
   .service-box h2{
@@ -347,6 +500,16 @@ footer strong{
 
   .contact-card{
     align-items:flex-start;
+  }
+}
+
+@media(max-width:420px){
+  .btn{
+    gap:12px;
+  }
+
+  .btn-arrow{
+    display:none;
   }
 }
 
@@ -366,7 +529,6 @@ footer strong{
   </nav>
 </header>
 
-<!-- VIDEO -->
 <video autoplay muted loop playsinline class="bg-video">
   <source src="videos/contact.mp4" type="video/mp4">
 </video>
@@ -377,7 +539,6 @@ footer strong{
 
   <div class="contact-wrapper">
 
-    <!-- LEFT -->
     <div class="contact-info">
 
       <h1>Contact Us</h1>
@@ -418,22 +579,36 @@ footer strong{
       <div class="button-group">
 
         <a href="tel:+917724953676" class="btn call-btn">
-          📞 Call Now
+          <span class="btn-icon">📞</span>
+          <span class="btn-text">
+            <span class="btn-title">Call Now</span>
+            <span class="btn-sub">Speak with our team</span>
+          </span>
+          <span class="btn-arrow">›</span>
         </a>
 
         <a href="https://wa.me/917724953676" target="_blank" class="btn whatsapp-btn">
-          💬 WhatsApp
+          <span class="btn-icon">💬</span>
+          <span class="btn-text">
+            <span class="btn-title">WhatsApp</span>
+            <span class="btn-sub">Chat with us directly</span>
+          </span>
+          <span class="btn-arrow">›</span>
         </a>
 
         <a href="mailto:thegodspowerministry@gmail.com" class="btn email-btn">
-          📧 Email
+          <span class="btn-icon">📧</span>
+          <span class="btn-text">
+            <span class="btn-title">Email</span>
+            <span class="btn-sub">Send us your message</span>
+          </span>
+          <span class="btn-arrow">›</span>
         </a>
 
       </div>
 
     </div>
 
-    <!-- RIGHT -->
     <div class="contact-side">
 
       <div class="service-box">
