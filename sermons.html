@@ -538,83 +538,94 @@ function cleanupDriveRequest(){
 }
 
 /* LOAD RECORDINGS FROM ALL ACCESSIBLE DRIVE LOCATIONS */
-function loadDriveSermons(){
-  cleanupDriveRequest();
-
-  driveFinished = false;
-  driveCallbackName = "tgpmDriveCallback_" +
-    Date.now() + "_" + Math.floor(Math.random()*100000);
-
-  driveScript = document.createElement("script");
-
+function loadDriveSermons(attempt = 1) {
   const loading = document.getElementById("driveLoading");
   const grid = document.getElementById("sermonGrid");
   const latest = document.getElementById("latestSermonBox");
 
   loading.className = "loading";
-  loading.textContent = "Loading Google Drive recordings...";
+  loading.textContent =
+    "Connecting to Google Drive (attempt " + attempt + " of 3)...";
   loading.style.display = "block";
-  grid.innerHTML = "";
-  latest.innerHTML = "";
 
-  driveTimeout = setTimeout(function(){
-    cleanupDriveRequest();
-    showDriveError(
-      "The Google Drive service timed out. Check the Apps Script deployment and internet connection."
-    );
-  },25000);
+  if (attempt === 1) {
+    grid.innerHTML = "";
+    latest.innerHTML = "";
+  }
 
-  window[driveCallbackName] = function(data){
-    if(driveFinished) return;
-    cleanupDriveRequest();
+  const callbackName =
+    "tgpmCallback" + Date.now() + Math.floor(Math.random() * 100000);
 
-    if(!data || !Array.isArray(data.files)){
+  const script = document.createElement("script");
+  let completed = false;
+
+  function cleanup() {
+    if (completed) return;
+    completed = true;
+    clearTimeout(timer);
+    delete window[callbackName];
+    script.remove();
+  }
+
+  function retryOrFail() {
+    cleanup();
+
+    if (attempt < 3) {
+      setTimeout(function () {
+        loadDriveSermons(attempt + 1);
+      }, 1500);
+    } else {
       showDriveError(
-        "Google Drive responded, but the video list format is invalid."
+        "Google Drive did not respond after three attempts. Please retry. Your sermon design is unaffected."
       );
+    }
+  }
+
+  const timer = setTimeout(retryOrFail, 15000);
+
+  window[callbackName] = function (data) {
+    if (completed) return;
+
+    cleanup();
+
+    if (!data || !Array.isArray(data.files)) {
+      showDriveError("The Google Drive response was invalid.");
       return;
     }
 
-    allSermons = data.files.filter(function(file){
+    allSermons = data.files.filter(function (file) {
       return file &&
         file.id &&
         file.name &&
         typeof file.mimeType === "string" &&
-        file.mimeType.indexOf("video/") === 0;
+        file.mimeType.startsWith("video/");
     });
 
-    allSermons.sort(function(a,b){
-      return new Date(b.createdTime).getTime() -
-             new Date(a.createdTime).getTime();
+    allSermons.sort(function (a, b) {
+      return new Date(b.createdTime) - new Date(a.createdTime);
     });
 
-    if(allSermons.length === 0){
+    if (!allSermons.length) {
       loading.className = "error-message";
       loading.textContent =
-        "No videos were returned. Check that the Apps Script has permission to access the recordings.";
+        "No videos were returned. Check your Drive permissions.";
       return;
     }
 
     loading.style.display = "none";
-    loading.className = "loading";
-
     showLatestSermon(allSermons[0]);
     renderSermons(currentFilter);
   };
 
-  driveScript.onerror = function(){
-    cleanupDriveRequest();
-    showDriveError(
-      "Unable to connect to the Google Drive service. Check the deployment URL and web app access settings."
-    );
-  };
+  script.onerror = retryOrFail;
 
-  driveScript.src = DRIVE_SERVICE_URL +
-    "?callback=" + encodeURIComponent(driveCallbackName) +
-    "&_=" + Date.now();
+  script.src = DRIVE_SERVICE_URL +
+    "?callback=" + encodeURIComponent(callbackName) +
+    "&cache=" + Date.now();
 
-  document.body.appendChild(driveScript);
+  document.body.appendChild(script);
 }
+
 
 /* LATEST SERMON */
 function showLatestSermon(file){
