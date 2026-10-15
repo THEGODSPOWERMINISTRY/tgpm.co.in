@@ -6,12 +6,12 @@
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 
 <title>Sermons - TGPM | The God's Power Ministry</title>
-<meta name="description" content="Watch sermons from The God's Power Ministry - Prayer, Healing, Faith, Deliverance and biblical teaching through Jesus Christ.">
-<meta name="keywords" content="TGPM sermons, The God's Power Ministry, Christian sermons, prayer meeting, healing prayer, Jesus Ministry India">
+<meta name="description" content="Watch sermons from The God's Power Ministry - prayer, healing, faith and biblical teaching through Jesus Christ.">
+<meta name="keywords" content="TGPM sermons, God's Power Ministry, Christian sermons, prayer meeting, healing prayer, Jesus Ministry India">
 <meta name="author" content="The God's Power Ministry">
 
 <meta property="og:title" content="Sermons - The God's Power Ministry">
-<meta property="og:description" content="Watch powerful sermons, prayer meetings and teachings from TGPM.">
+<meta property="og:description" content="Watch sermons, prayer meetings and teachings from TGPM.">
 <meta property="og:image" content="https://tgpm.co.in/images/logo-circle.png">
 <meta property="og:url" content="https://tgpm.co.in/sermons.html">
 <meta property="og:type" content="website">
@@ -19,87 +19,251 @@
 <link rel="icon" type="image/png" href="images/logo-circle.png">
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-<link href="https://fonts.googleapis.com/css2?family=Cinzel:wght@500;700;900&family=Poppins:wght@300;600;700;800&display=swap" rel="stylesheet">
+<link href="https://fonts.googleapis.com/css2?family=Cinzel:wght@500;700;900&family=Poppins:wght@300;400;600;700;800&display=swap" rel="stylesheet">
 
 <style>
 *{box-sizing:border-box}
 html{scroll-behavior:smooth}
-body{margin:0;font-family:'Poppins',sans-serif;color:white;background:#000;overflow-x:hidden}
-
-header{
- position:fixed;top:0;width:100%;
- background:linear-gradient(to bottom,rgba(0,0,0,.78),rgba(0,0,0,.25));
- padding:14px 18px;text-align:center;z-index:1000;backdrop-filter:blur(10px)
+body{
+ margin:0;background:#000;color:#fff;
+ font-family:'Poppins',sans-serif;overflow-x:hidden
 }
-nav{max-width:1300px;margin:auto;display:flex;justify-content:center;flex-wrap:wrap;gap:24px}
-nav a{color:white;text-decoration:none;font-weight:700;font-size:16px;position:relative;transition:.3s}
+
+/* HEADER */
+header{
+ position:fixed;top:0;left:0;width:100%;
+ background:linear-gradient(to bottom,rgba(0,0,0,.88),rgba(0,0,0,.45));
+ padding:14px 18px;text-align:center;z-index:1000;
+ backdrop-filter:blur(10px)
+}
+nav{
+ max-width:1300px;margin:auto;display:flex;
+ justify-content:center;flex-wrap:wrap;gap:24px
+}
+nav a{
+ color:#fff;text-decoration:none;font-weight:700;
+ font-size:16px;position:relative;transition:.3s
+}
 nav a:hover,nav a.active{color:#ffcc66}
-nav a.active::after{content:"";position:absolute;left:-10px;right:-10px;bottom:-10px;height:2px;background:linear-gradient(90deg,transparent,#ffcc66,transparent)}
+nav a.active:after{
+ content:"";position:absolute;left:-10px;right:-10px;
+ bottom:-10px;height:2px;
+ background:linear-gradient(90deg,transparent,#ffcc66,transparent)
+}
 
-#particles-js{position:fixed;width:100%;height:100%;z-index:-3}
-.bg-video{position:fixed;width:100%;height:100%;object-fit:cover;z-index:-2}
-.overlay{position:fixed;width:100%;height:100%;background:radial-gradient(circle at center,rgba(255,204,102,.10),transparent 35%),rgba(0,0,0,.82);z-index:-1}
+/* BACKGROUND */
+#particles-js{position:fixed;inset:0;z-index:-3;pointer-events:none}
+.bg-video{
+ position:fixed;inset:0;width:100%;height:100%;
+ object-fit:cover;z-index:-2;pointer-events:none
+}
+.overlay{
+ position:fixed;inset:0;
+ background:
+ radial-gradient(circle at center,rgba(255,204,102,.10),transparent 35%),
+ rgba(0,0,0,.82);
+ z-index:-1;pointer-events:none
+}
 
-#loader{position:fixed;inset:0;background:black;display:flex;justify-content:center;align-items:center;z-index:9999;color:#ffcc66;font-size:36px;font-weight:800}
-#transition{position:fixed;inset:0;background:black;z-index:9998;transform:scaleY(0);transform-origin:top;transition:.5s}
+/* LOADER */
+#loader{
+ position:fixed;inset:0;background:#000;
+ display:flex;align-items:center;justify-content:center;
+ color:#ffcc66;font-size:32px;font-weight:800;
+ z-index:99999;transition:opacity .3s ease
+}
+#loader.hidden{opacity:0;pointer-events:none}
+#transition{
+ position:fixed;inset:0;background:#000;z-index:9998;
+ transform:scaleY(0);transform-origin:top;transition:.5s;
+ pointer-events:none
+}
 
-.container{min-height:100vh;text-align:center;padding:120px 20px 70px}
-.daily-verse{margin:20px auto 35px;width:90%;max-width:900px;padding:18px 25px;border-radius:20px;background:rgba(255,255,255,.09);border:1px solid rgba(255,204,102,.35);box-shadow:0 18px 45px rgba(0,0,0,.35);backdrop-filter:blur(12px)}
-.daily-verse span{color:#ffcc66;font-weight:800;font-size:18px}
-.daily-verse p{color:#fff;font-size:clamp(17px,3vw,24px);font-weight:700;line-height:1.5}
-h1{font-family:'Cinzel',serif;color:#ffcc66;font-size:clamp(34px,5vw,58px);margin-bottom:10px}
+/* MAIN */
+.container{
+ min-height:100vh;text-align:center;
+ padding:120px 20px 70px
+}
+.daily-verse{
+ margin:20px auto 35px;width:90%;max-width:900px;
+ padding:18px 25px;border-radius:20px;
+ background:rgba(255,255,255,.09);
+ border:1px solid rgba(255,204,102,.35);
+ box-shadow:0 18px 45px rgba(0,0,0,.35);
+ backdrop-filter:blur(12px)
+}
+.daily-verse-label{color:#ffcc66;font-weight:800;font-size:18px}
+#dailyVerse{
+ color:#fff;font-size:clamp(17px,3vw,24px);
+ font-weight:700;line-height:1.6
+}
+.verse-reference{display:block;color:#ffcc66;margin-top:8px}
+h1{
+ font-family:'Cinzel',serif;color:#ffcc66;
+ font-size:clamp(34px,5vw,58px);margin-bottom:10px
+}
 .subtitle{color:#ddd;font-size:18px;max-width:720px;margin:0 auto}
+.btn{
+ display:inline-block;margin-top:22px;padding:15px 32px;
+ font-size:17px;background:linear-gradient(180deg,#ff3b3b,#b60000);
+ color:#fff;text-decoration:none;border-radius:35px;
+ transition:.3s;font-weight:800;box-shadow:0 12px 28px rgba(0,0,0,.35)
+}
+.btn:hover{
+ transform:translateY(-4px);
+ background:linear-gradient(180deg,#ffcc66,#c98900);color:#111
+}
 
-.btn{display:inline-block;margin-top:22px;padding:15px 32px;font-size:17px;background:linear-gradient(180deg,#ff3b3b,#b60000);color:white;text-decoration:none;border-radius:35px;transition:.3s;font-weight:800;box-shadow:0 12px 28px rgba(0,0,0,.35)}
-.btn:hover{transform:translateY(-4px);background:linear-gradient(180deg,#ffcc66,#c98900);color:#111}
-
+/* SERMON SECTION */
 .sermon-section{margin:50px auto 0;width:95%;max-width:1200px}
 .sermon-title{color:#ffcc66;font-size:clamp(28px,4vw,38px);margin-bottom:10px}
-.sermon-note{color:#ccc;margin-bottom:28px}
-.loading{color:#ffcc66;font-size:18px;padding:25px;line-height:1.7}
+.sermon-note{color:#ccc;margin-bottom:28px;line-height:1.7}
+.loading{color:#ffcc66;font-size:17px;padding:25px;line-height:1.8}
+.error-message{
+ color:#ffd27a;background:rgba(0,0,0,.5);
+ border:1px solid rgba(255,204,102,.35);
+ padding:18px;border-radius:14px;line-height:1.8;
+ overflow-wrap:anywhere
+}
+.retry-button{
+ margin-top:12px;padding:10px 20px;border:0;
+ border-radius:25px;background:#ffcc66;color:#111;
+ font-weight:800;cursor:pointer
+}
 
-.latest-sermon-box{margin:35px auto 42px;width:95%;max-width:950px;padding:22px;border-radius:24px;background:rgba(255,255,255,.09);border:1px solid rgba(255,204,102,.35);box-shadow:0 18px 45px rgba(0,0,0,.45);backdrop-filter:blur(14px)}
+/* LATEST SERMON */
+.latest-sermon-box{
+ margin:35px auto 42px;width:95%;max-width:950px;
+ padding:22px;border-radius:24px;
+ background:rgba(255,255,255,.09);
+ border:1px solid rgba(255,204,102,.35);
+ box-shadow:0 18px 45px rgba(0,0,0,.45);
+ backdrop-filter:blur(14px)
+}
 .latest-sermon-box h2{color:#ffcc66;margin-top:0}
-.latest-thumb{display:block;width:100%;height:460px;border-radius:20px;overflow:hidden;background:#000;border:1px solid rgba(255,204,102,.35);position:relative;text-decoration:none}
-.latest-thumb img,.thumbnail-box img{width:100%;height:100%;object-fit:cover;display:block;opacity:.88;transition:.35s ease}
-.latest-thumb:hover img{transform:scale(1.06);opacity:1}
+.latest-thumb{
+ display:block;width:100%;height:460px;
+ border-radius:20px;overflow:hidden;background:#000;
+ border:1px solid rgba(255,204,102,.35);
+ position:relative;text-decoration:none
+}
+.latest-thumb img,.thumbnail-box img{
+ width:100%;height:100%;object-fit:cover;
+ display:block;opacity:.9;transition:.35s
+}
+.latest-thumb:hover img{transform:scale(1.05);opacity:1}
 
-.thumbnail-box{display:block;width:100%;height:220px;background:#000;position:relative;overflow:hidden;text-decoration:none}
-.sermon-card:hover .thumbnail-box img{transform:scale(1.07);opacity:1}
-.thumb-overlay{position:absolute;inset:0;background:linear-gradient(to top,rgba(0,0,0,.72),rgba(0,0,0,.08))}
-.play-small,.play-center{position:absolute;top:50%;left:50%;border-radius:50%;background:rgba(255,255,255,.95);color:#d90000;display:flex;justify-content:center;align-items:center;opacity:0;transform:translate(-50%,-50%) scale(.7);transition:all .35s ease;box-shadow:0 0 25px rgba(255,255,255,.7)}
+/* VIDEO THUMBNAILS */
+.thumbnail-box{
+ display:block;width:100%;height:220px;
+ background:#000;position:relative;overflow:hidden;text-decoration:none
+}
+.sermon-card:hover .thumbnail-box img{transform:scale(1.06);opacity:1}
+.thumb-overlay{
+ position:absolute;inset:0;
+ background:linear-gradient(to top,rgba(0,0,0,.72),rgba(0,0,0,.05))
+}
+.play-small,.play-center{
+ position:absolute;top:50%;left:50%;border-radius:50%;
+ background:rgba(255,255,255,.96);color:#d90000;
+ display:flex;justify-content:center;align-items:center;
+ opacity:0;transform:translate(-50%,-50%) scale(.7);
+ transition:all .3s;box-shadow:0 0 25px rgba(255,255,255,.5)
+}
 .play-small{width:62px;height:62px;font-size:28px}
 .play-center{width:82px;height:82px;font-size:38px}
-.thumbnail-box:hover .play-small,.latest-thumb:hover .play-center{opacity:1;transform:translate(-50%,-50%) scale(1.08)}
+.thumbnail-box:hover .play-small,.latest-thumb:hover .play-center{
+ opacity:1;transform:translate(-50%,-50%) scale(1.05)
+}
 
-.filter-buttons{margin:30px auto;display:flex;justify-content:center;flex-wrap:wrap;gap:12px}
-.filter-buttons button{padding:10px 20px;border:1px solid rgba(255,204,102,.65);background:rgba(255,204,102,.12);color:#fff;border-radius:25px;cursor:pointer;font-weight:700;transition:.3s}
-.filter-buttons button:hover,.filter-buttons button.active-filter{background:#ffcc66;color:#111}
+/* FILTERS */
+.filter-buttons{
+ margin:30px auto;display:flex;justify-content:center;
+ flex-wrap:wrap;gap:12px
+}
+.filter-buttons button{
+ padding:10px 20px;border:1px solid rgba(255,204,102,.65);
+ background:rgba(255,204,102,.12);color:#fff;
+ border-radius:25px;cursor:pointer;font-weight:700;transition:.3s
+}
+.filter-buttons button:hover,.filter-buttons button.active-filter{
+ background:#ffcc66;color:#111
+}
 
-.sermon-grid{display:grid;grid-template-columns:repeat(auto-fit,minmax(280px,1fr));gap:25px}
-.sermon-card{background:rgba(255,255,255,.09);border:1px solid rgba(255,204,102,.28);border-radius:20px;overflow:hidden;box-shadow:0 18px 40px rgba(0,0,0,.38);backdrop-filter:blur(12px);transition:.35s}
-.sermon-card:hover{transform:translateY(-8px);background:rgba(255,204,102,.10)}
+/* GRID */
+.sermon-grid{
+ display:grid;grid-template-columns:repeat(auto-fit,minmax(280px,1fr));
+ gap:25px
+}
+.sermon-card{
+ background:rgba(255,255,255,.09);
+ border:1px solid rgba(255,204,102,.28);
+ border-radius:20px;overflow:hidden;
+ box-shadow:0 18px 40px rgba(0,0,0,.38);
+ backdrop-filter:blur(12px);transition:.3s
+}
+.sermon-card:hover{transform:translateY(-6px);background:rgba(255,204,102,.10)}
 .sermon-info{padding:18px;text-align:left}
-.new-badge{display:inline-block;background:#e60000;color:#fff;padding:5px 11px;border-radius:20px;font-size:12px;font-weight:800;margin-bottom:8px;box-shadow:0 0 15px rgba(255,0,0,.55)}
-.category-badge{display:inline-block;background:rgba(255,204,102,.16);border:1px solid rgba(255,204,102,.45);color:#ffcc66;padding:5px 11px;border-radius:20px;font-size:12px;font-weight:800;margin-bottom:8px;margin-left:6px}
-.sermon-info h3{color:#ffcc66;font-size:17px;margin:0 0 10px;line-height:1.4;overflow-wrap:anywhere}
-.sermon-info p{color:#ddd;font-size:14px;margin:0}
-.open-drive{display:inline-block;margin-top:14px;color:#111;background:#ffcc66;padding:10px 16px;border-radius:22px;text-decoration:none;font-size:13px;font-weight:800}
-.open-drive:hover{background:white}
+.new-badge{
+ display:inline-block;background:#e60000;color:#fff;
+ padding:5px 11px;border-radius:20px;font-size:12px;
+ font-weight:800;margin-bottom:8px
+}
+.category-badge{
+ display:inline-block;background:rgba(255,204,102,.16);
+ border:1px solid rgba(255,204,102,.45);color:#ffcc66;
+ padding:5px 11px;border-radius:20px;font-size:12px;
+ font-weight:800;margin:0 0 8px 6px
+}
+.sermon-info h3{
+ color:#ffcc66;font-size:17px;margin:0 0 10px;
+ line-height:1.5;overflow-wrap:anywhere
+}
+.sermon-info p{color:#ddd;font-size:14px;line-height:1.6}
+.open-drive{
+ display:inline-block;margin-top:8px;color:#111;
+ background:#ffcc66;padding:10px 16px;
+ border-radius:22px;text-decoration:none;font-size:13px;font-weight:800
+}
+.open-drive:hover{background:#fff}
 
-.youtube-card{margin:50px auto 0;width:90%;max-width:800px;border-radius:22px;background:rgba(255,255,255,.09);border:1px solid rgba(255,255,255,.18);backdrop-filter:blur(14px);padding:34px 24px}
+/* YOUTUBE */
+.youtube-card{
+ margin:50px auto 0;width:90%;max-width:800px;
+ border-radius:22px;background:rgba(255,255,255,.09);
+ border:1px solid rgba(255,255,255,.18);
+ backdrop-filter:blur(14px);padding:34px 24px
+}
 .youtube-card h2{color:#ffcc66}
-.youtube-btn{margin-top:20px;display:inline-block;padding:15px 35px;background:#ff0000;color:white;text-decoration:none;border-radius:35px;font-weight:800}
+.youtube-btn{
+ margin-top:20px;display:inline-block;padding:15px 35px;
+ background:#f00;color:#fff;text-decoration:none;
+ border-radius:35px;font-weight:800
+}
 
-footer{margin-top:60px;background:rgba(0,0,0,.92);color:#bbb;text-align:center;padding:34px 15px;font-size:14px;border-top:1px solid rgba(255,255,255,.08)}
+/* FOOTER */
+footer{
+ margin-top:60px;background:rgba(0,0,0,.92);
+ color:#bbb;text-align:center;padding:34px 15px;
+ font-size:14px;border-top:1px solid rgba(255,255,255,.08)
+}
 footer strong{color:#ffd76a}
-.whatsapp-float{position:fixed;right:18px;bottom:18px;width:58px;height:58px;border-radius:50%;background:#25D366;display:flex;justify-content:center;align-items:center;color:white;font-size:30px;text-decoration:none;z-index:9997;box-shadow:0 0 20px rgba(37,211,102,.6)}
 
+/* WHATSAPP */
+.whatsapp-float{
+ position:fixed;right:18px;bottom:18px;width:58px;height:58px;
+ border-radius:50%;background:#25D366;display:flex;
+ justify-content:center;align-items:center;color:#fff;
+ font-size:30px;text-decoration:none;z-index:9997;
+ box-shadow:0 0 20px rgba(37,211,102,.6)
+}
+
+/* MOBILE */
 @media(max-width:768px){
  header{padding:12px 8px}
- nav{display:grid;grid-template-columns:repeat(3,1fr);gap:10px}
- nav a{margin:0;font-size:14px}
- nav a.active::after{bottom:-5px}
+ nav{display:grid;grid-template-columns:repeat(3,minmax(0,1fr));gap:10px}
+ nav a{font-size:14px}
+ nav a.active:after{bottom:-5px}
  .container{padding:120px 14px 50px}
  .daily-verse{width:100%;padding:16px}
  .thumbnail-box{height:210px}
@@ -114,6 +278,7 @@ footer strong{color:#ffd76a}
 </head>
 
 <body>
+
 <div id="loader">Loading...</div>
 <div id="transition"></div>
 <div id="particles-js"></div>
@@ -135,15 +300,19 @@ footer strong{color:#ffd76a}
 <div class="overlay"></div>
 
 <div class="container">
+
 <div class="daily-verse">
-<span>आज का वचन</span>
-<p id="dailyVerse">लोड हो रहा है...</p>
+<span class="daily-verse-label">आज का वचन</span>
+<p id="dailyVerse">आज का वचन लोड हो रहा है...</p>
 </div>
 
 <h1>Watch Our Sermons</h1>
 <p class="subtitle">Be blessed through the Word of God, prayer, worship and faith-filled teaching.</p>
 
-<a href="https://www.youtube.com/@TheGodsPowerMinistrySD/videos" target="_blank" rel="noopener noreferrer" class="btn">▶ Watch All Sermons on YouTube</a>
+<a href="https://www.youtube.com/@TheGodsPowerMinistrySD/videos"
+target="_blank" rel="noopener noreferrer" class="btn">
+▶ Watch All Sermons on YouTube
+</a>
 
 <section class="sermon-section">
 <h2 class="sermon-title">Latest Google Meet Recordings</h2>
@@ -152,20 +321,25 @@ footer strong{color:#ffd76a}
 <div id="latestSermonBox"></div>
 
 <div class="filter-buttons">
-<button class="active-filter" onclick="renderSermons('all',this)">All</button>
-<button onclick="renderSermons('afternoon',this)">Afternoon</button>
-<button onclick="renderSermons('evening',this)">Evening</button>
-<button onclick="renderSermons('sunday',this)">Sunday</button>
+<button class="active-filter" data-filter="all">All</button>
+<button data-filter="afternoon">Afternoon</button>
+<button data-filter="evening">Evening</button>
+<button data-filter="sunday">Sunday</button>
 </div>
 
-<div id="driveLoading" class="loading">Loading Google Drive recordings...</div>
+<div id="driveLoading" class="loading" role="status" aria-live="polite">
+Loading Google Drive recordings...
+</div>
 <div id="sermonGrid" class="sermon-grid"></div>
 </section>
 
 <div class="youtube-card">
 <h2>More Sermons on YouTube</h2>
 <p>Visit our YouTube channel for more messages, worship videos and spiritual teachings.</p>
-<a href="https://www.youtube.com/@TheGodsPowerMinistrySD/videos" target="_blank" rel="noopener noreferrer" class="youtube-btn">▶ Open Sermons</a>
+<a href="https://www.youtube.com/@TheGodsPowerMinistrySD/videos"
+target="_blank" rel="noopener noreferrer" class="youtube-btn">
+▶ Open Sermons
+</a>
 </div>
 
 <footer>
@@ -175,116 +349,47 @@ footer strong{color:#ffd76a}
 </footer>
 </div>
 
-<a href="https://wa.me/917724953676" class="whatsapp-float" target="_blank" rel="noopener noreferrer" aria-label="Chat on WhatsApp">💬</a>
+<a href="https://wa.me/917724953676" class="whatsapp-float"
+target="_blank" rel="noopener noreferrer" aria-label="Chat on WhatsApp">💬</a>
 
 <script>
-/* GOOGLE APPS SCRIPT SERVICE */
+"use strict";
+
+/* GOOGLE APPS SCRIPT URL */
 const DRIVE_SERVICE_URL =
-"const DRIVE_SERVICE_URL =
 "https://script.google.com/macros/s/AKfycbyrQww8x74XTDZp7ZYiUMMYHlqJTECS5bgoMtkcdGW8j0BmMW3w95-xWDeyBDgymgGy/exec";
 
 let allSermons = [];
-let driveRequestTimeout = null;
+let currentFilter = "all";
+let driveTimeout = null;
+let driveScript = null;
+let driveCallbackName = null;
+let driveFinished = false;
 
+/* LOADER SAFETY: NEVER KEEP THE PAGE BLACK FOREVER */
 function hideLoader(){
   const loader = document.getElementById("loader");
-  if(loader) loader.style.display = "none";
+  if(!loader) return;
+  loader.classList.add("hidden");
+  setTimeout(function(){
+    loader.style.display = "none";
+  },350);
 }
+
+if(document.readyState === "loading"){
+  document.addEventListener("DOMContentLoaded",function(){
+    setTimeout(hideLoader,1200);
+  });
+}else{
+  setTimeout(hideLoader,1200);
+}
+
 window.addEventListener("load",hideLoader);
-setTimeout(hideLoader,2500);
+setTimeout(hideLoader,3500);
 
-/* PAGE TRANSITION */
-document.querySelectorAll("a").forEach(function(link){
-  link.addEventListener("click",function(e){
-    if(e.ctrlKey || e.metaKey || e.shiftKey || e.altKey) return;
-    if(this.target === "_blank") return;
-
-    const url = new URL(this.href,window.location.href);
-    if(url.origin === window.location.origin &&
-       /\.html$/i.test(url.pathname)){
-      e.preventDefault();
-      document.getElementById("transition").style.transform="scaleY(1)";
-      setTimeout(function(){window.location.href=url.href;},500);
-    }
-  });
-});
-
-/* OPTIONAL PARTICLES.JS */
-if(window.particlesJS){
-  particlesJS("particles-js",{
-    particles:{
-      number:{value:35},
-      color:{value:"#ffcc66"},
-      size:{value:2},
-      move:{speed:1.4}
-    }
-  });
-}
-
-/* DAILY HINDI BIBLE VERSE */
-async function loadVerse(){
-  const verseBox=document.getElementById("dailyVerse");
-  try{
-    const response=await fetch("https://beta.ourmanna.com/api/v1/get/?format=json");
-    if(!response.ok) throw new Error("Verse request failed");
-    const data=await response.json();
-
-    const verse=data.verse.details.text;
-    const reference=data.verse.details.reference;
-
-    const translationResponse=await fetch(
-      "https://translate.googleapis.com/translate_a/single?client=gtx&sl=en&tl=hi&dt=t&q="+
-      encodeURIComponent(verse)
-    );
-    if(!translationResponse.ok) throw new Error("Translation failed");
-
-    const translationData=await translationResponse.json();
-    const hindi=translationData[0].map(function(item){return item[0];}).join("");
-
-    verseBox.textContent="";
-    const quote=document.createElement("span");
-    quote.style.color="#fff";
-    quote.textContent="“"+hindi+"”";
-
-    const referenceElement=document.createElement("strong");
-    referenceElement.style.display="block";
-    referenceElement.style.marginTop="10px";
-    referenceElement.textContent=reference;
-
-    verseBox.appendChild(quote);
-    verseBox.appendChild(document.createElement("br"));
-    verseBox.appendChild(referenceElement);
-  }catch(error){
-    verseBox.textContent="आज का वचन उपलब्ध नहीं है";
-    console.error("Daily verse:",error);
-  }
-}
-
-/* INDIA DATE AND CATEGORY */
-function getIndiaDateObject(file){
-  return new Date(file.createdTime);
-}
-
-function getCategory(file){
-  const date=new Date(file.createdTime);
-  const parts=new Intl.DateTimeFormat("en-IN",{
-    timeZone:"Asia/Kolkata",
-    hour:"2-digit",
-    hourCycle:"h23",
-    weekday:"short"
-  }).formatToParts(date);
-
-  const hour=Number(parts.find(function(p){return p.type==="hour";}).value);
-  const weekday=parts.find(function(p){return p.type==="weekday";}).value;
-
-  if(weekday==="Sun") return "Sunday";
-  if(hour>=12 && hour<17) return "Afternoon";
-  if(hour>=17 && hour<=23) return "Evening";
-  return "Other";
-}
-
+/* SAFE HTML TEXT */
 function escapeHTML(value){
-  return String(value==null?"":value).replace(/[&<>"']/g,function(ch){
+  return String(value == null ? "" : value).replace(/[&<>"']/g,function(ch){
     return {
       "&":"&amp;",
       "<":"&lt;",
@@ -295,181 +400,338 @@ function escapeHTML(value){
   });
 }
 
+/* PAGE TRANSITIONS */
+document.querySelectorAll('nav a').forEach(function(link){
+  link.addEventListener("click",function(event){
+    if(event.ctrlKey || event.metaKey || event.shiftKey || event.altKey) return;
+    const targetURL = new URL(link.href,location.href);
+    if(targetURL.origin !== location.origin) return;
+    if(!/\.html$/i.test(targetURL.pathname)) return;
+
+    event.preventDefault();
+    const transition = document.getElementById("transition");
+    transition.style.pointerEvents = "auto";
+    transition.style.transform = "scaleY(1)";
+    setTimeout(function(){
+      location.href = targetURL.href;
+    },350);
+  });
+});
+
+/* DAILY HINDI VERSE */
+async function loadVerse(){
+  const box = document.getElementById("dailyVerse");
+  try{
+    const response = await fetch(
+      "https://beta.ourmanna.com/api/v1/get/?format=json"
+    );
+    if(!response.ok) throw new Error("Verse API unavailable");
+
+    const data = await response.json();
+    const verse = data.verse.details.text;
+    const reference = data.verse.details.reference;
+
+    const translationResponse = await fetch(
+      "https://translate.googleapis.com/translate_a/single?client=gtx&sl=en&tl=hi&dt=t&q=" +
+      encodeURIComponent(verse)
+    );
+    if(!translationResponse.ok) throw new Error("Translation unavailable");
+
+    const translationData = await translationResponse.json();
+    const hindi = translationData[0].map(function(part){
+      return part[0];
+    }).join("");
+
+    box.textContent = "";
+
+    const quote = document.createElement("span");
+    quote.textContent = "“" + hindi + "”";
+
+    const ref = document.createElement("strong");
+    ref.className = "verse-reference";
+    ref.textContent = reference;
+
+    box.appendChild(quote);
+    box.appendChild(ref);
+  }catch(error){
+    box.textContent = "आज का वचन अभी उपलब्ध नहीं है।";
+    console.error("Daily verse error:",error);
+  }
+}
+
+/* INDIA TIME AND CATEGORIES */
+function getIndiaParts(dateString){
+  const parts = new Intl.DateTimeFormat("en-IN",{
+    timeZone:"Asia/Kolkata",
+    hour:"2-digit",
+    hourCycle:"h23",
+    weekday:"short"
+  }).formatToParts(new Date(dateString));
+
+  return {
+    hour:Number(parts.find(function(p){return p.type==="hour";}).value),
+    weekday:parts.find(function(p){return p.type==="weekday";}).value
+  };
+}
+
+function getCategory(file){
+  const time = getIndiaParts(file.createdTime);
+  if(time.weekday === "Sun") return "Sunday";
+  if(time.hour >= 12 && time.hour < 17) return "Afternoon";
+  if(time.hour >= 17 && time.hour <= 23) return "Evening";
+  return "Other";
+}
+
 function getThumbnail(file){
-  if(file.thumbnailLink) return file.thumbnailLink;
-  return "images/sermon-thumbnail.png";
+  return file.thumbnailLink ||
+    ("https://drive.google.com/thumbnail?id=" +
+     encodeURIComponent(file.id) + "&sz=w800");
 }
 
 function getWatchURL(file){
-  return "https://drive.google.com/file/d/"+
-    encodeURIComponent(file.id)+"/view";
+  return "https://drive.google.com/file/d/" +
+    encodeURIComponent(file.id) + "/view";
 }
 
-/* LOAD ALL AVAILABLE DRIVE VIDEOS THROUGH APPS SCRIPT */
-function loadDriveSermons(){
-  const loading=document.getElementById("driveLoading");
-  const grid=document.getElementById("sermonGrid");
-  const latest=document.getElementById("latestSermonBox");
+function formatDate(dateString){
+  return new Date(dateString).toLocaleString("en-IN",{
+    timeZone:"Asia/Kolkata",
+    day:"numeric",
+    month:"long",
+    year:"numeric",
+    hour:"numeric",
+    minute:"2-digit",
+    hour12:true
+  });
+}
 
-  loading.style.display="block";
-  loading.textContent="Loading Google Drive recordings...";
-  grid.innerHTML="";
-  latest.innerHTML="";
+/* ERROR MESSAGE WITH RETRY */
+function showDriveError(message){
+  const loading = document.getElementById("driveLoading");
+  loading.className = "error-message";
+  loading.textContent = message + " ";
 
-  const callbackName="tgpmDriveCallback"+Date.now();
-  const script=document.createElement("script");
-  let finished=false;
+  const retry = document.createElement("button");
+  retry.className = "retry-button";
+  retry.textContent = "Retry Loading Videos";
+  retry.addEventListener("click",loadDriveSermons);
 
-  function cleanup(){
-    if(finished) return;
-    finished=true;
-    clearTimeout(driveRequestTimeout);
-    delete window[callbackName];
-    if(script.parentNode) script.parentNode.removeChild(script);
+  loading.appendChild(document.createElement("br"));
+  loading.appendChild(retry);
+  loading.style.display = "block";
+}
+
+/* CLEAN UP JSONP REQUEST */
+function cleanupDriveRequest(){
+  if(driveFinished) return;
+  driveFinished = true;
+
+  if(driveTimeout) clearTimeout(driveTimeout);
+
+  if(driveCallbackName){
+    try{ delete window[driveCallbackName]; }catch(e){}
   }
 
-  driveRequestTimeout=setTimeout(function(){
-    cleanup();
-    loading.textContent=
-      "The Google Drive service timed out. Check your Apps Script deployment and try again.";
-  },45000);
+  if(driveScript && driveScript.parentNode){
+    driveScript.parentNode.removeChild(driveScript);
+  }
+}
 
-  window[callbackName]=function(data){
-    cleanup();
+/* LOAD RECORDINGS FROM ALL ACCESSIBLE DRIVE LOCATIONS */
+function loadDriveSermons(){
+  cleanupDriveRequest();
+
+  driveFinished = false;
+  driveCallbackName = "tgpmDriveCallback_" +
+    Date.now() + "_" + Math.floor(Math.random()*100000);
+
+  driveScript = document.createElement("script");
+
+  const loading = document.getElementById("driveLoading");
+  const grid = document.getElementById("sermonGrid");
+  const latest = document.getElementById("latestSermonBox");
+
+  loading.className = "loading";
+  loading.textContent = "Loading Google Drive recordings...";
+  loading.style.display = "block";
+  grid.innerHTML = "";
+  latest.innerHTML = "";
+
+  driveTimeout = setTimeout(function(){
+    cleanupDriveRequest();
+    showDriveError(
+      "The Google Drive service timed out. Check the Apps Script deployment and internet connection."
+    );
+  },25000);
+
+  window[driveCallbackName] = function(data){
+    if(driveFinished) return;
+    cleanupDriveRequest();
 
     if(!data || !Array.isArray(data.files)){
-      loading.textContent=
-        "The service responded, but no valid video list was returned. Check your Apps Script code.";
+      showDriveError(
+        "Google Drive responded, but the video list format is invalid."
+      );
       return;
     }
 
-    allSermons=data.files.filter(function(file){
-      return file && file.id && file.name &&
-        typeof file.mimeType==="string" &&
-        file.mimeType.indexOf("video/")===0;
+    allSermons = data.files.filter(function(file){
+      return file &&
+        file.id &&
+        file.name &&
+        typeof file.mimeType === "string" &&
+        file.mimeType.indexOf("video/") === 0;
     });
 
     allSermons.sort(function(a,b){
-      return new Date(b.createdTime)-new Date(a.createdTime);
+      return new Date(b.createdTime).getTime() -
+             new Date(a.createdTime).getTime();
     });
 
-    if(allSermons.length===0){
-      loading.textContent=
-        "No video files were returned. Check that the script has permission to access your recordings.";
+    if(allSermons.length === 0){
+      loading.className = "error-message";
+      loading.textContent =
+        "No videos were returned. Check that the Apps Script has permission to access the recordings.";
       return;
     }
 
-    loading.style.display="none";
+    loading.style.display = "none";
+    loading.className = "loading";
+
     showLatestSermon(allSermons[0]);
-    renderSermons("all");
+    renderSermons(currentFilter);
   };
 
-  script.onerror=function(){
-    cleanup();
-    loading.textContent=
-      "Unable to connect to Google Drive. Verify that the Apps Script URL is deployed and accessible.";
+  driveScript.onerror = function(){
+    cleanupDriveRequest();
+    showDriveError(
+      "Unable to connect to the Google Drive service. Check the deployment URL and web app access settings."
+    );
   };
 
-  script.src=DRIVE_SERVICE_URL+
-    "?callback="+encodeURIComponent(callbackName)+
-    "&_="+Date.now();
+  driveScript.src = DRIVE_SERVICE_URL +
+    "?callback=" + encodeURIComponent(driveCallbackName) +
+    "&_=" + Date.now();
 
-  document.body.appendChild(script);
+  document.body.appendChild(driveScript);
 }
 
-/* LATEST RECORDING */
+/* LATEST SERMON */
 function showLatestSermon(file){
-  const latestBox=document.getElementById("latestSermonBox");
-  const category=getCategory(file);
-  const thumb=getThumbnail(file);
-  const watchURL=getWatchURL(file);
+  const box = document.getElementById("latestSermonBox");
+  const watchURL = getWatchURL(file);
+  const category = getCategory(file);
 
-  latestBox.innerHTML=`
+  box.innerHTML = `
     <div class="latest-sermon-box">
       <h2>🔥 Latest Sermon</h2>
-      <a href="${escapeHTML(watchURL)}" target="_blank" rel="noopener noreferrer" class="latest-thumb">
-        <img src="${escapeHTML(thumb)}" alt="${escapeHTML(file.name)}" loading="lazy" onerror="this.onerror=null;this.src='images/sermon-thumbnail.png'">
+      <a class="latest-thumb" href="${escapeHTML(watchURL)}"
+         target="_blank" rel="noopener noreferrer">
+        <img src="${escapeHTML(getThumbnail(file))}"
+             alt="${escapeHTML(file.name)}"
+             loading="lazy">
         <div class="thumb-overlay"></div>
         <div class="play-center">▶</div>
       </a>
       <h3>${escapeHTML(file.name)}</h3>
-      <span class="category-badge">${escapeHTML(category)}</span><br>
-      <a class="open-drive" href="${escapeHTML(watchURL)}" target="_blank" rel="noopener noreferrer">▶ Watch Latest Sermon</a>
+      <span class="category-badge">${escapeHTML(category)}</span>
+      <br>
+      <a class="open-drive" href="${escapeHTML(watchURL)}"
+         target="_blank" rel="noopener noreferrer">
+        ▶ Watch Latest Sermon
+      </a>
     </div>`;
+
+  const image = box.querySelector("img");
+  image.addEventListener("error",function(){
+    image.onerror = null;
+    image.src = "images/sermon-thumbnail.png";
+  });
 }
 
-/* SERMON GRID AND FILTERS */
-function renderSermons(filter,btn){
-  const grid=document.getElementById("sermonGrid");
-  grid.innerHTML="";
+/* CATEGORY FILTERS */
+document.querySelectorAll(".filter-buttons button").forEach(function(button){
+  button.addEventListener("click",function(){
+    currentFilter = button.dataset.filter;
+    renderSermons(currentFilter);
+  });
+});
 
-  if(btn){
-    document.querySelectorAll(".filter-buttons button").forEach(function(button){
-      button.classList.remove("active-filter");
-    });
-    btn.classList.add("active-filter");
-  }else{
-    document.querySelectorAll(".filter-buttons button").forEach(function(button){
-      button.classList.toggle("active-filter",button.textContent.trim().toLowerCase()===filter);
-    });
-  }
+/* DISPLAY SERMON CARDS */
+function renderSermons(filter){
+  const grid = document.getElementById("sermonGrid");
+  grid.innerHTML = "";
 
-  const filtered=allSermons.filter(function(file){
-    const category=getCategory(file);
-    if(filter==="all") return true;
-    if(filter==="afternoon") return category==="Afternoon";
-    if(filter==="evening") return category==="Evening";
-    if(filter==="sunday") return category==="Sunday";
+  document.querySelectorAll(".filter-buttons button").forEach(function(button){
+    button.classList.toggle(
+      "active-filter",
+      button.dataset.filter === filter
+    );
+  });
+
+  const filtered = allSermons.filter(function(file){
+    const category = getCategory(file);
+    if(filter === "all") return true;
+    if(filter === "afternoon") return category === "Afternoon";
+    if(filter === "evening") return category === "Evening";
+    if(filter === "sunday") return category === "Sunday";
     return true;
   });
 
-  if(filtered.length===0){
-    grid.innerHTML="<p>No videos found for this filter.</p>";
+  if(filtered.length === 0){
+    grid.innerHTML = "<p>No videos found for this category.</p>";
     return;
   }
 
+  const fragment = document.createDocumentFragment();
+
   filtered.forEach(function(file){
-    const date=new Date(file.createdTime).toLocaleString("en-IN",{
-      timeZone:"Asia/Kolkata",
-      day:"numeric",
-      month:"long",
-      year:"numeric",
-      hour:"numeric",
-      minute:"2-digit",
-      hour12:true
-    });
-
-    const ageDays=(Date.now()-new Date(file.createdTime).getTime())/
+    const watchURL = getWatchURL(file);
+    const category = getCategory(file);
+    const thumb = getThumbnail(file);
+    const ageDays =
+      (Date.now() - new Date(file.createdTime).getTime()) /
       (1000*60*60*24);
-    const isNew=ageDays>=0 && ageDays<=7;
-    const category=getCategory(file);
-    const thumb=getThumbnail(file);
-    const watchURL=getWatchURL(file);
+    const isNew = ageDays >= 0 && ageDays <= 7;
 
-    const card=document.createElement("article");
-    card.className="sermon-card";
+    const card = document.createElement("article");
+    card.className = "sermon-card";
 
-    card.innerHTML=`
-      <a href="${escapeHTML(watchURL)}" target="_blank" rel="noopener noreferrer" class="thumbnail-box">
-        <img src="${escapeHTML(thumb)}" alt="${escapeHTML(file.name)}" loading="lazy" onerror="this.onerror=null;this.src='images/sermon-thumbnail.png'">
+    card.innerHTML = `
+      <a class="thumbnail-box" href="${escapeHTML(watchURL)}"
+         target="_blank" rel="noopener noreferrer">
+        <img src="${escapeHTML(thumb)}"
+             alt="${escapeHTML(file.name)}" loading="lazy">
         <div class="thumb-overlay"></div>
         <div class="play-small">▶</div>
       </a>
       <div class="sermon-info">
-        ${isNew?'<span class="new-badge">NEW</span>':""}
+        ${isNew ? '<span class="new-badge">NEW</span>' : ''}
         <span class="category-badge">${escapeHTML(category)}</span>
         <h3>${escapeHTML(file.name)}</h3>
-        <p>Uploaded: ${escapeHTML(date)}</p>
-        <a class="open-drive" href="${escapeHTML(watchURL)}" target="_blank" rel="noopener noreferrer">▶ Watch Sermon</a>
+        <p>Uploaded: ${escapeHTML(formatDate(file.createdTime))}</p>
+        <a class="open-drive" href="${escapeHTML(watchURL)}"
+           target="_blank" rel="noopener noreferrer">
+          ▶ Watch Sermon
+        </a>
       </div>`;
 
-    grid.appendChild(card);
+    const image = card.querySelector("img");
+    image.addEventListener("error",function(){
+      image.onerror = null;
+      image.src = "images/sermon-thumbnail.png";
+    });
+
+    fragment.appendChild(card);
   });
+
+  grid.appendChild(fragment);
 }
 
-/* START */
+/* INITIALIZE: EACH TASK FAILS INDEPENDENTLY */
 loadVerse();
 loadDriveSermons();
 </script>
+
 </body>
 </html>
